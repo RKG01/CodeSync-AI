@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # ─── React Frontend ──────────────────────────────────
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    environment:
+      - VITE_API_URL=http://localhost:4000
+      - VITE_WS_URL=ws://localhost:1234
+    volumes:
+      - ./client/src:/app/src
+    networks:
+      - codesync
+
+  # ─── Node.js Backend ──────────────────────────────────
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+      - "1234:1234"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - YJS_PORT=1234
+      - DATABASE_URL=postgresql://codesync:codesync_pass@postgres:5432/codesync_db
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your_super_secret_jwt_key_change_in_production
+      - JWT_REFRESH_SECRET=your_refresh_secret_key_change_in_production
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./server/src:/app/src
+    networks:
+      - codesync
+
+  # ─── PostgreSQL Database ──────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: codesync_db
+      POSTGRES_USER: codesync
+      POSTGRES_PASSWORD: codesync_pass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./server/migrations/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codesync -d codesync_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - codesync
+
+  # ─── Redis Cache ──────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - codesync
+
+  # ─── Nginx Reverse Proxy (Production) ────────────────
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - client
+      - server
+    profiles:
+      - production
+    networks:
+      - codesync
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
+
+networks:
+  codesync:
+    driver: bridge
