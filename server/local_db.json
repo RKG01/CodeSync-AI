@@ -7,8 +7,8 @@
       "password_hash": "$2a$10$HI9s7vNszgACeg/L7wtgCO2lNbcwvMkYVgF0KaPjW/CM8oj0xS7uK",
       "avatar_url": null,
       "created_at": "2026-05-21T06:47:32.792Z",
-      "updated_at": "2026-05-22T16:36:54.166Z",
-      "last_active_at": "2026-05-22T16:36:54.166Z"
+      "updated_at": "2026-05-23T07:24:13.614Z",
+      "last_active_at": "2026-05-23T07:24:13.614Z"
     },
     {
       "id": "27e25cd6-aa17-4fb8-a3f0-d5d423cd62da",
@@ -18,6 +18,15 @@
       "email": "demo3@codesync.ai",
       "password_hash": "$2a$12$RyWCI8OMxyLJQGxop81fLu.HdrVi9yj09mu5G55GeckZUlEQ49BBS",
       "last_active_at": "2026-05-22T16:37:20.737Z"
+    },
+    {
+      "id": "29fe9541-c337-42ab-b4e7-2d553e8f8edb",
+      "created_at": "2026-05-23T07:21:39.766Z",
+      "updated_at": "2026-05-23T07:23:16.560Z",
+      "username": "demo5",
+      "email": "demo5@gmail.com",
+      "password_hash": "$2a$12$jwXeGBa1YNRkPJRoaybmX.c/CLItLpFFhUEq0MxBD3nIiPFrUwaGy",
+      "last_active_at": "2026-05-23T07:23:16.560Z"
     }
   ],
   "projects": [
@@ -59,6 +68,12 @@
       "user_id": "27e25cd6-aa17-4fb8-a3f0-d5d423cd62da",
       "role": "editor",
       "joined_at": "2026-05-21T06:53:40.993Z"
+    },
+    {
+      "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
+      "user_id": "29fe9541-c337-42ab-b4e7-2d553e8f8edb",
+      "role": "editor",
+      "joined_at": "2026-05-23T07:23:04.730Z"
     }
   ],
   "files": [
@@ -101,25 +116,37 @@
     {
       "id": "1862dc76-196c-4f8d-bbe0-e58ab4be9847",
       "created_at": "2026-05-21T06:53:27.465Z",
-      "updated_at": "2026-05-22T16:43:26.216Z",
+      "updated_at": "2026-05-23T07:24:23.683Z",
       "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
       "path": "q.cpp",
       "name": "q.cpp",
       "is_directory": false,
-      "content": "class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};",
+      "content": "class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};class Solution {\r\npublic:\r\n    int search(vector<int>& nums, int target) {\r\n        int low = 0;\r\n        int high = nums.size() - 1;\r\n        \r\n        while (low <= high) {\r\n            int mid = low + (high - low) / 2;\r\n\r\n            if (nums[mid] == target)\r\n                return mid;\r\n\r\n            if (nums[low] <= nums[mid]) {\r\n                if (nums[low] <= target && target < nums[mid]) {\r\n                    high = mid - 1;\r\n                } else {\r\n                    low = mid + 1;\r\n                }\r\n            }\r\n            if(nums[mid] <= nums[high]) {\r\n                if (nums[mid] < target && target <= nums[high]) {\r\n                    low = mid + 1;\r\n                } else {\r\n                    high = mid - 1;\r\n                }\r\n            }\r\n        }\r\n\r\n        return -1; \r\n    }\r\n};",
       "language": "cpp",
       "parent_id": null
     },
     {
       "id": "83a651d3-01b2-41df-8482-4ef836d7038e",
       "created_at": "2026-05-21T06:54:52.844Z",
-      "updated_at": "2026-05-22T16:39:50.792Z",
+      "updated_at": "2026-05-23T07:23:50.837Z",
       "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
       "path": "test.py",
       "name": "test.py",
       "is_directory": false,
-      "content": "cml;lwlw",
+      "content": "cksd;s;",
       "language": "python",
+      "parent_id": null
+    },
+    {
+      "id": "ff4287d5-c278-4d97-97c4-f921be106efe",
+      "created_at": "2026-05-23T07:24:08.951Z",
+      "updated_at": "2026-05-23T07:24:30.796Z",
+      "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
+      "path": "new.cpp",
+      "name": "new.cpp",
+      "is_directory": false,
+      "content": "cs;c;scn;",
+      "language": "cpp",
       "parent_id": null
     }
   ],

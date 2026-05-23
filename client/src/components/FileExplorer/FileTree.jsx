@@ -8,8 +8,11 @@ import FileItem from './FileItem';
 export default function FileTree({ files = [], projectId, onCreateFile }) {
   const { openFile, activeFile, deleteFile } = useContext(EditorContext);
 
+  // Normalize backend fields to frontend-expected fields
+  const normalized = normalizeFiles(files);
+
   // Build tree from flat file list
-  const tree = buildTree(files);
+  const tree = buildTree(normalized);
 
   return (
     <div style={{
@@ -101,32 +104,54 @@ export default function FileTree({ files = [], projectId, onCreateFile }) {
 function TreeNode({ nodes, depth, activeFile, onSelect, onDelete }) {
   return (
     <>
-      {nodes.map((node) => (
-        <FileItem
-          key={node._id || node.path}
-          node={node}
-          depth={depth}
-          isActive={activeFile && (activeFile._id === node._id || activeFile.path === node.path)}
-          onSelect={() => {
-            if (node.type !== 'folder') {
-              onSelect(node);
-            }
-          }}
-          onDelete={() => onDelete(node._id)}
-        >
-          {node.children && node.children.length > 0 && (
-            <TreeNode
-              nodes={node.children}
-              depth={depth + 1}
-              activeFile={activeFile}
-              onSelect={onSelect}
-              onDelete={onDelete}
-            />
-          )}
-        </FileItem>
-      ))}
+      {nodes.map((node) => {
+        // Match active file by id, _id, or path
+        const activeId = activeFile?.id || activeFile?._id;
+        const nodeId = node.id || node._id;
+        const isActive = activeFile && (activeId === nodeId || activeFile.path === node.path);
+
+        return (
+          <FileItem
+            key={node.id || node._id || node.path}
+            node={node}
+            depth={depth}
+            isActive={isActive}
+            onSelect={() => {
+              if (node.type !== 'folder') {
+                onSelect(node);
+              }
+            }}
+            onDelete={() => onDelete(node.id || node._id)}
+          >
+            {node.children && node.children.length > 0 && (
+              <TreeNode
+                nodes={node.children}
+                depth={depth + 1}
+                activeFile={activeFile}
+                onSelect={onSelect}
+                onDelete={onDelete}
+              />
+            )}
+          </FileItem>
+        );
+      })}
     </>
   );
+}
+
+/**
+ * Normalize backend file objects to frontend-expected shape.
+ * Backend returns: { id, is_directory, parent_id, ... }
+ * Frontend expects: { id, _id, type: 'folder'|'file', parentId, ... }
+ */
+function normalizeFiles(files) {
+  if (!files || files.length === 0) return [];
+  return files.map((f) => ({
+    ...f,
+    _id: f._id || f.id,
+    type: (f.type === 'folder' || f.is_directory) ? 'folder' : 'file',
+    parentId: f.parentId || f.parent_id || null,
+  }));
 }
 
 /**
@@ -153,11 +178,10 @@ function buildTree(files) {
 
   sorted.forEach((file) => {
     const node = { ...file, children: file.type === 'folder' ? [] : undefined };
-    map.set(file._id || file.path, node);
+    map.set(file.id || file._id, node);
 
-    if (file.parentId || file.parent) {
-      const parentId = file.parentId || file.parent;
-      const parent = map.get(parentId);
+    if (file.parentId) {
+      const parent = map.get(file.parentId);
       if (parent && parent.children) {
         parent.children.push(node);
       } else {

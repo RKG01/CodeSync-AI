@@ -11,14 +11,36 @@ export function EditorProvider({ children }) {
   const [files, setFiles] = useState([]);
   const [unsavedFiles, setUnsavedFiles] = useState(new Set());
 
-  const openFile = useCallback((file) => {
+  const openFile = useCallback(async (file) => {
+    // If we don't have content yet (from the tree listing), fetch it
+    let fullFile = file;
+    if (file.content === undefined || file.content === null) {
+      try {
+        const projectId = file.project_id || project?.id;
+        if (projectId) {
+          const data = await api.get(`/projects/${projectId}/files/${file.id || file._id}`);
+          const fetched = data.data?.file || data.file || data;
+          fullFile = { ...file, ...fetched };
+        }
+      } catch (err) {
+        console.error('Failed to fetch file content:', err);
+      }
+    }
+
     setOpenFiles((prev) => {
-      const exists = prev.find((f) => (f.id || f._id) === (file.id || file._id) || f.path === file.path);
-      if (exists) return prev;
-      return [...prev, file];
+      const exists = prev.find((f) => (f.id || f._id) === (fullFile.id || fullFile._id) || f.path === fullFile.path);
+      if (exists) {
+        // Update existing entry with fetched content
+        return prev.map((f) =>
+          ((f.id || f._id) === (fullFile.id || fullFile._id) || f.path === fullFile.path)
+            ? { ...f, ...fullFile }
+            : f
+        );
+      }
+      return [...prev, fullFile];
     });
-    setActiveFileState(file);
-  }, []);
+    setActiveFileState(fullFile);
+  }, [project]);
 
   const closeFile = useCallback((fileId) => {
     setOpenFiles((prev) => {

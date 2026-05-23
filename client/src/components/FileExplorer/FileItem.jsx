@@ -80,11 +80,13 @@ export default function FileItem({ node, depth, isActive, onSelect, onDelete, ch
           padding: '3px var(--space-2)',
           paddingLeft: `${8 + depth * 16}px`,
           fontSize: 'var(--text-xs)',
-          color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-          background: isActive ? 'var(--accent-blue-subtle)' : 'transparent',
+          color: isActive ? '#ffffff' : 'var(--text-secondary)',
+          fontWeight: isActive ? '600' : '400',
+          background: isActive ? 'rgba(59, 130, 246, 0.20)' : 'transparent',
+          borderLeft: isActive ? '2px solid var(--accent-blue)' : '2px solid transparent',
           cursor: 'pointer',
           userSelect: 'none',
-          transition: 'background var(--transition-fast)',
+          transition: 'all var(--transition-fast)',
           position: 'relative',
         }}
         onMouseEnter={(e) => {

@@ -20,6 +20,7 @@ export default function CodeEditor({
   const monacoRef = useRef(null);
   const bindingRef = useRef(null);
   const { theme } = useTheme();
+  const initializedFileRef = useRef(null);
 
   const language = languageOverride || getLanguageFromFilename(file?.name || file?.path || '');
 
@@ -33,19 +34,12 @@ export default function CodeEditor({
 
     // Set up Yjs binding if doc is available
     if (doc && provider) {
-      const yText = doc.getText('monaco');
-
-      // Clean up old binding
-      if (bindingRef.current) {
-        bindingRef.current.destroy();
+      setupBinding(editor, doc, provider, awareness, file);
+    } else {
+      // No Yjs doc, load file content directly
+      if (file && file.content !== undefined && file.content !== null) {
+        editor.setValue(file.content);
       }
-
-      bindingRef.current = new MonacoBinding(
-        yText,
-        editor.getModel(),
-        new Set([editor]),
-        awareness || null
-      );
     }
 
     // Cursor change tracking
@@ -85,7 +79,37 @@ export default function CodeEditor({
 
     // Focus editor
     editor.focus();
-  }, [doc, provider, awareness, onCursorChange, onSave, onDebug, theme]);
+  }, [doc, provider, awareness, onCursorChange, onSave, onDebug, theme, file]);
+
+  /**
+   * Sets up the Yjs MonacoBinding and seeds the Yjs document
+   * with the file's saved content if the Yjs doc is empty.
+   */
+  function setupBinding(editor, yjsDoc, yjsProvider, yjsAwareness, currentFile) {
+    const yText = yjsDoc.getText('monaco');
+
+    // Clean up old binding
+    if (bindingRef.current) {
+      bindingRef.current.destroy();
+      bindingRef.current = null;
+    }
+
+    // If the Yjs document is empty AND we have saved content from the DB,
+    // seed it into the Yjs document BEFORE creating the binding.
+    // This is what prevents the "empty file" bug when switching tabs.
+    const fileId = currentFile?.id || currentFile?._id || currentFile?.path;
+    if (yText.length === 0 && currentFile?.content && initializedFileRef.current !== fileId) {
+      yText.insert(0, currentFile.content);
+      initializedFileRef.current = fileId;
+    }
+
+    bindingRef.current = new MonacoBinding(
+      yText,
+      editor.getModel(),
+      new Set([editor]),
+      yjsAwareness || null
+    );
+  }
 
   // Cleanup binding on unmount
   useEffect(() => {
@@ -97,22 +121,10 @@ export default function CodeEditor({
     };
   }, []);
 
-  // Re-bind when doc changes
+  // Re-bind when doc changes (e.g. user switches to a different file)
   useEffect(() => {
     if (editorRef.current && doc && provider) {
-      const editor = editorRef.current;
-      const yText = doc.getText('monaco');
-
-      if (bindingRef.current) {
-        bindingRef.current.destroy();
-      }
-
-      bindingRef.current = new MonacoBinding(
-        yText,
-        editor.getModel(),
-        new Set([editor]),
-        awareness || null
-      );
+      setupBinding(editorRef.current, doc, provider, awareness, file);
     }
   }, [doc, provider, awareness]);
 
