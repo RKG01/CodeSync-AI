@@ -22,6 +22,10 @@ import { getFileTree, createFile, getFile, updateFile, deleteFile } from './cont
 
 const app = express();
 
+// Trust proxy is required when deployed behind a reverse proxy (like Render/Vercel)
+// Without this, rate limiting will block everyone because it sees the proxy's IP.
+app.set('trust proxy', 1);
+
 // ─── Security Middleware ─────────────────────────────────────────────────────
 app.use(helmet({
   contentSecurityPolicy: env.NODE_ENV === 'production' ? undefined : false,

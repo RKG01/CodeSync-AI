@@ -7,12 +7,12 @@ import rateLimit from 'express-rate-limit';
 
 /**
  * General API rate limiter.
- * Allows 100 requests per 15-minute window per IP.
+ * Allows 500 requests per 15-minute window per IP.
  * @type {import('express-rate-limit').RateLimitRequestHandler}
  */
 export const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: process.env.NODE_ENV === 'production' ? 100 : 10000,
+  max: process.env.NODE_ENV === 'production' ? 500 : 10000,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -24,13 +24,13 @@ export const generalLimiter = rateLimit({
 
 /**
  * Auth route rate limiter.
- * Allows 20 requests per 15-minute window per IP.
+ * Allows 100 requests per 15-minute window per IP.
  * Stricter to prevent brute-force login/register attempts.
  * @type {import('express-rate-limit').RateLimitRequestHandler}
  */
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: process.env.NODE_ENV === 'production' ? 20 : 1000,
+  max: process.env.NODE_ENV === 'production' ? 100 : 1000,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -42,13 +42,13 @@ export const authLimiter = rateLimit({
 
 /**
  * AI route rate limiter.
- * Allows 30 requests per 1-minute window per IP.
+ * Allows 60 requests per 1-minute window per IP.
  * Prevents excessive AI API usage.
  * @type {import('express-rate-limit').RateLimitRequestHandler}
  */
 export const aiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: process.env.NODE_ENV === 'production' ? 30 : 1000,
+  max: process.env.NODE_ENV === 'production' ? 60 : 1000,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
