@@ -364,7 +364,7 @@ function NewProjectModal({ onClose, onCreate }) {
     setLoading(false);
     if (project) {
       onClose();
-      navigate(`/editor/${project.id}`);
+      navigate(`/editor/${project.id || project._id}`);
     }
   };
 
