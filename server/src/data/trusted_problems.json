@@ -1,0 +1,2902 @@
+[
+  {
+    "id": "prob-1",
+    "title": "Classic: Sum of Multiples",
+    "difficulty": "easy",
+    "description": "## Classic: Sum of Multiples\n\nGiven an integer N, find the sum of all positive integers strictly less than N that are multiples of 3 or 5.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n254\n```\n**Output:**\n```\n15045\n```\n\n### Example 2\n**Input:**\n```\n313\n```\n**Output:**\n```\n22995\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "254",
+        "expectedOutput": "15045"
+      },
+      {
+        "input": "313",
+        "expectedOutput": "22995"
+      },
+      {
+        "input": "327",
+        "expectedOutput": "24918"
+      },
+      {
+        "input": "878",
+        "expectedOutput": "179669"
+      },
+      {
+        "input": "987",
+        "expectedOutput": "227208"
+      }
+    ]
+  },
+  {
+    "id": "prob-2",
+    "title": "Cyberpunk: Data Node Link",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Data Node Link\n\nIn the neon grid, you must connect data nodes. Given grid limit N, find the sum of all node IDs less than N that are multiples of 3 or 5.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n260\n```\n**Output:**\n```\n15558\n```\n\n### Example 2\n**Input:**\n```\n791\n```\n**Output:**\n```\n146283\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "260",
+        "expectedOutput": "15558"
+      },
+      {
+        "input": "791",
+        "expectedOutput": "146283"
+      },
+      {
+        "input": "280",
+        "expectedOutput": "18248"
+      },
+      {
+        "input": "525",
+        "expectedOutput": "64050"
+      },
+      {
+        "input": "133",
+        "expectedOutput": "4185"
+      }
+    ]
+  },
+  {
+    "id": "prob-3",
+    "title": "Fantasy: Magical Essences",
+    "difficulty": "easy",
+    "description": "## Fantasy: Magical Essences\n\nYou are brewing a potion. Given a capacity N, find the sum of all magical essence weights less than N that are multiples of 3 or 5.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n615\n```\n**Output:**\n```\n87945\n```\n\n### Example 2\n**Input:**\n```\n41\n```\n**Output:**\n```\n408\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "615",
+        "expectedOutput": "87945"
+      },
+      {
+        "input": "41",
+        "expectedOutput": "408"
+      },
+      {
+        "input": "577",
+        "expectedOutput": "77819"
+      },
+      {
+        "input": "599",
+        "expectedOutput": "83700"
+      },
+      {
+        "input": "773",
+        "expectedOutput": "139244"
+      }
+    ]
+  },
+  {
+    "id": "prob-4",
+    "title": "Space: Asteroid Harvesting",
+    "difficulty": "easy",
+    "description": "## Space: Asteroid Harvesting\n\nYour ship has scanner range N. Find the total mass of asteroids (which only appear at multiples of 3 or 5) within range.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n492\n```\n**Output:**\n```\n56433\n```\n\n### Example 2\n**Input:**\n```\n846\n```\n**Output:**\n```\n166748\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "492",
+        "expectedOutput": "56433"
+      },
+      {
+        "input": "846",
+        "expectedOutput": "166748"
+      },
+      {
+        "input": "141",
+        "expectedOutput": "4598"
+      },
+      {
+        "input": "143",
+        "expectedOutput": "4739"
+      },
+      {
+        "input": "958",
+        "expectedOutput": "214560"
+      }
+    ]
+  },
+  {
+    "id": "prob-5",
+    "title": "Hacker: Payload Extraction",
+    "difficulty": "easy",
+    "description": "## Hacker: Payload Extraction\n\nExtract fragments from a payload array of size N. Only fragments at indices that are multiples of 3 or 5 are valid. Return their sum.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n850\n```\n**Output:**\n```\n168443\n```\n\n### Example 2\n**Input:**\n```\n185\n```\n**Output:**\n```\n7833\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "850",
+        "expectedOutput": "168443"
+      },
+      {
+        "input": "185",
+        "expectedOutput": "7833"
+      },
+      {
+        "input": "387",
+        "expectedOutput": "34908"
+      },
+      {
+        "input": "100",
+        "expectedOutput": "2318"
+      },
+      {
+        "input": "497",
+        "expectedOutput": "57420"
+      }
+    ]
+  },
+  {
+    "id": "prob-6",
+    "title": "Classic: Reverse String",
+    "difficulty": "easy",
+    "description": "## Classic: Reverse String\n\nGiven a string, print the reversed version of it.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nmWAAtBJGkrkOrIxRo8gudjSAYyb\n```\n**Output:**\n```\nbyYASjdug8oRxIrOkrkGJBtAAWm\n```\n\n### Example 2\n**Input:**\n```\nhivdmfr4LHvb1A0fCxBs4MkiMv25KwTkCjhN\n```\n**Output:**\n```\nNhjCkTwK52vMikM4sBxCf0A1bvHL4rfmdvih\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "mWAAtBJGkrkOrIxRo8gudjSAYyb",
+        "expectedOutput": "byYASjdug8oRxIrOkrkGJBtAAWm"
+      },
+      {
+        "input": "hivdmfr4LHvb1A0fCxBs4MkiMv25KwTkCjhN",
+        "expectedOutput": "NhjCkTwK52vMikM4sBxCf0A1bvHL4rfmdvih"
+      },
+      {
+        "input": "i3PLmUuCjVnTVD9OF3xQp8j1KnKvv",
+        "expectedOutput": "vvKnK1j8pQx3FO9DVTnVjCuUmLP3i"
+      },
+      {
+        "input": "AHyO99xcBlwBe2JDFMVssxVEenAHe9sIm2hGJoeAslj6Opm",
+        "expectedOutput": "mpO6jlsAeoJGh2mIs9eHAneEVxssVMFDJ2eBwlBcx99OyHA"
+      },
+      {
+        "input": "oh1iIIWLeK3vJIGCopRCUXfN7QFlMXWPDkt1YFc",
+        "expectedOutput": "cFY1tkDPWXMlFQ7NfXUCRpoCGIJv3KeLWIIi1ho"
+      }
+    ]
+  },
+  {
+    "id": "prob-7",
+    "title": "Cyberpunk: Encrypted Cipher",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Encrypted Cipher\n\nA megacorp uses a basic reversal cipher. Given the ciphertext, reverse it to crack the code.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nkkVIqgv1C\n```\n**Output:**\n```\nC1vgqIVkk\n```\n\n### Example 2\n**Input:**\n```\noLar7OkAttox4qs7fNtskTnt5VBv7SNa09yWrvyL15CHt9KrXj\n```\n**Output:**\n```\njXrK9tHC51LyvrWy90aNS7vBV5tnTkstNf7sq4xottAkO7raLo\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "kkVIqgv1C",
+        "expectedOutput": "C1vgqIVkk"
+      },
+      {
+        "input": "oLar7OkAttox4qs7fNtskTnt5VBv7SNa09yWrvyL15CHt9KrXj",
+        "expectedOutput": "jXrK9tHC51LyvrWy90aNS7vBV5tnTkstNf7sq4xottAkO7raLo"
+      },
+      {
+        "input": "VZKXOGZymYekFiPaUgcF0T3XC94UMx",
+        "expectedOutput": "xMU49CX3T0FcgUaPiFkeYmyZGOXKZV"
+      },
+      {
+        "input": "t282HdqHk1Vw6rV7kf86O7Mq",
+        "expectedOutput": "qM7O68fk7Vr6wV1kHqdH282t"
+      },
+      {
+        "input": "8wAIlAROMpPk1G787iLCV2EKy",
+        "expectedOutput": "yKE2VCLi787G1kPpMORAlIAw8"
+      }
+    ]
+  },
+  {
+    "id": "prob-8",
+    "title": "Fantasy: Ancient Spell",
+    "difficulty": "easy",
+    "description": "## Fantasy: Ancient Spell\n\nTo cast the counter-spell, you must chant the magical incantation backwards. Given the spell, print the reverse.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nNeIXaPBX4U6IBLX5KLRFau2W9Mec423hrOV\n```\n**Output:**\n```\nVOrh324ceM9W2uaFRLK5XLBI6U4XBPaXIeN\n```\n\n### Example 2\n**Input:**\n```\nCIesWg99MjOTh8eZH5eigmhJAag6XPK9IHagPXKYl6\n```\n**Output:**\n```\n6lYKXPgaHI9KPX6gaAJhmgie5HZe8hTOjM99gWseIC\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "NeIXaPBX4U6IBLX5KLRFau2W9Mec423hrOV",
+        "expectedOutput": "VOrh324ceM9W2uaFRLK5XLBI6U4XBPaXIeN"
+      },
+      {
+        "input": "CIesWg99MjOTh8eZH5eigmhJAag6XPK9IHagPXKYl6",
+        "expectedOutput": "6lYKXPgaHI9KPX6gaAJhmgie5HZe8hTOjM99gWseIC"
+      },
+      {
+        "input": "uQhET329CmmfcycJwgjEIlK",
+        "expectedOutput": "KlIEjgwJcycfmmC923TEhQu"
+      },
+      {
+        "input": "YlnJuYfhunD6D8PwM",
+        "expectedOutput": "MwP8D6DnuhfYuJnlY"
+      },
+      {
+        "input": "RtulP5xWz5",
+        "expectedOutput": "5zWx5PlutR"
+      }
+    ]
+  },
+  {
+    "id": "prob-9",
+    "title": "Space: Alien Transmission",
+    "difficulty": "easy",
+    "description": "## Space: Alien Transmission\n\nAn alien transmission was received backwards due to temporal distortion. Reverse the string to read it.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nzdmehLbjzI3Lc9iIACMKmA5UrQJKVZ\n```\n**Output:**\n```\nZVKJQrU5AmKMCAIi9cL3IzjbLhemdz\n```\n\n### Example 2\n**Input:**\n```\nAbTyGUmf6wepwJfwHhV5E663f9BalJMF3\n```\n**Output:**\n```\n3FMJlaB9f366E5VhHwfJwpew6fmUGyTbA\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "zdmehLbjzI3Lc9iIACMKmA5UrQJKVZ",
+        "expectedOutput": "ZVKJQrU5AmKMCAIi9cL3IzjbLhemdz"
+      },
+      {
+        "input": "AbTyGUmf6wepwJfwHhV5E663f9BalJMF3",
+        "expectedOutput": "3FMJlaB9f366E5VhHwfJwpew6fmUGyTbA"
+      },
+      {
+        "input": "MMbgyCJGFgbfk2wMReualDqpz3MOCTADIj3LfQ9abhIRgFAe",
+        "expectedOutput": "eAFgRIhba9QfL3jIDATCOM3zpqDlaueRMw2kfbgFGJCygbMM"
+      },
+      {
+        "input": "ZWNVORmwaEzBokkcCmdyiQTtDqPuVk19",
+        "expectedOutput": "91kVuPqDtTQiydmCckkoBzEawmROVNWZ"
+      },
+      {
+        "input": "JAMvLIO",
+        "expectedOutput": "OILvMAJ"
+      }
+    ]
+  },
+  {
+    "id": "prob-10",
+    "title": "Hacker: DNS Spoof",
+    "difficulty": "easy",
+    "description": "## Hacker: DNS Spoof\n\nYou need to spoof a DNS record by reversing the domain string. Given the string, output its reverse.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nTEbTreSrnCpLyexetsd3Slp5VEKt5n4uoFwa\n```\n**Output:**\n```\nawFou4n5tKEV5plS3dstexeyLpCnrSerTbET\n```\n\n### Example 2\n**Input:**\n```\nn84G6NORJXBUWoXlBFauZlwthKR0lgaeqpSxcOGKd0EVBCH4\n```\n**Output:**\n```\n4HCBVE0dKGOcxSpqeagl0RKhtwlZuaFBlXoWUBXJRON6G48n\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "TEbTreSrnCpLyexetsd3Slp5VEKt5n4uoFwa",
+        "expectedOutput": "awFou4n5tKEV5plS3dstexeyLpCnrSerTbET"
+      },
+      {
+        "input": "n84G6NORJXBUWoXlBFauZlwthKR0lgaeqpSxcOGKd0EVBCH4",
+        "expectedOutput": "4HCBVE0dKGOcxSpqeagl0RKhtwlZuaFBlXoWUBXJRON6G48n"
+      },
+      {
+        "input": "sdrJ7dUhXnI6NLrjlNUmq6gOr97pzkIhLcyi",
+        "expectedOutput": "iycLhIkzp79rOg6qmUNljrLN6InXhUd7Jrds"
+      },
+      {
+        "input": "0DhyRIC3MIbQ5wT76hYl2syLBdKAjVmVlYyZ9LsrjzaII",
+        "expectedOutput": "IIazjrsL9ZyYlVmVjAKdBLys2lYh67Tw5QbIM3CIRyhD0"
+      },
+      {
+        "input": "hE0oLWmHS9aLMsKsd4JX",
+        "expectedOutput": "XJ4dsKsMLa9SHmWLo0Eh"
+      }
+    ]
+  },
+  {
+    "id": "prob-11",
+    "title": "Classic: Maximum Subarray",
+    "difficulty": "hard",
+    "description": "## Classic: Maximum Subarray\n\nGiven an array of integers, find the contiguous subarray with the largest sum.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n30 -37 -75 -16 -2 85 -36 -17 67 51 26 -51 -88 -10 86\n```\n**Output:**\n```\n176\n```\n\n### Example 2\n**Input:**\n```\n-81 80 89 9 22 10 -82 -22 58 60 -34 -16 -62 94 52 51 -5 -80 -31 -18 -54 -94 1 -10 58 38 -29 55 -45 34 58 -23 -92 -48 -37 87 -30 50 56 -44 54 24 -93\n```\n**Output:**\n```\n309\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "30 -37 -75 -16 -2 85 -36 -17 67 51 26 -51 -88 -10 86",
+        "expectedOutput": "176"
+      },
+      {
+        "input": "-81 80 89 9 22 10 -82 -22 58 60 -34 -16 -62 94 52 51 -5 -80 -31 -18 -54 -94 1 -10 58 38 -29 55 -45 34 58 -23 -92 -48 -37 87 -30 50 56 -44 54 24 -93",
+        "expectedOutput": "309"
+      },
+      {
+        "input": "30 68 40 -72 14 5 44 -98 -18 84 48 -87 -68 -52 -13 -5 -60 73 -73 15 51 -2 -90 -100 14 -11 -37 70 -35 82 44 50 -73 -26",
+        "expectedOutput": "211"
+      },
+      {
+        "input": "-89 -5 -16 -23 25 -65 68 -37 15 -8 -58 96 89 -87 -93 -19 -40 -72 -24 66 -23 -22",
+        "expectedOutput": "185"
+      },
+      {
+        "input": "20 -50 0 99 84 -96 -76 77 -96 -52 -32 68 -68 82 -60 7 63 -44 -54 97 14 -13",
+        "expectedOutput": "183"
+      }
+    ]
+  },
+  {
+    "id": "prob-12",
+    "title": "Cyberpunk: Credit Siphon",
+    "difficulty": "hard",
+    "description": "## Cyberpunk: Credit Siphon\n\nYou are siphoning credits from a corporate bank log (array of positive/negative transactions). Find the maximum contiguous profit block.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n8 -96 9 -13 -15 12 -41 -60 90 68 57 -64 -4 -14 4 -47 -50 -48 -90 -74 46\n```\n**Output:**\n```\n215\n```\n\n### Example 2\n**Input:**\n```\n-52 -88 -52 65 9 40 57 43 -23 97 20 -68 54 82 -38 -35 -9\n```\n**Output:**\n```\n376\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "8 -96 9 -13 -15 12 -41 -60 90 68 57 -64 -4 -14 4 -47 -50 -48 -90 -74 46",
+        "expectedOutput": "215"
+      },
+      {
+        "input": "-52 -88 -52 65 9 40 57 43 -23 97 20 -68 54 82 -38 -35 -9",
+        "expectedOutput": "376"
+      },
+      {
+        "input": "31 -40 -18 -13 72 -8 53 -39 56 -87 -15 97 -93 -29 70 84 33 -47 -55 64 -12",
+        "expectedOutput": "194"
+      },
+      {
+        "input": "-90 -17 -19 -80 -22 57 86 33 -70 46 31 9 -20 0 -26 -82 -60 -26 -20 -98 -39 40 77 4 -62 -18 -29 -69 -78 21 -6 57 17 -21 -43 -89 58 -21 -67 -52 61 69 13 91 44",
+        "expectedOutput": "278"
+      },
+      {
+        "input": "43 -70 41 -20 -14 21 58 -15 11 57 73 14 60 -15 27 65 34 68 12",
+        "expectedOutput": "477"
+      }
+    ]
+  },
+  {
+    "id": "prob-13",
+    "title": "Fantasy: Hero's Journey",
+    "difficulty": "hard",
+    "description": "## Fantasy: Hero's Journey\n\nA hero travels through a path of encounters (gaining/losing health). Find the path segment that yields the maximum net health gain.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n-10 -80 -67 -78 5 38 -19 -19 48 -54 -90 -96 47 96 -36 -72 -77 15 86 76 -69 -29 -4 47 72 25 -64 54 52 75 98 -55 -1 -50 -46 -69 28 13 -11 -55 44 -65 43\n```\n**Output:**\n```\n434\n```\n\n### Example 2\n**Input:**\n```\n4 -96 41 -10 29 -26 37 -18 56 51 74 23 -100 -79 -14 -33 -95 50 -1\n```\n**Output:**\n```\n257\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "-10 -80 -67 -78 5 38 -19 -19 48 -54 -90 -96 47 96 -36 -72 -77 15 86 76 -69 -29 -4 47 72 25 -64 54 52 75 98 -55 -1 -50 -46 -69 28 13 -11 -55 44 -65 43",
+        "expectedOutput": "434"
+      },
+      {
+        "input": "4 -96 41 -10 29 -26 37 -18 56 51 74 23 -100 -79 -14 -33 -95 50 -1",
+        "expectedOutput": "257"
+      },
+      {
+        "input": "72 -80 -81 46 -10 -11 94 -27 -50 -74 -38 28 -99 92 5 -63 -43 -17 -62 35 -6 -99 16 -82 19 71 -64 -49 12 -71 94 94 25 -99",
+        "expectedOutput": "213"
+      },
+      {
+        "input": "30 -39 50 15 16 -71 -34 -71 86 -18 29 -51 -9 -25 41 -90 83 -86 -32 65 20 53 4 88 43 -20 -30 5 61 47 67 -6 -71",
+        "expectedOutput": "403"
+      },
+      {
+        "input": "10 -46 95 72 -17 1 -23 -4 -91 -3 -53 -41",
+        "expectedOutput": "167"
+      }
+    ]
+  },
+  {
+    "id": "prob-14",
+    "title": "Space: Thruster Optimization",
+    "difficulty": "hard",
+    "description": "## Space: Thruster Optimization\n\nA spaceship's thrusters output fluctuating power levels. Find the contiguous timeframe that yields maximum absolute acceleration.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n-20 95 7 53 -13 -96 16 28 -62 -13 -77 47 87 61 -8 23 27\n```\n**Output:**\n```\n237\n```\n\n### Example 2\n**Input:**\n```\n2 97 -55 -13 -44 47 42 95 -55 -92 26 78 60 -2 -41 91 -13 84 31 -52 -19 -80 -35 3 -91 -2 -52 59 -31 52 -9 57 -49 95\n```\n**Output:**\n```\n351\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "-20 95 7 53 -13 -96 16 28 -62 -13 -77 47 87 61 -8 23 27",
+        "expectedOutput": "237"
+      },
+      {
+        "input": "2 97 -55 -13 -44 47 42 95 -55 -92 26 78 60 -2 -41 91 -13 84 31 -52 -19 -80 -35 3 -91 -2 -52 59 -31 52 -9 57 -49 95",
+        "expectedOutput": "351"
+      },
+      {
+        "input": "-49 -51 -27 24 0 40 52 65 -12 25 -56 -62 -24 31 39 65 93 -54 62 36 -61 17 71 -98 -48 36 93 74 48 33 82 -26 -66",
+        "expectedOutput": "571"
+      },
+      {
+        "input": "30 1 -47 -46 8 98 -87 78 -25 -32 68 -78 -68 57 -27 -8 13 -5 -11 -18 -9 -61 43 9 37 -93 22 -43 -70 -87 -81 60 86 79 -48 99 -97 -60 43 -54 -51 -9",
+        "expectedOutput": "276"
+      },
+      {
+        "input": "50 1 100 49 93 6 87 -21 76 -53 99 -78 -29 -32 -97 9 55 -27 -55 66 -43 54 -9 -72 69 -80 61",
+        "expectedOutput": "487"
+      }
+    ]
+  },
+  {
+    "id": "prob-15",
+    "title": "Hacker: Traffic Spike",
+    "difficulty": "hard",
+    "description": "## Hacker: Traffic Spike\n\nAnalyze network traffic deltas to find the contiguous period with the highest net data transfer.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n69 -63 59 29 90 68 -90 86 -79 -84 -32 29 62 89 23 88 -73 -27 93 -30 12 38 -65 -48 -96 -22\n```\n**Output:**\n```\n357\n```\n\n### Example 2\n**Input:**\n```\n-36 5 12 84 40 54 25 68 -32 -26 -21 30 -37 -2 89 -16 -10 -34 37 22 19 2 -3 36 45\n```\n**Output:**\n```\n387\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "69 -63 59 29 90 68 -90 86 -79 -84 -32 29 62 89 23 88 -73 -27 93 -30 12 38 -65 -48 -96 -22",
+        "expectedOutput": "357"
+      },
+      {
+        "input": "-36 5 12 84 40 54 25 68 -32 -26 -21 30 -37 -2 89 -16 -10 -34 37 22 19 2 -3 36 45",
+        "expectedOutput": "387"
+      },
+      {
+        "input": "77 -39 -77 50 13 11 93 79 -18 -96 -78 50 -13 -81 -64 -68 -24 54 -77 -37 1 -6 69 41 -49 41 -15 49 -36 -72 -6 -48 -75 -71 -65 3 -79",
+        "expectedOutput": "246"
+      },
+      {
+        "input": "-57 35 -44 79 -14 9 81 -75 44 26 -61 61 -45 -36 -36 56 -59 -25 -21 62 77 53",
+        "expectedOutput": "192"
+      },
+      {
+        "input": "72 -48 -91 54 32 57 -75 -6 89 -69 40 1 65 -27 -97 -40 83 25 29 19 -56 -14 53 61 -88 -15 7 62 79 -65 22 -38 97 89 -56 83 -39 -98 -64 -6 -33 -4 -16 -55 -99 -42 -11",
+        "expectedOutput": "401"
+      }
+    ]
+  },
+  {
+    "id": "prob-16",
+    "title": "Classic: Two Sum",
+    "difficulty": "medium",
+    "description": "## Classic: Two Sum\n\nGiven an array of integers (line 1) and a target (line 2), find the two numbers that add up to the target. Print them sorted, separated by space.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n30 80 12 35 56 21 9 97 76 95 68 41 34 85 81 26\n129\n```\n**Output:**\n```\n34 95\n```\n\n### Example 2\n**Input:**\n```\n62 90 79 28 68 73 49 61 7 72 53 77 9 17 30 70\n86\n```\n**Output:**\n```\n7 79\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "30 80 12 35 56 21 9 97 76 95 68 41 34 85 81 26\n129",
+        "expectedOutput": "34 95"
+      },
+      {
+        "input": "62 90 79 28 68 73 49 61 7 72 53 77 9 17 30 70\n86",
+        "expectedOutput": "7 79"
+      },
+      {
+        "input": "11 17 20 87 11 74 46 40 40 27 69 65 4 25 28 68 62 28 55\n42",
+        "expectedOutput": "17 25"
+      },
+      {
+        "input": "66 73 75 67 69 4 42 70 76 1 15\n71",
+        "expectedOutput": "4 67"
+      },
+      {
+        "input": "96 92 4 98 7 52 28 33 45 46 55 52 72 27 11 92 75\n144",
+        "expectedOutput": "52 92"
+      }
+    ]
+  },
+  {
+    "id": "prob-17",
+    "title": "Cyberpunk: Key Matching",
+    "difficulty": "medium",
+    "description": "## Cyberpunk: Key Matching\n\nFind two encryption keys (line 1) that sum up to the master hash (line 2). Print the two keys sorted.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n69 39 88 52 43 74 71 23 54 91 65 7 18 45 22 86 85 12\n137\n```\n**Output:**\n```\n52 85\n```\n\n### Example 2\n**Input:**\n```\n27 57 27 9 73 7 28 51 61 60 96 68 32 44\n121\n```\n**Output:**\n```\n60 61\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "69 39 88 52 43 74 71 23 54 91 65 7 18 45 22 86 85 12\n137",
+        "expectedOutput": "52 85"
+      },
+      {
+        "input": "27 57 27 9 73 7 28 51 61 60 96 68 32 44\n121",
+        "expectedOutput": "60 61"
+      },
+      {
+        "input": "94 34 76 91 95 11 20 27 39 51 32 67 33 73\n146",
+        "expectedOutput": "51 95"
+      },
+      {
+        "input": "16 45 84 83 67 7 49 52 80 17 25 76 23 47 17 65 23 75\n70",
+        "expectedOutput": "25 45"
+      },
+      {
+        "input": "35 92 24 1 12 30 30 5 89 64\n36",
+        "expectedOutput": "1 35"
+      }
+    ]
+  },
+  {
+    "id": "prob-18",
+    "title": "Fantasy: Alchemy Mix",
+    "difficulty": "medium",
+    "description": "## Fantasy: Alchemy Mix\n\nFind two potion ingredients (line 1) whose combined power equals the target elixir strength (line 2). Print the two powers sorted.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n100 95 50 4 91 68 82 11 99 100 92 47 70 25 82 59\n177\n```\n**Output:**\n```\n82 95\n```\n\n### Example 2\n**Input:**\n```\n34 12 51 21 31 62 81 69 91 43 14\n105\n```\n**Output:**\n```\n43 62\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "100 95 50 4 91 68 82 11 99 100 92 47 70 25 82 59\n177",
+        "expectedOutput": "82 95"
+      },
+      {
+        "input": "34 12 51 21 31 62 81 69 91 43 14\n105",
+        "expectedOutput": "43 62"
+      },
+      {
+        "input": "49 27 42 36 71 35 82 42 36 67 70\n103",
+        "expectedOutput": "36 67"
+      },
+      {
+        "input": "13 100 24 66 63 78 98 52 98 88 17 13\n140",
+        "expectedOutput": "52 88"
+      },
+      {
+        "input": "56 50 58 53 46 61 91 81 24 38 30 64 15 33 32 3 44 29 34\n88",
+        "expectedOutput": "38 50"
+      }
+    ]
+  },
+  {
+    "id": "prob-19",
+    "title": "Space: Orbital Resonance",
+    "difficulty": "medium",
+    "description": "## Space: Orbital Resonance\n\nFind two planets (line 1) whose combined mass creates the target gravitational resonance (line 2). Print the masses sorted.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n30 49 46 60 6 72 36 1 60 59 75 78 24 53\n108\n```\n**Output:**\n```\n36 72\n```\n\n### Example 2\n**Input:**\n```\n61 75 93 71 43 98 46 29 71 96 37 57 16 96 51 84\n97\n```\n**Output:**\n```\n46 51\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "30 49 46 60 6 72 36 1 60 59 75 78 24 53\n108",
+        "expectedOutput": "36 72"
+      },
+      {
+        "input": "61 75 93 71 43 98 46 29 71 96 37 57 16 96 51 84\n97",
+        "expectedOutput": "46 51"
+      },
+      {
+        "input": "42 12 45 49 19 4 22 19 56 45 46 87 71 60 86\n91",
+        "expectedOutput": "42 49"
+      },
+      {
+        "input": "95 88 5 73 12 84 69 70 41 95 53 28 37 83 80\n75",
+        "expectedOutput": "5 70"
+      },
+      {
+        "input": "15 79 45 70 96 80 28 93 33 65 87 45 14 35 34 54 90 60 68\n124",
+        "expectedOutput": "45 79"
+      }
+    ]
+  },
+  {
+    "id": "prob-20",
+    "title": "Hacker: Hash Collision",
+    "difficulty": "medium",
+    "description": "## Hacker: Hash Collision\n\nFind two fragmented hashes (line 1) that combine to form the target verification hash (line 2). Print them sorted.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n35 96 35 41 52 60 47 38 66 56 17 12 20 100 93 1\n149\n```\n**Output:**\n```\n56 93\n```\n\n### Example 2\n**Input:**\n```\n56 2 57 34 85 94 18 26 23 24 83 33 84 48 61 62 20 45 40\n103\n```\n**Output:**\n```\n18 85\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "35 96 35 41 52 60 47 38 66 56 17 12 20 100 93 1\n149",
+        "expectedOutput": "56 93"
+      },
+      {
+        "input": "56 2 57 34 85 94 18 26 23 24 83 33 84 48 61 62 20 45 40\n103",
+        "expectedOutput": "18 85"
+      },
+      {
+        "input": "48 12 41 46 41 73 62 9 82 3 25 17 87 46 88 65 21\n134",
+        "expectedOutput": "46 88"
+      },
+      {
+        "input": "92 81 79 37 99 30 5 41 46 54 37 57 31 20 61 80\n92",
+        "expectedOutput": "31 61"
+      },
+      {
+        "input": "90 72 53 17 39 33 65 47 3 90 16 50 10 44 83 45 74 41 25\n108",
+        "expectedOutput": "25 83"
+      }
+    ]
+  },
+  {
+    "id": "prob-21",
+    "title": "Classic: Valid Brackets",
+    "difficulty": "medium",
+    "description": "## Classic: Valid Brackets\n\nGiven a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n([{[[(]))])]\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n{[{([})}]]\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "([{[[(]))])]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{[{([})}]]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "}[[()})]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{({(({[((})}}}))]}",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{[([)]])",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-22",
+    "title": "Cyberpunk: Syntax Validator",
+    "difficulty": "medium",
+    "description": "## Cyberpunk: Syntax Validator\n\nValidate the syntax of an ancient corporate firewall config containing nested brackets. Print 'true' if valid, else 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n(]{{\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n([{{([{]]))]]]\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "(]{{",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "([{{([{]]))]]]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{[{{[{{})}])))",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "}}})[{]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "[{{([[]}}]))",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-23",
+    "title": "Fantasy: Rune Pairing",
+    "difficulty": "medium",
+    "description": "## Fantasy: Rune Pairing\n\nMagical runes must be paired correctly to avoid an explosion. Check if the sequence of runes is valid. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n{[[}[\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n{[(((})]))\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "{[[}[",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{[(((})]))",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "]])[",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "[}(]]}[){",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "({){)",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-24",
+    "title": "Space: Airlock Sequences",
+    "difficulty": "medium",
+    "description": "## Space: Airlock Sequences\n\nCheck if the inner and outer airlock door sequence log is properly nested to maintain pressure. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n{[[{{]))}]\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n{{{{[}}]}]\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "{[[{{]))}]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{{{{[}}]}]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "([[)])",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "])[{(}",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "{[[())}]",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-25",
+    "title": "Hacker: Packet Encapsulation",
+    "difficulty": "medium",
+    "description": "## Hacker: Packet Encapsulation\n\nDetermine if a captured data packet has properly matching opening and closing structural bytes. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n([{()}]}\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n])){[\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "([{()}]}",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "])){[",
+        "expectedOutput": "false"
+      },
+      {
+        "input": ")[{[)]]",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "[]{}}",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "[{}({([{{)}",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-26",
+    "title": "Classic: Missing Number",
+    "difficulty": "easy",
+    "description": "## Classic: Missing Number\n\nGiven an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n26 13 3 7 2 9 27 11 25 8 5 17 20 1 15 10 16 19 6 4 23 0 24 21 22 14 12\n```\n**Output:**\n```\n18\n```\n\n### Example 2\n**Input:**\n```\n11 5 21 20 15 7 10 8 23 18 4 12 14 9 24 3 2 19 17 16 1 13 22 25 0\n```\n**Output:**\n```\n6\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "26 13 3 7 2 9 27 11 25 8 5 17 20 1 15 10 16 19 6 4 23 0 24 21 22 14 12",
+        "expectedOutput": "18"
+      },
+      {
+        "input": "11 5 21 20 15 7 10 8 23 18 4 12 14 9 24 3 2 19 17 16 1 13 22 25 0",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "6 7 12 2 9 11 3 1 13 8 0 4 5 14",
+        "expectedOutput": "10"
+      },
+      {
+        "input": "3 9 15 8 12 2 10 19 18 17 14 6 16 5 11 4 1 0 13",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "3 9 11 12 18 17 7 10 5 2 1 4 0 19 15 13 8 16 14",
+        "expectedOutput": "6"
+      }
+    ]
+  },
+  {
+    "id": "prob-27",
+    "title": "Cyberpunk: Lost Sector",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Lost Sector\n\nA memory drive contains sectors labeled 0 to n. One sector got wiped. Identify the missing sector ID.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n27 0 11 19 26 6 2 5 3 17 7 12 14 15 25 8 1 9 23 16 13 10 21 20 18 24 4\n```\n**Output:**\n```\n22\n```\n\n### Example 2\n**Input:**\n```\n0 6 8 19 7 1 15 23 14 18 16 10 2 17 21 5 3 9 12 20 4 13 22\n```\n**Output:**\n```\n11\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "27 0 11 19 26 6 2 5 3 17 7 12 14 15 25 8 1 9 23 16 13 10 21 20 18 24 4",
+        "expectedOutput": "22"
+      },
+      {
+        "input": "0 6 8 19 7 1 15 23 14 18 16 10 2 17 21 5 3 9 12 20 4 13 22",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "8 0 14 12 9 6 1 13 2 16 4 3 5 10 15 11",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "45 41 20 24 18 19 40 25 46 2 34 47 38 13 16 31 35 8 32 7 5 26 4 39 15 29 42 0 14 27 28 21 30 43 22 6 37 17 48 33 3 10 1 11 36 12 23 9",
+        "expectedOutput": "44"
+      },
+      {
+        "input": "16 4 14 23 17 19 5 1 0 15 10 3 21 9 6 2 13 11 7 8 12 18 20",
+        "expectedOutput": "22"
+      }
+    ]
+  },
+  {
+    "id": "prob-28",
+    "title": "Fantasy: Stolen Artifact",
+    "difficulty": "easy",
+    "description": "## Fantasy: Stolen Artifact\n\nThe royal vault has artifacts numbered 0 to n. A thief stole one. Find the number of the stolen artifact.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n33 41 45 30 27 8 4 29 13 44 26 28 10 3 17 11 22 9 43 6 20 38 21 34 25 32 31 2 5 0 7 37 49 46 16 39 40 35 19 14 47 42 48 23 24 36 18 12 15\n```\n**Output:**\n```\n1\n```\n\n### Example 2\n**Input:**\n```\n14 28 3 11 25 12 5 19 22 4 6 16 2 1 24 15 9 10 21 27 7 17 8 26 23 0 20 13\n```\n**Output:**\n```\n18\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "33 41 45 30 27 8 4 29 13 44 26 28 10 3 17 11 22 9 43 6 20 38 21 34 25 32 31 2 5 0 7 37 49 46 16 39 40 35 19 14 47 42 48 23 24 36 18 12 15",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "14 28 3 11 25 12 5 19 22 4 6 16 2 1 24 15 9 10 21 27 7 17 8 26 23 0 20 13",
+        "expectedOutput": "18"
+      },
+      {
+        "input": "5 14 8 11 4 6 16 12 7 15 10 3 2 1 9 0",
+        "expectedOutput": "13"
+      },
+      {
+        "input": "12 14 16 5 4 6 8 10 7 0 13 3 11 1 15 2",
+        "expectedOutput": "9"
+      },
+      {
+        "input": "26 14 23 39 36 4 24 40 18 28 27 3 15 31 37 20 6 33 19 38 30 34 22 2 25 11 1 13 10 21 7 35 8 12 9 16 0 5 17 29 41",
+        "expectedOutput": "32"
+      }
+    ]
+  },
+  {
+    "id": "prob-29",
+    "title": "Space: Missing Crewmate",
+    "difficulty": "easy",
+    "description": "## Space: Missing Crewmate\n\nCrew ID tags are 0 to n. During hyperspace jump, one signal disappeared. Find the missing ID.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n0 12 26 3 29 30 32 33 19 4 1 14 24 16 2 15 13 31 7 6 9 23 8 25 5 20 11 21 18 28 27 10 17 34\n```\n**Output:**\n```\n22\n```\n\n### Example 2\n**Input:**\n```\n37 16 42 23 15 22 30 4 9 29 39 3 43 38 7 33 36 46 41 2 1 21 17 20 28 19 24 32 14 45 0 8 26 11 40 35 5 12 34 6 31 25 10 18 27 44\n```\n**Output:**\n```\n13\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "0 12 26 3 29 30 32 33 19 4 1 14 24 16 2 15 13 31 7 6 9 23 8 25 5 20 11 21 18 28 27 10 17 34",
+        "expectedOutput": "22"
+      },
+      {
+        "input": "37 16 42 23 15 22 30 4 9 29 39 3 43 38 7 33 36 46 41 2 1 21 17 20 28 19 24 32 14 45 0 8 26 11 40 35 5 12 34 6 31 25 10 18 27 44",
+        "expectedOutput": "13"
+      },
+      {
+        "input": "5 2 4 3 1",
+        "expectedOutput": "0"
+      },
+      {
+        "input": "12 16 22 23 9 8 7 6 4 21 14 11 24 20 3 2 19 17 1 0 13 10 18 15",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "25 5 26 11 35 1 43 42 3 44 16 21 38 32 40 7 39 34 28 8 37 13 19 20 10 22 9 36 41 4 15 45 31 18 0 33 2 6 27 24 29 30 12 14 23",
+        "expectedOutput": "17"
+      }
+    ]
+  },
+  {
+    "id": "prob-30",
+    "title": "Hacker: Dropped Packet",
+    "difficulty": "easy",
+    "description": "## Hacker: Dropped Packet\n\nA sequence of packets 0 to n was sent, but one was dropped by the router. Find the dropped packet index.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n24 26 0 9 1 19 2 3 14 29 16 4 31 13 5 7 6 8 15 23 18 12 17 20 21 10 33 28 25 11 27 30 32\n```\n**Output:**\n```\n22\n```\n\n### Example 2\n**Input:**\n```\n27 4 30 0 29 28 1 22 17 21 7 14 20 12 16 24 9 26 2 6 23 3 15 11 8 18 25 5 13 19\n```\n**Output:**\n```\n10\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "24 26 0 9 1 19 2 3 14 29 16 4 31 13 5 7 6 8 15 23 18 12 17 20 21 10 33 28 25 11 27 30 32",
+        "expectedOutput": "22"
+      },
+      {
+        "input": "27 4 30 0 29 28 1 22 17 21 7 14 20 12 16 24 9 26 2 6 23 3 15 11 8 18 25 5 13 19",
+        "expectedOutput": "10"
+      },
+      {
+        "input": "20 6 21 37 7 5 33 34 31 9 25 30 18 36 14 39 35 26 10 22 29 4 27 3 16 2 1 24 12 0 32 15 19 28 11 23 38 17 8",
+        "expectedOutput": "13"
+      },
+      {
+        "input": "24 40 9 29 28 19 7 11 37 8 27 1 21 14 33 38 34 23 18 13 25 26 30 17 15 5 22 12 2 0 35 3 32 4 39 10 36 20 6 16",
+        "expectedOutput": "31"
+      },
+      {
+        "input": "1 15 3 5 8 14 4 9 18 13 10 0 16 2 17 11 12 7",
+        "expectedOutput": "6"
+      }
+    ]
+  },
+  {
+    "id": "prob-31",
+    "title": "Classic: Single Number",
+    "difficulty": "easy",
+    "description": "## Classic: Single Number\n\nGiven a non-empty array of integers, every element appears twice except for one. Find that single one.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n10 84 56 35 84 82 74 14 35 10 93 48 74 56 93 14 4 89 89 82 48\n```\n**Output:**\n```\n4\n```\n\n### Example 2\n**Input:**\n```\n48 70 1 58 61 46 46 78 57 13 45 71 71 35 88 69 61 58 84 88 60 45 1 57 13 100 100 46 46 78 97 70 97 42 69 48 84 35 60\n```\n**Output:**\n```\n42\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "10 84 56 35 84 82 74 14 35 10 93 48 74 56 93 14 4 89 89 82 48",
+        "expectedOutput": "4"
+      },
+      {
+        "input": "48 70 1 58 61 46 46 78 57 13 45 71 71 35 88 69 61 58 84 88 60 45 1 57 13 100 100 46 46 78 97 70 97 42 69 48 84 35 60",
+        "expectedOutput": "42"
+      },
+      {
+        "input": "26 15 91 80 97 12 1 87 91 100 80 27 62 1 27 12 26 97 62 100 87",
+        "expectedOutput": "15"
+      },
+      {
+        "input": "93 27 93 81 12 45 92 91 81 90 92 93 45 90 91 12 91 91 93",
+        "expectedOutput": "27"
+      },
+      {
+        "input": "22 62 62 29 37 97 22 21 46 31 31 78 97 96 76 97 48 85 76 37 19 48 96 22 21 29 37 76 22 46 76 19 78 37 97",
+        "expectedOutput": "85"
+      }
+    ]
+  },
+  {
+    "id": "prob-32",
+    "title": "Cyberpunk: Rogue AI",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Rogue AI\n\nAll subroutines operate in pairs for redundancy, except one rogue AI subroutine. Find its ID.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n74 25 74 98 86 86 54 5 54 5 25\n```\n**Output:**\n```\n98\n```\n\n### Example 2\n**Input:**\n```\n79 50 29 40 50 90 19 50 76 82 79 29 76 90 27 49 10 40 19 27 82 50 49\n```\n**Output:**\n```\n10\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "74 25 74 98 86 86 54 5 54 5 25",
+        "expectedOutput": "98"
+      },
+      {
+        "input": "79 50 29 40 50 90 19 50 76 82 79 29 76 90 27 49 10 40 19 27 82 50 49",
+        "expectedOutput": "10"
+      },
+      {
+        "input": "36 51 18 6 46 46 51 6 36 18 80",
+        "expectedOutput": "80"
+      },
+      {
+        "input": "29 37 65 56 46 38 46 79 9 51 18 37 34 35 41 9 35 22 65 41 35 93 51 51 23 38 32 22 23 79 6 56 93 32 18 35 51 34 6",
+        "expectedOutput": "29"
+      },
+      {
+        "input": "67 64 71 6 33 87 33 19 28 92 95 13 92 6 95 37 37 19 6 19 42 61 97 42 71 19 64 19 60 28 67 19 6 60 13 97 61",
+        "expectedOutput": "87"
+      }
+    ]
+  },
+  {
+    "id": "prob-33",
+    "title": "Fantasy: The Lone Wolf",
+    "difficulty": "easy",
+    "description": "## Fantasy: The Lone Wolf\n\nIn the forest, wolves travel in pairs. You spotted a lone wolf. Find its tracking number.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n15 24 24 87 100 100 20 99 99 15 20 15 100 15 87\n```\n**Output:**\n```\n100\n```\n\n### Example 2\n**Input:**\n```\n18 44 68 76 98 17 76 18 40 37 94 50 35 44 98 35 94 19 40 52 37 19 52 19 87 36 50 19 87 17 36\n```\n**Output:**\n```\n68\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "15 24 24 87 100 100 20 99 99 15 20 15 100 15 87",
+        "expectedOutput": "100"
+      },
+      {
+        "input": "18 44 68 76 98 17 76 18 40 37 94 50 35 44 98 35 94 19 40 52 37 19 52 19 87 36 50 19 87 17 36",
+        "expectedOutput": "68"
+      },
+      {
+        "input": "19 90 75 18 63 31 66 79 90 33 70 22 28 50 31 28 63 79 19 51 1 51 33 75 39 3 70 70 70 1 22 3 81 39 18 81 66",
+        "expectedOutput": "50"
+      },
+      {
+        "input": "35 15 72 15 35 72 88 94 87 32 83 88 65 94 65 87 71 83 20 32 71",
+        "expectedOutput": "20"
+      },
+      {
+        "input": "19 57 93 26 34 90 33 24 34 93 57 33 26 90 24",
+        "expectedOutput": "19"
+      }
+    ]
+  },
+  {
+    "id": "prob-34",
+    "title": "Space: Unpaired Star",
+    "difficulty": "easy",
+    "description": "## Space: Unpaired Star\n\nBinary star systems dominate this sector, but one star has no companion. Identify its mass.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n36 39 72 64 64 8 26 8 6 55 25 10 64 64 25 55 10 96 26 24 55 24 36 55 6 72 96\n```\n**Output:**\n```\n39\n```\n\n### Example 2\n**Input:**\n```\n6 66 2 69 46 93 78 69 95 2 16 16 70 11 57 70 78 46 93 22 95 22 6 59 11 66 79 2 59 79 57\n```\n**Output:**\n```\n2\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "36 39 72 64 64 8 26 8 6 55 25 10 64 64 25 55 10 96 26 24 55 24 36 55 6 72 96",
+        "expectedOutput": "39"
+      },
+      {
+        "input": "6 66 2 69 46 93 78 69 95 2 16 16 70 11 57 70 78 46 93 22 95 22 6 59 11 66 79 2 59 79 57",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "49 54 51 86 67 53 3 53 61 61 91 54 49 51 67 86 49 91 62 62 3",
+        "expectedOutput": "49"
+      },
+      {
+        "input": "48 34 10 12 43 97 43 58 12 48 10 97 58",
+        "expectedOutput": "34"
+      },
+      {
+        "input": "84 47 65 68 47 37 67 60 84 65 18 44 37 39 39 18 68 60 67",
+        "expectedOutput": "44"
+      }
+    ]
+  },
+  {
+    "id": "prob-35",
+    "title": "Hacker: Orphaned Process",
+    "difficulty": "easy",
+    "description": "## Hacker: Orphaned Process\n\nMost processes spawn a child mirror process. Find the PID of the orphaned process.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n67 88 26 56 9 88 44 28 84 84 28 9 26 33 44 33 68 68 56\n```\n**Output:**\n```\n67\n```\n\n### Example 2\n**Input:**\n```\n18 42 89 42 41 66 25 78 78 84 84 66 25 44 42 44 18 89 42 86 86\n```\n**Output:**\n```\n41\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "67 88 26 56 9 88 44 28 84 84 28 9 26 33 44 33 68 68 56",
+        "expectedOutput": "67"
+      },
+      {
+        "input": "18 42 89 42 41 66 25 78 78 84 84 66 25 44 42 44 18 89 42 86 86",
+        "expectedOutput": "41"
+      },
+      {
+        "input": "90 76 77 78 80 62 78 71 30 18 13 54 54 11 45 77 62 76 11 44 33 80 71 3 44 18 90 13 3 30 33",
+        "expectedOutput": "45"
+      },
+      {
+        "input": "100 79 37 37 12 69 17 37 6 99 37 79 36 44 69 99 6 71 71 44 53 12 84 17 100 36 53 84 14",
+        "expectedOutput": "14"
+      },
+      {
+        "input": "23 55 70 23 31 28 66 70 36 43 36 55 40 43 4 69 70 66 4 28 70 40 31",
+        "expectedOutput": "69"
+      }
+    ]
+  },
+  {
+    "id": "prob-36",
+    "title": "Classic: Valid Palindrome",
+    "difficulty": "easy",
+    "description": "## Classic: Valid Palindrome\n\nGiven a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nkayak\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nA man a plan a canal Panama\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "kayak",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "A man a plan a canal Panama",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "CodeSync AI",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "hello world",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-37",
+    "title": "Cyberpunk: Symmetrical Hash",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Symmetrical Hash\n\nA corp uses symmetrical string hashes for biometric access. Check if the hash reads the same backwards. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nWas it a car or a cat I saw\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nracecar\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "CodeSync AI",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-38",
+    "title": "Fantasy: Mirror Spell",
+    "difficulty": "easy",
+    "description": "## Fantasy: Mirror Spell\n\nMirror spells must be perfectly reflective to cast. Determine if the spell is reflective. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nhello world\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\nkayak\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "hello world",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "kayak",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-39",
+    "title": "Space: Time Loop",
+    "difficulty": "easy",
+    "description": "## Space: Time Loop\n\nA temporal anomaly is detected if the event log reads the same backwards. Check the log. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nkayak\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nracecar\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "kayak",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "madam",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "A man a plan a canal Panama",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "madam",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-40",
+    "title": "Hacker: Injection Reflection",
+    "difficulty": "easy",
+    "description": "## Hacker: Injection Reflection\n\nCheck if the SQL injection payload is perfectly symmetrical to bypass the naive WAF. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nWas it a car or a cat I saw\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nWas it a car or a cat I saw\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "kayak",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "racecar",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-41",
+    "title": "Classic: Valid Anagram",
+    "difficulty": "easy",
+    "description": "## Classic: Valid Anagram\n\nGiven two strings (on two separate lines), write a function to determine if the second string is an anagram of the first. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nrat\ncar\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\nhello\nworld\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "hello\nworld",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "listen\nsilent",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-42",
+    "title": "Cyberpunk: Cipher Shift",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Cipher Shift\n\nCheck if two cipher strings are permutations of the same letters to detect a shared encryption key. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nrat\ncar\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\nhello\nworld\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "hello\nworld",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-43",
+    "title": "Fantasy: Shapeshifter Detection",
+    "difficulty": "easy",
+    "description": "## Fantasy: Shapeshifter Detection\n\nA shapeshifter's true name uses the exact same letters as their disguise. Determine if they are the same entity. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nhello\nworld\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\nanagram\nnagaram\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "hello\nworld",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-44",
+    "title": "Space: Cargo Manifest",
+    "difficulty": "easy",
+    "description": "## Space: Cargo Manifest\n\nCheck if the departed cargo list and arrived cargo list contain the exact same items scrambled. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nrat\ncar\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\nanagram\nnagaram\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "evil\nvile",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "hello\nworld",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-45",
+    "title": "Hacker: Packet Scrambler",
+    "difficulty": "easy",
+    "description": "## Hacker: Packet Scrambler\n\nVerify if the intercepted packet is just a scrambled version of the original packet. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nanagram\nnagaram\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nhello\nworld\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "anagram\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "hello\nworld",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "evil\nvile",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "rat\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "evil\nvile",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-46",
+    "title": "Classic: Fibonacci Number",
+    "difficulty": "easy",
+    "description": "## Classic: Fibonacci Number\n\nThe Fibonacci numbers form a sequence where each number is the sum of the two preceding ones. Given N, calculate F(N).\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n24\n```\n**Output:**\n```\n46368\n```\n\n### Example 2\n**Input:**\n```\n30\n```\n**Output:**\n```\n832040\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "24",
+        "expectedOutput": "46368"
+      },
+      {
+        "input": "30",
+        "expectedOutput": "832040"
+      },
+      {
+        "input": "16",
+        "expectedOutput": "987"
+      },
+      {
+        "input": "24",
+        "expectedOutput": "46368"
+      },
+      {
+        "input": "7",
+        "expectedOutput": "13"
+      }
+    ]
+  },
+  {
+    "id": "prob-47",
+    "title": "Cyberpunk: AI Generation",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: AI Generation\n\nAn AI replicates its nodes using the Fibonacci sequence. Given Generation N, find the number of nodes.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n23\n```\n**Output:**\n```\n28657\n```\n\n### Example 2\n**Input:**\n```\n6\n```\n**Output:**\n```\n8\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "23",
+        "expectedOutput": "28657"
+      },
+      {
+        "input": "6",
+        "expectedOutput": "8"
+      },
+      {
+        "input": "27",
+        "expectedOutput": "196418"
+      },
+      {
+        "input": "19",
+        "expectedOutput": "4181"
+      },
+      {
+        "input": "14",
+        "expectedOutput": "377"
+      }
+    ]
+  },
+  {
+    "id": "prob-48",
+    "title": "Fantasy: Dragon Scales",
+    "difficulty": "easy",
+    "description": "## Fantasy: Dragon Scales\n\nThe number of scales on a dragon grows in a Fibonacci sequence. Given its age N in centuries, find the scales.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n16\n```\n**Output:**\n```\n987\n```\n\n### Example 2\n**Input:**\n```\n17\n```\n**Output:**\n```\n1597\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "16",
+        "expectedOutput": "987"
+      },
+      {
+        "input": "17",
+        "expectedOutput": "1597"
+      },
+      {
+        "input": "10",
+        "expectedOutput": "55"
+      },
+      {
+        "input": "27",
+        "expectedOutput": "196418"
+      },
+      {
+        "input": "7",
+        "expectedOutput": "13"
+      }
+    ]
+  },
+  {
+    "id": "prob-49",
+    "title": "Space: Warp Resonance",
+    "difficulty": "easy",
+    "description": "## Space: Warp Resonance\n\nWarp engines require power levels matching the Fibonacci sequence. Calculate power required for warp level N.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n8\n```\n**Output:**\n```\n21\n```\n\n### Example 2\n**Input:**\n```\n20\n```\n**Output:**\n```\n6765\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "8",
+        "expectedOutput": "21"
+      },
+      {
+        "input": "20",
+        "expectedOutput": "6765"
+      },
+      {
+        "input": "22",
+        "expectedOutput": "17711"
+      },
+      {
+        "input": "12",
+        "expectedOutput": "144"
+      },
+      {
+        "input": "15",
+        "expectedOutput": "610"
+      }
+    ]
+  },
+  {
+    "id": "prob-50",
+    "title": "Hacker: Encryption Layers",
+    "difficulty": "easy",
+    "description": "## Hacker: Encryption Layers\n\nAn encryption algorithm layers security using Fibonacci numbers. Find the number of layers at depth N.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n19\n```\n**Output:**\n```\n4181\n```\n\n### Example 2\n**Input:**\n```\n8\n```\n**Output:**\n```\n21\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "19",
+        "expectedOutput": "4181"
+      },
+      {
+        "input": "8",
+        "expectedOutput": "21"
+      },
+      {
+        "input": "30",
+        "expectedOutput": "832040"
+      },
+      {
+        "input": "29",
+        "expectedOutput": "514229"
+      },
+      {
+        "input": "30",
+        "expectedOutput": "832040"
+      }
+    ]
+  },
+  {
+    "id": "prob-51",
+    "title": "Classic: Count Vowels",
+    "difficulty": "easy",
+    "description": "## Classic: Count Vowels\n\nGiven a string, count the total number of vowels (a, e, i, o, u) ignoring case.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nCyberneticsepckd\n```\n**Output:**\n```\n4\n```\n\n### Example 2\n**Input:**\n```\nCompetitive Programming is Funzckik\n```\n**Output:**\n```\n11\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "Cyberneticsepckd",
+        "expectedOutput": "4"
+      },
+      {
+        "input": "Competitive Programming is Funzckik",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "The quick brown foxxhbhn",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "The quick brown foxrtqyc",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "Cyberneticsxvmap",
+        "expectedOutput": "4"
+      }
+    ]
+  },
+  {
+    "id": "prob-52",
+    "title": "Cyberpunk: Data Glitches",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Data Glitches\n\nCount the number of glitched data sectors (represented by vowels) in the string block.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nCompetitive Programming is Funtkurk\n```\n**Output:**\n```\n11\n```\n\n### Example 2\n**Input:**\n```\nHello Worldqqphx\n```\n**Output:**\n```\n3\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "Competitive Programming is Funtkurk",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "Hello Worldqqphx",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "Hello Worldanddi",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "a e i o utfmqi",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "Cyberneticsszwey",
+        "expectedOutput": "4"
+      }
+    ]
+  },
+  {
+    "id": "prob-53",
+    "title": "Fantasy: Magical Runes",
+    "difficulty": "easy",
+    "description": "## Fantasy: Magical Runes\n\nCount the number of high-energy magical runes (vowels) in the ancient script.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nThe quick brown foxpccut\n```\n**Output:**\n```\n6\n```\n\n### Example 2\n**Input:**\n```\na e i o ulxhhn\n```\n**Output:**\n```\n5\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "The quick brown foxpccut",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "a e i o ulxhhn",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "Competitive Programming is Funaxlrc",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "Competitive Programming is Funtajzg",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "Competitive Programming is Funappfg",
+        "expectedOutput": "11"
+      }
+    ]
+  },
+  {
+    "id": "prob-54",
+    "title": "Space: Alien Frequencies",
+    "difficulty": "easy",
+    "description": "## Space: Alien Frequencies\n\nAlien communication relies heavily on specific harmonic frequencies (vowels). Count them.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nCompetitive Programming is Funlhlma\n```\n**Output:**\n```\n11\n```\n\n### Example 2\n**Input:**\n```\nThe quick brown foxxgqvh\n```\n**Output:**\n```\n5\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "Competitive Programming is Funlhlma",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "The quick brown foxxgqvh",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "Cyberneticsigckt",
+        "expectedOutput": "4"
+      },
+      {
+        "input": "Competitive Programming is Funiqkvy",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "a e i o uydcks",
+        "expectedOutput": "5"
+      }
+    ]
+  },
+  {
+    "id": "prob-55",
+    "title": "Hacker: Flag Characters",
+    "difficulty": "easy",
+    "description": "## Hacker: Flag Characters\n\nFind the total number of vulnerable flag characters (vowels) in the payload.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\na e i o udeomm\n```\n**Output:**\n```\n7\n```\n\n### Example 2\n**Input:**\n```\nThe quick brown foxnyffd\n```\n**Output:**\n```\n5\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "a e i o udeomm",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "The quick brown foxnyffd",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "The quick brown foxtnnvi",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "Competitive Programming is Funhhmdz",
+        "expectedOutput": "10"
+      },
+      {
+        "input": "Hello Worldczkkl",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "id": "prob-56",
+    "title": "Classic: Contains Duplicate",
+    "difficulty": "easy",
+    "description": "## Classic: Contains Duplicate\n\nGiven an integer array, print 'true' if any value appears at least twice, and 'false' if every element is distinct.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n15 25 4 15 30 13 7 6 6 50 47 49 5 23\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n39 31 37 2 2 32 44 32 31 48 17 18 14 9 23 11 11 39 30 2\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "15 25 4 15 30 13 7 6 6 50 47 49 5 23",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "39 31 37 2 2 32 44 32 31 48 17 18 14 9 23 11 11 39 30 2",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "49 18 13 21 29 33 50 43 33 48 19 47 40 12 28 5 8 13 49",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "10 48 36 50 29 41 1 3 15 32 28 34 30 25 48 1 7 29 37 10",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "6 9 10 49 34 33 35 17 25 44",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-57",
+    "title": "Cyberpunk: Cloned Identities",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Cloned Identities\n\nCheck if the database array contains any cloned (duplicate) user IDs. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n37 12 39 11 6 13 3 27 3 9 32 35 48 17 44 37 21 37 37\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n29 25 23 41 40 47 38 42 2 19 49 23 18\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "37 12 39 11 6 13 3 27 3 9 32 35 48 17 44 37 21 37 37",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "29 25 23 41 40 47 38 42 2 19 49 23 18",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "11 34 24 1 11 21 26 30 14 49 47 5 38 11",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "48 13 44 23 29 16 24 23 39 41 45 15 43 19 47 37 11 25 6 45 48",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "46 36 6 47 24 42 11 12 20 6 8 36 8 16 37 1 43 46",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-58",
+    "title": "Fantasy: Twin Souls",
+    "difficulty": "easy",
+    "description": "## Fantasy: Twin Souls\n\nA soul gem array should only contain unique souls. Check if there are any twin souls (duplicates). Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n30 39 28 7 36 30 10 17 38 41 27 47 43 43 44 26 35\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n9 30 39 43 14 11 29 27 29 47 50 46 5 9\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "30 39 28 7 36 30 10 17 38 41 27 47 43 43 44 26 35",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "9 30 39 43 14 11 29 27 29 47 50 46 5 9",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "27 33 28 9 37 41 28 5 13 16",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "41 21 10 44 46 44 22 44 22 6 2 36 43 41",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "17 2 20 47 25 9 27 28 20 36 36 5 32 42 15 6 17",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-59",
+    "title": "Space: Clone Troopers",
+    "difficulty": "easy",
+    "description": "## Space: Clone Troopers\n\nScan the squad array to see if any clone troopers have the exact same serial number. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n19 12 25 1 31 13 50 16 24 1 44 35\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n19 41 10 20 30 16 35 43 15 42 44 38 21 7 48 10 3 50 48 19\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "19 12 25 1 31 13 50 16 24 1 44 35",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "19 41 10 20 30 16 35 43 15 42 44 38 21 7 48 10 3 50 48 19",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "37 42 3 49 34 30 2 35 17 14 43 3 40 36 16 20 44 48 19 34 37",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "16 47 46 37 35 42 50 39 43 13 39 13 19 39 18 42 22 27 16",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "37 38 32 37 35 23 35 44 45 29 23 39 15 4 39 41 20 4 16 32",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-60",
+    "title": "Hacker: Replay Attack",
+    "difficulty": "easy",
+    "description": "## Hacker: Replay Attack\n\nCheck the transaction log array for duplicate transaction IDs, indicating a replay attack. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n30 40 40 7 43 19 13 28 3 50 34 42 37 27 1 33 6 9 25\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n35 10 21 4 16 17 28 18 31 36 9 39 47 8 4 2 21 14 24 31\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "30 40 40 7 43 19 13 28 3 50 34 42 37 27 1 33 6 9 25",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "35 10 21 4 16 17 28 18 31 36 9 39 47 8 4 2 21 14 24 31",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "14 12 15 27 13 35 1 17 32 45 28",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "47 49 45 4 39 28 32 31 30 41 22 6 23 14 42 13 32 47",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "39 40 50 40 37 21 20 47 24 43 29 30 50 14",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-61",
+    "title": "Classic: Majority Element",
+    "difficulty": "easy",
+    "description": "## Classic: Majority Element\n\nGiven an array of size n, find the majority element (appears more than n/2 times). Assume it always exists.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n2 2 95 2 28 2 34 2 30 86 2 93 2 52 75 2 54 2 81 2 2 19 87 2 2 96 79 2 97 2 2\n```\n**Output:**\n```\n2\n```\n\n### Example 2\n**Input:**\n```\n20 13 72 13 13 13 13 13 10 2 33 13 35 97 13 13 9 41 17 13 68 13 13\n```\n**Output:**\n```\n13\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "2 2 95 2 28 2 34 2 30 86 2 93 2 52 75 2 54 2 81 2 2 19 87 2 2 96 79 2 97 2 2",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "20 13 72 13 13 13 13 13 10 2 33 13 35 97 13 13 9 41 17 13 68 13 13",
+        "expectedOutput": "13"
+      },
+      {
+        "input": "53 59 53 72 76 53 14 53 53 39 48 53 96 53 89 53 53 53 21 53 53 75 51 29 53",
+        "expectedOutput": "53"
+      },
+      {
+        "input": "7 6 6 6 9 6 6 6 85 75 55",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "24 49 14 84 6 49 49 49 89 34 74 49 49 49 6 11 49 49 4 49 15 49 49 52 49 49 59 75 49 53 49",
+        "expectedOutput": "49"
+      }
+    ]
+  },
+  {
+    "id": "prob-62",
+    "title": "Cyberpunk: Voting Protocol",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Voting Protocol\n\nFind the node ID that has achieved majority consensus in the decentralized network.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n20 20 91 1 34 20 20 20 80 77 71 20 20 64 20 78 46 20 20 44 20\n```\n**Output:**\n```\n20\n```\n\n### Example 2\n**Input:**\n```\n19 35 19 19 19 19 19 42 91 79 53 54 19 19 85 42 19 19 40 19 19 19 42 5 18\n```\n**Output:**\n```\n19\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "20 20 91 1 34 20 20 20 80 77 71 20 20 64 20 78 46 20 20 44 20",
+        "expectedOutput": "20"
+      },
+      {
+        "input": "19 35 19 19 19 19 19 42 91 79 53 54 19 19 85 42 19 19 40 19 19 19 42 5 18",
+        "expectedOutput": "19"
+      },
+      {
+        "input": "59 89 59 59 59 59 59 43 59 59 32 37 81 4 59 59 85 89 14 59 66 59 42 59 51 18 59",
+        "expectedOutput": "59"
+      },
+      {
+        "input": "11 11 50 11 11 25 11 11 11 18 11 11 100 11 11 39 2 11 20 50 9 11 21 73 76 27 11 11 4 11 66",
+        "expectedOutput": "11"
+      },
+      {
+        "input": "6 6 7 6 6 6 18 6 6 93 6 22 100 43 6 13 6 14 6 88 19 6 6 51 6 32 53 6 18",
+        "expectedOutput": "6"
+      }
+    ]
+  },
+  {
+    "id": "prob-63",
+    "title": "Fantasy: Ruling Faction",
+    "difficulty": "easy",
+    "description": "## Fantasy: Ruling Faction\n\nFind the faction ID that holds the absolute majority of territories in the realm.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n64 64 64 84 64 64 4 72 64 64 45 64 84 47 90 64 64 16 64 42 99\n```\n**Output:**\n```\n64\n```\n\n### Example 2\n**Input:**\n```\n38 98 35 35 72 73 8 35 35 35 35 35 97 35 10 30 35 35 50\n```\n**Output:**\n```\n35\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "64 64 64 84 64 64 4 72 64 64 45 64 84 47 90 64 64 16 64 42 99",
+        "expectedOutput": "64"
+      },
+      {
+        "input": "38 98 35 35 72 73 8 35 35 35 35 35 97 35 10 30 35 35 50",
+        "expectedOutput": "35"
+      },
+      {
+        "input": "60 60 60 46 60 61 38 60 11 70 60 27 60",
+        "expectedOutput": "60"
+      },
+      {
+        "input": "34 24 24 24 24 16 24 82 24 54 93",
+        "expectedOutput": "24"
+      },
+      {
+        "input": "24 17 24 64 24 73 51 64 94 24 24 24 24 24 57 24 24 36 18",
+        "expectedOutput": "24"
+      }
+    ]
+  },
+  {
+    "id": "prob-64",
+    "title": "Space: Dominant Species",
+    "difficulty": "easy",
+    "description": "## Space: Dominant Species\n\nIdentify the dominant alien species ID that populates more than half of the galaxy sector.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n91 91 49 91 91 24 91 91 72 59 37\n```\n**Output:**\n```\n91\n```\n\n### Example 2\n**Input:**\n```\n89 20 17 17 26 17 29 17 7 58 17 17 51 65 17 84 48 5 17 23 17 29 17 17 17 17 17 17 99\n```\n**Output:**\n```\n17\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "91 91 49 91 91 24 91 91 72 59 37",
+        "expectedOutput": "91"
+      },
+      {
+        "input": "89 20 17 17 26 17 29 17 7 58 17 17 51 65 17 84 48 5 17 23 17 29 17 17 17 17 17 17 99",
+        "expectedOutput": "17"
+      },
+      {
+        "input": "31 31 20 59 31 31 65 31 31 69 31 31 89 31 2 31 31 80 35 31 31 94 4 72 58 34 31",
+        "expectedOutput": "31"
+      },
+      {
+        "input": "84 87 87 88 87 87 87 87 99 25 9 87 87 38 83 81 87 87 87 67 86 9 20 51 87 87 87 87 80 87 9",
+        "expectedOutput": "87"
+      },
+      {
+        "input": "82 87 41 28 97 20 82 45 82 82 82 82 85 78 82 82 82 82 60 82 63 36 34 82 82 98 90 82 82",
+        "expectedOutput": "82"
+      }
+    ]
+  },
+  {
+    "id": "prob-65",
+    "title": "Hacker: Botnet Controller",
+    "difficulty": "easy",
+    "description": "## Hacker: Botnet Controller\n\nIdentify the primary botnet controller ID that dominates the infected machine network traffic.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1 15 34 1 77 31 1 1 1 1 57 21 1 54 62 1 55 81 1 1 1 1 1 74 1 1 1 67 1 9 7\n```\n**Output:**\n```\n1\n```\n\n### Example 2\n**Input:**\n```\n88 88 88 77 55 93 88 88 88 48 88 60 35\n```\n**Output:**\n```\n88\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1 15 34 1 77 31 1 1 1 1 57 21 1 54 62 1 55 81 1 1 1 1 1 74 1 1 1 67 1 9 7",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "88 88 88 77 55 93 88 88 88 48 88 60 35",
+        "expectedOutput": "88"
+      },
+      {
+        "input": "28 28 28 28 28 28 28 87 16 77 38 50 96 28 62 21 28 66 69 63 28 28 91 63 28 65 28 28 28 28 22",
+        "expectedOutput": "28"
+      },
+      {
+        "input": "4 30 4 40 4 4 4 98 87 4 81",
+        "expectedOutput": "4"
+      },
+      {
+        "input": "25 12 25 68 25 72 25 70 25 25 25 36 12",
+        "expectedOutput": "25"
+      }
+    ]
+  },
+  {
+    "id": "prob-66",
+    "title": "Classic: Power of Two",
+    "difficulty": "easy",
+    "description": "## Classic: Power of Two\n\nGiven an integer, write a function to determine if it is a power of two. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n9921\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n4811\n```\n**Output:**\n```\nfalse\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "9921",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "4811",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "512",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "1567",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "3992",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-67",
+    "title": "Cyberpunk: Bitwise Matrix",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Bitwise Matrix\n\nCheck if the server RAM allocation block size is perfectly aligned (a power of two). Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n512\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n262144\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "512",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "262144",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "142",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "2048",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "4",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-68",
+    "title": "Fantasy: Binary Magic",
+    "difficulty": "easy",
+    "description": "## Fantasy: Binary Magic\n\nA spell's power level must be a perfect power of two to prevent backfiring. Check the power level. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6215\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n16\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "6215",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "16",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "131072",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "892",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "8773",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-69",
+    "title": "Space: Subspace Grid",
+    "difficulty": "easy",
+    "description": "## Space: Subspace Grid\n\nSubspace jumps require coordinates aligned to powers of two. Verify the coordinate. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6501\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n1048576\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "6501",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "1048576",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "6448",
+        "expectedOutput": "false"
+      },
+      {
+        "input": "262144",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "512",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "id": "prob-70",
+    "title": "Hacker: Buffer Overflow",
+    "difficulty": "easy",
+    "description": "## Hacker: Buffer Overflow\n\nDetermine if the payload size is a power of two to accurately trigger the buffer overflow. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n16384\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\n65536\n```\n**Output:**\n```\ntrue\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "16384",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "65536",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "512",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "32768",
+        "expectedOutput": "true"
+      },
+      {
+        "input": "9476",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "id": "prob-71",
+    "title": "Classic: Reverse Integer",
+    "difficulty": "medium",
+    "description": "## Classic: Reverse Integer\n\nGiven a signed 32-bit integer x, return x with its digits reversed. If reversing x causes it to go outside the 32-bit range, return 0.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1534236469\n```\n**Output:**\n```\n0\n```\n\n### Example 2\n**Input:**\n```\n7661\n```\n**Output:**\n```\n1667\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1534236469",
+        "expectedOutput": "0"
+      },
+      {
+        "input": "7661",
+        "expectedOutput": "1667"
+      },
+      {
+        "input": "1534236469",
+        "expectedOutput": "0"
+      },
+      {
+        "input": "-87137",
+        "expectedOutput": "-73178"
+      },
+      {
+        "input": "-25495",
+        "expectedOutput": "-59452"
+      }
+    ]
+  },
+  {
+    "id": "prob-72",
+    "title": "Cyberpunk: Memory Rewind",
+    "difficulty": "medium",
+    "description": "## Cyberpunk: Memory Rewind\n\nRewind the 32-bit memory address register by reversing its digits. Return 0 on buffer limit exceed.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n23999\n```\n**Output:**\n```\n99932\n```\n\n### Example 2\n**Input:**\n```\n87543\n```\n**Output:**\n```\n34578\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "23999",
+        "expectedOutput": "99932"
+      },
+      {
+        "input": "87543",
+        "expectedOutput": "34578"
+      },
+      {
+        "input": "79999",
+        "expectedOutput": "99997"
+      },
+      {
+        "input": "-50428",
+        "expectedOutput": "-82405"
+      },
+      {
+        "input": "-48490",
+        "expectedOutput": "-9484"
+      }
+    ]
+  },
+  {
+    "id": "prob-73",
+    "title": "Fantasy: Time Reversal",
+    "difficulty": "medium",
+    "description": "## Fantasy: Time Reversal\n\nReverse the age of an ancient artifact. If the reversed age exceeds the epoch limit, it turns to dust (return 0).\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n80734\n```\n**Output:**\n```\n43708\n```\n\n### Example 2\n**Input:**\n```\n-94660\n```\n**Output:**\n```\n-6649\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "80734",
+        "expectedOutput": "43708"
+      },
+      {
+        "input": "-94660",
+        "expectedOutput": "-6649"
+      },
+      {
+        "input": "1534236469",
+        "expectedOutput": "0"
+      },
+      {
+        "input": "35334",
+        "expectedOutput": "43353"
+      },
+      {
+        "input": "48020",
+        "expectedOutput": "2084"
+      }
+    ]
+  },
+  {
+    "id": "prob-74",
+    "title": "Space: Coordinate Flip",
+    "difficulty": "medium",
+    "description": "## Space: Coordinate Flip\n\nFlip the spaceship's coordinate vector. If the flip pushes it beyond the known sector limits, return 0.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n45219\n```\n**Output:**\n```\n91254\n```\n\n### Example 2\n**Input:**\n```\n-98853\n```\n**Output:**\n```\n-35889\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "45219",
+        "expectedOutput": "91254"
+      },
+      {
+        "input": "-98853",
+        "expectedOutput": "-35889"
+      },
+      {
+        "input": "97653",
+        "expectedOutput": "35679"
+      },
+      {
+        "input": "60302",
+        "expectedOutput": "20306"
+      },
+      {
+        "input": "-15279",
+        "expectedOutput": "-97251"
+      }
+    ]
+  },
+  {
+    "id": "prob-75",
+    "title": "Hacker: Reverse Shell Port",
+    "difficulty": "medium",
+    "description": "## Hacker: Reverse Shell Port\n\nReverse the port number to find the hidden backdoor. If the port exceeds 32-bit limits, return 0.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n90584\n```\n**Output:**\n```\n48509\n```\n\n### Example 2\n**Input:**\n```\n23829\n```\n**Output:**\n```\n92832\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "90584",
+        "expectedOutput": "48509"
+      },
+      {
+        "input": "23829",
+        "expectedOutput": "92832"
+      },
+      {
+        "input": "15600",
+        "expectedOutput": "651"
+      },
+      {
+        "input": "-47143",
+        "expectedOutput": "-34174"
+      },
+      {
+        "input": "1534236469",
+        "expectedOutput": "0"
+      }
+    ]
+  },
+  {
+    "id": "prob-76",
+    "title": "Classic: Move Zeroes",
+    "difficulty": "easy",
+    "description": "## Classic: Move Zeroes\n\nGiven an integer array, move all 0's to the end of it while maintaining the relative order of the non-zero elements.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n5 5 2 4 4 3 5 1 0 4 0 1 2 2 5 1\n```\n**Output:**\n```\n5 5 2 4 4 3 5 1 4 1 2 2 5 1 0 0\n```\n\n### Example 2\n**Input:**\n```\n2 4 3 5 1 3 1 1 0 4 5 5 3 2 4 1\n```\n**Output:**\n```\n2 4 3 5 1 3 1 1 4 5 5 3 2 4 1 0\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "5 5 2 4 4 3 5 1 0 4 0 1 2 2 5 1",
+        "expectedOutput": "5 5 2 4 4 3 5 1 4 1 2 2 5 1 0 0"
+      },
+      {
+        "input": "2 4 3 5 1 3 1 1 0 4 5 5 3 2 4 1",
+        "expectedOutput": "2 4 3 5 1 3 1 1 4 5 5 3 2 4 1 0"
+      },
+      {
+        "input": "5 1 0 1 3 1 0 3 3 3 2 1 2 0 3 5",
+        "expectedOutput": "5 1 1 3 1 3 3 3 2 1 2 3 5 0 0 0"
+      },
+      {
+        "input": "3 5 5 3 5 5 5 5 5 0 1 1 4 0 1",
+        "expectedOutput": "3 5 5 3 5 5 5 5 5 1 1 4 1 0 0"
+      },
+      {
+        "input": "2 3 5 2 3 2 5 3 4 0 0 0 2 4 2 1 2 0 4",
+        "expectedOutput": "2 3 5 2 3 2 5 3 4 2 4 2 1 2 4 0 0 0 0"
+      }
+    ]
+  },
+  {
+    "id": "prob-77",
+    "title": "Cyberpunk: Defrag Drive",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Defrag Drive\n\nDefragment the hard drive array by moving all empty sectors (0s) to the end, keeping data sectors in order.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n5 0 0 4 5 3 4 3 0 5 4\n```\n**Output:**\n```\n5 4 5 3 4 3 5 4 0 0 0\n```\n\n### Example 2\n**Input:**\n```\n5 0 4 1 2 4 2 1 1 2 0 2 5 0 1 4 3 4\n```\n**Output:**\n```\n5 4 1 2 4 2 1 1 2 2 5 1 4 3 4 0 0 0\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "5 0 0 4 5 3 4 3 0 5 4",
+        "expectedOutput": "5 4 5 3 4 3 5 4 0 0 0"
+      },
+      {
+        "input": "5 0 4 1 2 4 2 1 1 2 0 2 5 0 1 4 3 4",
+        "expectedOutput": "5 4 1 2 4 2 1 1 2 2 5 1 4 3 4 0 0 0"
+      },
+      {
+        "input": "3 1 0 2 0 4 2 2 1 5 4 0 5 2",
+        "expectedOutput": "3 1 2 4 2 2 1 5 4 5 2 0 0 0"
+      },
+      {
+        "input": "3 3 0 2 4 4 3 4 0 3 0 2 1 4 4 4 0 0 0",
+        "expectedOutput": "3 3 2 4 4 3 4 3 2 1 4 4 4 0 0 0 0 0 0"
+      },
+      {
+        "input": "4 1 1 2 0 2 2 2 4 1 4 5 0 5 3 1 1 0 0 4",
+        "expectedOutput": "4 1 1 2 2 2 2 4 1 4 5 5 3 1 1 4 0 0 0 0"
+      }
+    ]
+  },
+  {
+    "id": "prob-78",
+    "title": "Fantasy: Purify Inventory",
+    "difficulty": "easy",
+    "description": "## Fantasy: Purify Inventory\n\nSort your inventory array by pushing all depleted items (0s) to the bottom of the bag.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n4 0 4 2 0 3 5 3 3 5 0 1\n```\n**Output:**\n```\n4 4 2 3 5 3 3 5 1 0 0 0\n```\n\n### Example 2\n**Input:**\n```\n3 5 3 5 1 1 3 3 2 0 0 3 3 2 0 2 0 2 3\n```\n**Output:**\n```\n3 5 3 5 1 1 3 3 2 3 3 2 2 2 3 0 0 0 0\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "4 0 4 2 0 3 5 3 3 5 0 1",
+        "expectedOutput": "4 4 2 3 5 3 3 5 1 0 0 0"
+      },
+      {
+        "input": "3 5 3 5 1 1 3 3 2 0 0 3 3 2 0 2 0 2 3",
+        "expectedOutput": "3 5 3 5 1 1 3 3 2 3 3 2 2 2 3 0 0 0 0"
+      },
+      {
+        "input": "0 4 3 3 1 3 1 2 2 4 1 4 0 0 4 1 5 2 4 3",
+        "expectedOutput": "4 3 3 1 3 1 2 2 4 1 4 4 1 5 2 4 3 0 0 0"
+      },
+      {
+        "input": "0 4 0 2 2 0 2 5 5 1",
+        "expectedOutput": "4 2 2 2 5 5 1 0 0 0"
+      },
+      {
+        "input": "3 4 3 4 4 1 0 4 0 0 3 2 0 4",
+        "expectedOutput": "3 4 3 4 4 1 4 3 2 4 0 0 0 0"
+      }
+    ]
+  },
+  {
+    "id": "prob-79",
+    "title": "Space: Gravity Sort",
+    "difficulty": "easy",
+    "description": "## Space: Gravity Sort\n\nPush all empty vacuum blocks (0s) to the back of the cargo hold while maintaining the cargo array order.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n2 5 3 3 4 2 1 2 1 5 5 0 4 3 0 4 2 1\n```\n**Output:**\n```\n2 5 3 3 4 2 1 2 1 5 5 4 3 4 2 1 0 0\n```\n\n### Example 2\n**Input:**\n```\n0 2 2 2 3 4 2 3 2 3 0 4 4 2 2\n```\n**Output:**\n```\n2 2 2 3 4 2 3 2 3 4 4 2 2 0 0\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "2 5 3 3 4 2 1 2 1 5 5 0 4 3 0 4 2 1",
+        "expectedOutput": "2 5 3 3 4 2 1 2 1 5 5 4 3 4 2 1 0 0"
+      },
+      {
+        "input": "0 2 2 2 3 4 2 3 2 3 0 4 4 2 2",
+        "expectedOutput": "2 2 2 3 4 2 3 2 3 4 4 2 2 0 0"
+      },
+      {
+        "input": "2 5 0 3 5 3 5 0 5 1 4 4 0 3 5 4 5 1",
+        "expectedOutput": "2 5 3 5 3 5 5 1 4 4 3 5 4 5 1 0 0 0"
+      },
+      {
+        "input": "5 0 4 4 1 3 0 3 3 2 2 5 2",
+        "expectedOutput": "5 4 4 1 3 3 3 2 2 5 2 0 0"
+      },
+      {
+        "input": "3 1 4 3 4 0 2 4 3 0 0 5 3 1 4 0 3",
+        "expectedOutput": "3 1 4 3 4 2 4 3 5 3 1 4 3 0 0 0 0"
+      }
+    ]
+  },
+  {
+    "id": "prob-80",
+    "title": "Hacker: Null Byte Shift",
+    "difficulty": "easy",
+    "description": "## Hacker: Null Byte Shift\n\nShift all null bytes (0s) to the end of the payload string array to prevent premature termination.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n0 0 2 1 2 1 0 0 3 1 5\n```\n**Output:**\n```\n2 1 2 1 3 1 5 0 0 0 0\n```\n\n### Example 2\n**Input:**\n```\n0 0 5 0 1 1 4 4 2 5 0 4 3 0 2 5 1\n```\n**Output:**\n```\n5 1 1 4 4 2 5 4 3 2 5 1 0 0 0 0 0\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "0 0 2 1 2 1 0 0 3 1 5",
+        "expectedOutput": "2 1 2 1 3 1 5 0 0 0 0"
+      },
+      {
+        "input": "0 0 5 0 1 1 4 4 2 5 0 4 3 0 2 5 1",
+        "expectedOutput": "5 1 1 4 4 2 5 4 3 2 5 1 0 0 0 0 0"
+      },
+      {
+        "input": "4 0 1 1 5 4 1 5 3 2",
+        "expectedOutput": "4 1 1 5 4 1 5 3 2 0"
+      },
+      {
+        "input": "4 4 3 0 0 5 5 1 4 1 2 2 4 3 0 5",
+        "expectedOutput": "4 4 3 5 5 1 4 1 2 2 4 3 5 0 0 0"
+      },
+      {
+        "input": "4 1 4 0 0 1 2 3 3 3 2",
+        "expectedOutput": "4 1 4 1 2 3 3 3 2 0 0"
+      }
+    ]
+  },
+  {
+    "id": "prob-81",
+    "title": "Classic: Longest Substring",
+    "difficulty": "medium",
+    "description": "## Classic: Longest Substring\n\nGiven a string, find the length of the longest substring without repeating characters.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nabcdefg\n```\n**Output:**\n```\n7\n```\n\n### Example 2\n**Input:**\n```\naab\n```\n**Output:**\n```\n2\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "abcdefg",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "aab",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "id": "prob-82",
+    "title": "Cyberpunk: Maximum Encryption Chain",
+    "difficulty": "medium",
+    "description": "## Cyberpunk: Maximum Encryption Chain\n\nFind the length of the longest chain of unique encryption characters in the firewall log.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nbbbbb\n```\n**Output:**\n```\n1\n```\n\n### Example 2\n**Input:**\n```\naab\n```\n**Output:**\n```\n2\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "aab",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "abcdefg",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "id": "prob-83",
+    "title": "Fantasy: Unique Spell Components",
+    "difficulty": "medium",
+    "description": "## Fantasy: Unique Spell Components\n\nFind the maximum number of unique consecutive ingredients you can add to the cauldron.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\npwwkew\n```\n**Output:**\n```\n3\n```\n\n### Example 2\n**Input:**\n```\npwwkew\n```\n**Output:**\n```\n3\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "pwwkew",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "pwwkew",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "id": "prob-84",
+    "title": "Space: Signal Diversity",
+    "difficulty": "medium",
+    "description": "## Space: Signal Diversity\n\nFind the length of the longest segment of an alien signal transmission that contains no repeating frequencies.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nabcabcbb\n```\n**Output:**\n```\n3\n```\n\n### Example 2\n**Input:**\n```\naab\n```\n**Output:**\n```\n2\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "aab",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "aab",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "pwwkew",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "id": "prob-85",
+    "title": "Hacker: Non-Repeating Payload",
+    "difficulty": "medium",
+    "description": "## Hacker: Non-Repeating Payload\n\nDetermine the maximum contiguous block of unique bytes in the intercepted exploit payload.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\naab\n```\n**Output:**\n```\n2\n```\n\n### Example 2\n**Input:**\n```\nabcdefg\n```\n**Output:**\n```\n7\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "aab",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "abcdefg",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "abcdefg",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "abcdefg",
+        "expectedOutput": "7"
+      },
+      {
+        "input": "pwwkew",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "id": "prob-86",
+    "title": "Classic: Climbing Stairs",
+    "difficulty": "easy",
+    "description": "## Classic: Climbing Stairs\n\nYou are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n19\n```\n**Output:**\n```\n6765\n```\n\n### Example 2\n**Input:**\n```\n10\n```\n**Output:**\n```\n89\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "19",
+        "expectedOutput": "6765"
+      },
+      {
+        "input": "10",
+        "expectedOutput": "89"
+      },
+      {
+        "input": "4",
+        "expectedOutput": "5"
+      },
+      {
+        "input": "3",
+        "expectedOutput": "3"
+      },
+      {
+        "input": "18",
+        "expectedOutput": "4181"
+      }
+    ]
+  },
+  {
+    "id": "prob-87",
+    "title": "Cyberpunk: Firewalls",
+    "difficulty": "easy",
+    "description": "## Cyberpunk: Firewalls\n\nYou are breaching a firewall with n layers. You can crack 1 or 2 layers per hack. How many distinct ways can you breach the system?\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n31\n```\n**Output:**\n```\n2178309\n```\n\n### Example 2\n**Input:**\n```\n28\n```\n**Output:**\n```\n514229\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "31",
+        "expectedOutput": "2178309"
+      },
+      {
+        "input": "28",
+        "expectedOutput": "514229"
+      },
+      {
+        "input": "35",
+        "expectedOutput": "14930352"
+      },
+      {
+        "input": "10",
+        "expectedOutput": "89"
+      },
+      {
+        "input": "13",
+        "expectedOutput": "377"
+      }
+    ]
+  },
+  {
+    "id": "prob-88",
+    "title": "Fantasy: Mountain Trial",
+    "difficulty": "easy",
+    "description": "## Fantasy: Mountain Trial\n\nYou climb the Mountain of Doom (n steps). You can jump 1 or 2 steps per leap. Find the total possible leap combinations.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n25\n```\n**Output:**\n```\n121393\n```\n\n### Example 2\n**Input:**\n```\n31\n```\n**Output:**\n```\n2178309\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "25",
+        "expectedOutput": "121393"
+      },
+      {
+        "input": "31",
+        "expectedOutput": "2178309"
+      },
+      {
+        "input": "14",
+        "expectedOutput": "610"
+      },
+      {
+        "input": "17",
+        "expectedOutput": "2584"
+      },
+      {
+        "input": "39",
+        "expectedOutput": "102334155"
+      }
+    ]
+  },
+  {
+    "id": "prob-89",
+    "title": "Space: Air-lock Sequencing",
+    "difficulty": "easy",
+    "description": "## Space: Air-lock Sequencing\n\nYou must pressurize n air-lock sections. You can process 1 or 2 sections per minute. How many valid sequences exist?\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n7\n```\n**Output:**\n```\n21\n```\n\n### Example 2\n**Input:**\n```\n28\n```\n**Output:**\n```\n514229\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "7",
+        "expectedOutput": "21"
+      },
+      {
+        "input": "28",
+        "expectedOutput": "514229"
+      },
+      {
+        "input": "22",
+        "expectedOutput": "28657"
+      },
+      {
+        "input": "27",
+        "expectedOutput": "317811"
+      },
+      {
+        "input": "2",
+        "expectedOutput": "2"
+      }
+    ]
+  },
+  {
+    "id": "prob-90",
+    "title": "Hacker: Directory Brute Force",
+    "difficulty": "easy",
+    "description": "## Hacker: Directory Brute Force\n\nYou are navigating a directory tree n levels deep. You can jump 1 or 2 levels down per command. How many path combinations are there?\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n14\n```\n**Output:**\n```\n610\n```\n\n### Example 2\n**Input:**\n```\n38\n```\n**Output:**\n```\n63245986\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "14",
+        "expectedOutput": "610"
+      },
+      {
+        "input": "38",
+        "expectedOutput": "63245986"
+      },
+      {
+        "input": "36",
+        "expectedOutput": "24157817"
+      },
+      {
+        "input": "21",
+        "expectedOutput": "17711"
+      },
+      {
+        "input": "34",
+        "expectedOutput": "9227465"
+      }
+    ]
+  },
+  {
+    "id": "prob-91",
+    "title": "Classic: First Missing Positive",
+    "difficulty": "hard",
+    "description": "## Classic: First Missing Positive\n\nGiven an unsorted integer array, return the smallest missing positive integer.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n15 7 -2 17 4 19 -3 -3 4 -1 20 6\n```\n**Output:**\n```\n1\n```\n\n### Example 2\n**Input:**\n```\n17 12 19 0 -5 18 -10 14 16 20\n```\n**Output:**\n```\n1\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "15 7 -2 17 4 19 -3 -3 4 -1 20 6",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "17 12 19 0 -5 18 -10 14 16 20",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "-5 -2 14 2 -3 13 -9 -4 -6 18 13 -7 -1 -6 20 8 8",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      }
+    ]
+  },
+  {
+    "id": "prob-92",
+    "title": "Cyberpunk: First Available Node",
+    "difficulty": "hard",
+    "description": "## Cyberpunk: First Available Node\n\nFind the lowest available positive integer Node ID in the unsorted network cluster array.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```\n\n### Example 2\n**Input:**\n```\n-1 7 -10 10 -4 -3 5 -2 -4 15\n```\n**Output:**\n```\n1\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "-1 7 -10 10 -4 -3 5 -2 -4 15",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "7 9 9 -6 -3 12 -9 16 1 18 -9 -5 -2 -5 -1 9",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "-9 -6 16 -1 15 13 1 0 17 11 8 15 4 -10 17 -10",
+        "expectedOutput": "2"
+      },
+      {
+        "input": "4 -5 16 0 17 11 -6 3 16 20 14 9",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "id": "prob-93",
+    "title": "Fantasy: Lowest Missing Level",
+    "difficulty": "hard",
+    "description": "## Fantasy: Lowest Missing Level\n\nFind the lowest positive integer spell level that is missing from the ancient wizard's grimoire array.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```\n\n### Example 2\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "-3 -1 -5 0 7 -1 -5 17",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      }
+    ]
+  },
+  {
+    "id": "prob-94",
+    "title": "Space: Next Habitable Planet",
+    "difficulty": "hard",
+    "description": "## Space: Next Habitable Planet\n\nFind the smallest positive integer catalog ID of a habitable planet missing from the database.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```\n\n### Example 2\n**Input:**\n```\n13 -1 -10 12 -4 0 -4 18 4 -7 -2 -2 -4 11 4 6 3 -9\n```\n**Output:**\n```\n1\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "13 -1 -10 12 -4 0 -4 18 4 -7 -2 -2 -4 11 4 6 3 -9",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "0 -9 2 13 13 6 7",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "-1 5 20 3 8 5 -9 10 18 16 3 1 -4 -3 18 20 10 17 3",
+        "expectedOutput": "2"
+      }
+    ]
+  },
+  {
+    "id": "prob-95",
+    "title": "Hacker: Lowest Unpatched Port",
+    "difficulty": "hard",
+    "description": "## Hacker: Lowest Unpatched Port\n\nFind the smallest positive integer port number that was missed in the security patch array.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```\n\n### Example 2\n**Input:**\n```\n1 2 3 4 5\n```\n**Output:**\n```\n6\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "19 -1 -3 13 4 11 14 -7 -4 -6 12 -7 -4 -1 -1",
+        "expectedOutput": "1"
+      },
+      {
+        "input": "1 2 3 4 5",
+        "expectedOutput": "6"
+      },
+      {
+        "input": "-6 -2 18 8 17 -7 11",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "id": "prob-96",
+    "title": "Classic: Product of Array Except Self",
+    "difficulty": "medium",
+    "description": "## Classic: Product of Array Except Self\n\nGiven an integer array, return an array such that answer[i] is equal to the product of all the elements of nums except nums[i].\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6 7 5 4 1\n```\n**Output:**\n```\n140 120 168 210 840\n```\n\n### Example 2\n**Input:**\n```\n3 8 7 6 6 4 1 7 3\n```\n**Output:**\n```\n169344 63504 72576 84672 84672 127008 508032 72576 169344\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "6 7 5 4 1",
+        "expectedOutput": "140 120 168 210 840"
+      },
+      {
+        "input": "3 8 7 6 6 4 1 7 3",
+        "expectedOutput": "169344 63504 72576 84672 84672 127008 508032 72576 169344"
+      },
+      {
+        "input": "3 5 1 2 9 9 5 1 4",
+        "expectedOutput": "16200 9720 48600 24300 5400 5400 9720 48600 12150"
+      },
+      {
+        "input": "5 2 8 3 6 4 4",
+        "expectedOutput": "4608 11520 2880 7680 3840 5760 5760"
+      },
+      {
+        "input": "4 2 8 2 8",
+        "expectedOutput": "256 512 128 512 128"
+      }
+    ]
+  },
+  {
+    "id": "prob-97",
+    "title": "Cyberpunk: Malware Propagation",
+    "difficulty": "medium",
+    "description": "## Cyberpunk: Malware Propagation\n\nCalculate the total infection rate multiplier for every sector except itself (product of all other sector rates).\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n3 7 7 2 3 7 2 1 3 9\n```\n**Output:**\n```\n111132 47628 47628 166698 111132 47628 166698 333396 111132 37044\n```\n\n### Example 2\n**Input:**\n```\n1 7 7 8 5 6 6 5 4\n```\n**Output:**\n```\n1411200 201600 201600 176400 282240 235200 235200 282240 352800\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "3 7 7 2 3 7 2 1 3 9",
+        "expectedOutput": "111132 47628 47628 166698 111132 47628 166698 333396 111132 37044"
+      },
+      {
+        "input": "1 7 7 8 5 6 6 5 4",
+        "expectedOutput": "1411200 201600 201600 176400 282240 235200 235200 282240 352800"
+      },
+      {
+        "input": "5 9 5 8 1 9 5",
+        "expectedOutput": "16200 9000 16200 10125 81000 9000 16200"
+      },
+      {
+        "input": "1 2 3 7 9 9 6",
+        "expectedOutput": "20412 10206 6804 2916 2268 2268 3402"
+      },
+      {
+        "input": "5 2 6 7 5 4",
+        "expectedOutput": "1680 4200 1400 1200 1680 2100"
+      }
+    ]
+  },
+  {
+    "id": "prob-98",
+    "title": "Fantasy: Aura Interference",
+    "difficulty": "medium",
+    "description": "## Fantasy: Aura Interference\n\nCalculate the magical interference on each rune, which is the product of the power of all other runes in the circle.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6 9 8 8\n```\n**Output:**\n```\n576 384 432 432\n```\n\n### Example 2\n**Input:**\n```\n4 3 5 9 3 3 5 1 9 9\n```\n**Output:**\n```\n492075 656100 393660 218700 656100 656100 393660 1968300 218700 218700\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "6 9 8 8",
+        "expectedOutput": "576 384 432 432"
+      },
+      {
+        "input": "4 3 5 9 3 3 5 1 9 9",
+        "expectedOutput": "492075 656100 393660 218700 656100 656100 393660 1968300 218700 218700"
+      },
+      {
+        "input": "1 9 5 3 1 5 1 5 5",
+        "expectedOutput": "16875 1875 3375 5625 16875 3375 16875 3375 3375"
+      },
+      {
+        "input": "5 4 2 2",
+        "expectedOutput": "16 20 40 40"
+      },
+      {
+        "input": "8 3 8 6 5 5 3",
+        "expectedOutput": "10800 28800 10800 14400 17280 17280 28800"
+      }
+    ]
+  },
+  {
+    "id": "prob-99",
+    "title": "Space: Gravity Slingshot",
+    "difficulty": "medium",
+    "description": "## Space: Gravity Slingshot\n\nCalculate the slingshot velocity for each planet, which is the product of the gravitational pull of all other planets.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n9 1 8 6 1 4 2 9 5 5\n```\n**Output:**\n```\n86400 777600 97200 129600 777600 194400 388800 86400 155520 155520\n```\n\n### Example 2\n**Input:**\n```\n4 9 5 3\n```\n**Output:**\n```\n135 60 108 180\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "9 1 8 6 1 4 2 9 5 5",
+        "expectedOutput": "86400 777600 97200 129600 777600 194400 388800 86400 155520 155520"
+      },
+      {
+        "input": "4 9 5 3",
+        "expectedOutput": "135 60 108 180"
+      },
+      {
+        "input": "2 6 4 9 1 1 5",
+        "expectedOutput": "1080 360 540 240 2160 2160 432"
+      },
+      {
+        "input": "8 6 8 2",
+        "expectedOutput": "96 128 96 384"
+      },
+      {
+        "input": "3 5 8 8 7 9 4 1 5 3",
+        "expectedOutput": "1209600 725760 453600 453600 518400 403200 907200 3628800 725760 1209600"
+      }
+    ]
+  },
+  {
+    "id": "prob-100",
+    "title": "Hacker: Cryptographic Key Combo",
+    "difficulty": "medium",
+    "description": "## Hacker: Cryptographic Key Combo\n\nDerive the sub-key for each array index by multiplying all other array values together.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n3 5 4 6 6 9 9\n```\n**Output:**\n```\n58320 34992 43740 29160 29160 19440 19440\n```\n\n### Example 2\n**Input:**\n```\n5 6 3 1 4 5 7\n```\n**Output:**\n```\n2520 2100 4200 12600 3150 2520 1800\n```",
+    "starterCode": "// Write your code here to read from stdin and print to stdout.\n// Do not use a hardcoded solution.",
+    "testCases": [
+      {
+        "input": "3 5 4 6 6 9 9",
+        "expectedOutput": "58320 34992 43740 29160 29160 19440 19440"
+      },
+      {
+        "input": "5 6 3 1 4 5 7",
+        "expectedOutput": "2520 2100 4200 12600 3150 2520 1800"
+      },
+      {
+        "input": "4 3 4 2 2",
+        "expectedOutput": "48 64 48 96 96"
+      },
+      {
+        "input": "6 3 3 6 1 9 3",
+        "expectedOutput": "1458 2916 2916 1458 8748 972 2916"
+      },
+      {
+        "input": "2 3 2 7 5",
+        "expectedOutput": "210 140 210 60 84"
+      }
+    ]
+  }
+]

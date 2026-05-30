@@ -23,68 +23,66 @@ export default function DuelResults({ result, userId, onBackToLobby, onViewProfi
         </div>
 
         {/* Player Cards */}
-        <div className="results-players">
-          {/* Me */}
-          <div className={`results-player-card ${iWon ? 'winner' : isDraw ? '' : 'loser'}`}>
+        <div className="results-players stacked">
+          {/* Top Card: Winner (or Me if draw) */}
+          <div className={`results-player-card ${isDraw ? '' : 'winner'}`}>
             <div className="player-card-header">
-              <span className="player-card-label">You</span>
-              {iWon && <span className="winner-crown">👑</span>}
+              <span className="player-card-label">{iWon || isDraw ? 'You' : 'Opponent'}</span>
+              {!isDraw && <span className="winner-crown">👑</span>}
             </div>
-            <h3 className="player-card-name">{me.username}</h3>
+            <h3 className="player-card-name">{iWon || isDraw ? me.username : opponent.username}</h3>
             <div className="player-card-score">
-              {me.testsPassed}/{me.totalTests} tests
+              {iWon || isDraw ? me.testsPassed : opponent.testsPassed}/{iWon || isDraw ? me.totalTests : opponent.totalTests} tests
             </div>
 
             <div className="player-card-elo">
               <div className="elo-change-row">
-                <span className="elo-old">{me.oldElo}</span>
+                <span className="elo-old">{iWon || isDraw ? me.oldElo : opponent.oldElo}</span>
                 <span className="elo-arrow">→</span>
-                <span className="elo-new">{me.newElo}</span>
+                <span className="elo-new">{iWon || isDraw ? me.newElo : opponent.newElo}</span>
               </div>
-              <span className={`elo-delta ${me.eloChange >= 0 ? 'positive' : 'negative'}`}>
-                {me.eloChange >= 0 ? '+' : ''}{me.eloChange}
+              <span className={`elo-delta ${(iWon || isDraw ? me.eloChange : opponent.eloChange) >= 0 ? 'positive' : 'negative'}`}>
+                {(iWon || isDraw ? me.eloChange : opponent.eloChange) >= 0 ? '+' : ''}{iWon || isDraw ? me.eloChange : opponent.eloChange}
               </span>
             </div>
 
             <div className="player-card-rank">
-              <span className="rank-badge">{me.newRank?.badge}</span>
-              <span className="rank-name">{me.newRank?.name}</span>
+              <span className="rank-badge">{iWon || isDraw ? me.newRank?.badge : opponent.newRank?.badge}</span>
+              <span className="rank-name">{iWon || isDraw ? me.newRank?.name : opponent.newRank?.name}</span>
             </div>
           </div>
 
-          {/* VS Separator */}
-          <div className="results-vs">VS</div>
+          <div className="results-vs-vertical">VS</div>
 
-          {/* Opponent */}
-          <div className={`results-player-card ${!iWon && !isDraw ? 'winner' : iWon ? 'loser' : ''}`}>
+          {/* Bottom Card: Loser (or Opponent if draw) */}
+          <div className={`results-player-card ${isDraw ? '' : 'loser'}`}>
             <div className="player-card-header">
-              <span className="player-card-label">Opponent</span>
-              {!iWon && !isDraw && <span className="winner-crown">👑</span>}
+              <span className="player-card-label">{iWon || isDraw ? 'Opponent' : 'You'}</span>
             </div>
             <h3
               className="player-card-name clickable"
-              onClick={() => onViewProfile?.(opponent.userId)}
+              onClick={() => onViewProfile?.(iWon || isDraw ? opponent.userId : me.userId)}
             >
-              {opponent.username}
+              {iWon || isDraw ? opponent.username : me.username}
             </h3>
             <div className="player-card-score">
-              {opponent.testsPassed}/{opponent.totalTests} tests
+              {iWon || isDraw ? opponent.testsPassed : me.testsPassed}/{iWon || isDraw ? opponent.totalTests : me.totalTests} tests
             </div>
 
             <div className="player-card-elo">
               <div className="elo-change-row">
-                <span className="elo-old">{opponent.oldElo}</span>
+                <span className="elo-old">{iWon || isDraw ? opponent.oldElo : me.oldElo}</span>
                 <span className="elo-arrow">→</span>
-                <span className="elo-new">{opponent.newElo}</span>
+                <span className="elo-new">{iWon || isDraw ? opponent.newElo : me.newElo}</span>
               </div>
-              <span className={`elo-delta ${opponent.eloChange >= 0 ? 'positive' : 'negative'}`}>
-                {opponent.eloChange >= 0 ? '+' : ''}{opponent.eloChange}
+              <span className={`elo-delta ${(iWon || isDraw ? opponent.eloChange : me.eloChange) >= 0 ? 'positive' : 'negative'}`}>
+                {(iWon || isDraw ? opponent.eloChange : me.eloChange) >= 0 ? '+' : ''}{iWon || isDraw ? opponent.eloChange : me.eloChange}
               </span>
             </div>
 
             <div className="player-card-rank">
-              <span className="rank-badge">{opponent.newRank?.badge}</span>
-              <span className="rank-name">{opponent.newRank?.name}</span>
+              <span className="rank-badge">{iWon || isDraw ? opponent.newRank?.badge : me.newRank?.badge}</span>
+              <span className="rank-name">{iWon || isDraw ? opponent.newRank?.name : me.newRank?.name}</span>
             </div>
           </div>
         </div>

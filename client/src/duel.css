@@ -336,14 +336,19 @@
 
 /* Countdown Overlay */
 .duel-countdown-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); display: flex; align-items: center; justify-content: center; z-index: 3000; }
-.countdown-content { text-align: center; }
-.countdown-content h2 { color: var(--accent-red); font-size: 3rem; font-weight: 900; margin-bottom: 2rem; letter-spacing: 5px; text-shadow: 0 0 30px var(--accent-red); text-transform: uppercase; }
-.countdown-vs { display: flex; align-items: center; justify-content: center; gap: 3rem; margin-bottom: 4rem; }
-.countdown-player { background: var(--bg-secondary); padding: 1.5rem 3rem; border: 2px solid var(--accent-red); box-shadow: 0 0 30px rgba(255,0,0,0.2); }
-.countdown-username { font-size: 2rem; font-weight: 900; }
-.countdown-separator { font-size: 4rem; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-.countdown-number { font-size: 10rem; font-weight: 900; color: var(--accent-red); text-shadow: 0 0 50px var(--accent-red); animation: pop 1s infinite; }
-@keyframes pop { 0% { transform: scale(1.5); opacity: 0; } 20% { transform: scale(1); opacity: 1; } 80% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.8); opacity: 0; } }
+.countdown-content-formal { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.countdown-banner { font-size: 2.5rem; font-weight: 900; letter-spacing: 8px; color: white; text-transform: uppercase; background: var(--accent-red); padding: 10px 40px; box-shadow: 0 0 30px rgba(255,0,0,0.5); }
+.countdown-cards { display: flex; align-items: center; gap: 2rem; }
+.countdown-player-card { display: flex; align-items: center; gap: 1rem; background: var(--bg-secondary); border: 2px solid rgba(255,255,255,0.2); padding: 1rem 2rem; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.countdown-player-card.opponent-card { border-color: var(--accent-red); box-shadow: 0 10px 30px rgba(255,0,0,0.2); }
+.cp-avatar { width: 50px; height: 50px; border-radius: 50%; background: #333; border: 2px solid white; }
+.cp-avatar.opponent-avatar { border-color: var(--accent-red); background: #220000; }
+.cp-info { display: flex; flex-direction: column; text-align: left; }
+.cp-username { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
+.cp-elo { color: var(--text-secondary); font-weight: 700; letter-spacing: 1px; }
+.countdown-vs-divider { font-size: 2rem; font-weight: 900; color: var(--text-muted); }
+.countdown-number-pulsing { font-size: 8rem; font-weight: 900; color: white; text-shadow: 0 0 50px rgba(255,255,255,0.8); animation: pulse-scale 1s infinite; margin-top: 2rem; }
+@keyframes pulse-scale { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
 
 /* Test Results Panel */
 .test-results-summary { display: flex; align-items: center; gap: 12px; padding: 16px; margin-bottom: var(--space-6); font-weight: 900; border: 2px solid; }
@@ -362,16 +367,18 @@
 
 /* Duel Results Overlay */
 .duel-results-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000; display: flex; align-items: center; justify-content: center; }
-.results-banner-text { font-size: 5rem; font-weight: 900; letter-spacing: 10px; text-shadow: 0 0 50px currentColor; text-transform: uppercase; }
+.results-banner-text { font-size: 4.5rem; font-weight: 900; letter-spacing: 10px; text-shadow: 0 0 50px currentColor; text-transform: uppercase; margin-bottom: 1rem; }
 .victory { color: #00ff66; }
 .defeat { color: var(--accent-red); }
 .draw { color: var(--text-secondary); }
-.results-player-card { background: var(--bg-secondary); border: 4px solid var(--border-primary); padding: 2rem; width: 350px; text-align: center; }
-.results-player-card.winner { border-color: #00ff66; box-shadow: 0 0 50px rgba(0,255,102,0.2); }
-.results-player-card.loser { border-color: var(--accent-red); opacity: 0.8; filter: grayscale(0.2); box-shadow: 0 0 30px rgba(255,0,0,0.2); }
-.player-card-name { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; }
-.player-card-elo { background: var(--bg-primary); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
-.elo-change-row { font-size: 2rem; font-weight: 900; }
+.results-players.stacked { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1rem; }
+.results-vs-vertical { font-size: 2rem; font-weight: 900; color: var(--text-muted); letter-spacing: 2px; }
+.results-player-card { background: var(--bg-secondary); border: 4px solid var(--border-primary); padding: 1.5rem 3rem; width: 450px; text-align: center; }
+.results-player-card.winner { border-color: #00ff66; box-shadow: 0 0 50px rgba(0,255,102,0.2); transform: scale(1.05); z-index: 2; }
+.results-player-card.loser { border-color: var(--accent-red); opacity: 0.8; filter: grayscale(0.2); box-shadow: 0 0 30px rgba(255,0,0,0.2); transform: scale(0.95); z-index: 1; }
+.player-card-name { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin: 10px 0; }
+.player-card-elo { background: var(--bg-primary); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.elo-change-row { font-size: 1.5rem; font-weight: 900; }
 .elo-delta.positive { color: #00ff66; }
 .elo-delta.negative { color: var(--accent-red); }
 .results-actions { margin-top: 2rem; }

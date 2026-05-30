@@ -32,16 +32,19 @@ export default function DuelArena() {
     duration,
     remainingTime,
     submissionResult,
+    runResult,
     opponentProgress,
     duelResult,
     opponentDisconnected,
     submitCode,
+    runCode,
     forfeit,
     error,
   } = useDuel(duelId);
 
   const [code, setCode] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
   const [activeTab, setActiveTab] = useState('problem'); // 'problem' | 'results'
   const editorRef = useRef(null);
 
@@ -52,7 +55,7 @@ export default function DuelArena() {
     }
   }, [starterCode]);
 
-  // Reset submitting state when we get a result
+  // Reset submitting/running state when we get a result
   useEffect(() => {
     if (submissionResult) {
       setIsSubmitting(false);
@@ -60,16 +63,29 @@ export default function DuelArena() {
     }
   }, [submissionResult]);
 
+  useEffect(() => {
+    if (runResult) {
+      setIsRunning(false);
+      setActiveTab('results');
+    }
+  }, [runResult]);
+
   const handleEditorMount = useCallback((editor) => {
     editorRef.current = editor;
     editor.focus();
   }, []);
 
   const handleSubmit = useCallback(() => {
-    if (!code.trim() || isSubmitting) return;
+    if (!code.trim() || isSubmitting || isRunning) return;
     setIsSubmitting(true);
     submitCode(code);
-  }, [code, isSubmitting, submitCode]);
+  }, [code, isSubmitting, isRunning, submitCode]);
+
+  const handleRun = useCallback(() => {
+    if (!code.trim() || isSubmitting || isRunning) return;
+    setIsRunning(true);
+    runCode(code);
+  }, [code, isSubmitting, isRunning, runCode]);
 
   const handleForfeit = useCallback(() => {
     if (window.confirm('Are you sure you want to forfeit? Your opponent will win.')) {
@@ -88,20 +104,28 @@ export default function DuelArena() {
   if (countdown !== null && countdown > 0) {
     return (
       <div className="duel-countdown-overlay">
-        <div className="countdown-content">
-          <h2>Get Ready!</h2>
-          <div className="countdown-vs">
-            <div className="countdown-player">
-              <span className="countdown-username">{myInfo?.username || 'You'}</span>
-              <span className="countdown-elo">{myInfo?.elo || '?'} Elo</span>
+        <div className="countdown-content-formal">
+          <div className="countdown-banner">MATCH COMMENCING</div>
+          <div className="countdown-cards">
+            <div className="countdown-player-card">
+              <div className="cp-avatar"></div>
+              <div className="cp-info">
+                <span className="cp-username">{myInfo?.username || 'You'}</span>
+                <span className="cp-elo">{myInfo?.elo || '?'} Rating</span>
+              </div>
             </div>
-            <div className="countdown-separator">VS</div>
-            <div className="countdown-player">
-              <span className="countdown-username">{opponentInfo?.username || 'Opponent'}</span>
-              <span className="countdown-elo">{opponentInfo?.elo || '?'} Elo</span>
+            <div className="countdown-vs-divider">
+              <span>VS</span>
+            </div>
+            <div className="countdown-player-card opponent-card">
+              <div className="cp-avatar opponent-avatar"></div>
+              <div className="cp-info">
+                <span className="cp-username">{opponentInfo?.username || 'Opponent'}</span>
+                <span className="cp-elo">{opponentInfo?.elo || '?'} Rating</span>
+              </div>
             </div>
           </div>
-          <div className="countdown-number">{countdown}</div>
+          <div className="countdown-number-pulsing">{countdown}</div>
         </div>
       </div>
     );
@@ -174,9 +198,9 @@ export default function DuelArena() {
               onClick={() => setActiveTab('results')}
             >
               ✅ Results
-              {submissionResult && (
+              {(submissionResult || runResult) && (
                 <span className="tab-badge">
-                  {submissionResult.testsPassed}/{submissionResult.totalTests}
+                  {(submissionResult || runResult).testsPassed}/{(submissionResult || runResult).totalTests}
                 </span>
               )}
             </button>
@@ -190,7 +214,7 @@ export default function DuelArena() {
                 totalTestCases={totalTestCases}
               />
             ) : (
-              <TestResultsPanel result={submissionResult} />
+              <TestResultsPanel result={submissionResult || runResult} />
             )}
           </div>
         </div>
@@ -201,11 +225,27 @@ export default function DuelArena() {
             <span>Solution</span>
             <div className="duel-editor-actions">
               <button
+                className="duel-run-btn"
+                onClick={handleRun}
+                disabled={isSubmitting || isRunning || !code.trim()}
+                style={{
+                  padding: '6px 12px',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-secondary)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '4px',
+                  cursor: (isSubmitting || isRunning || !code.trim()) ? 'not-allowed' : 'pointer',
+                  marginRight: '8px'
+                }}
+              >
+                {isRunning ? '⏳ Running...' : '▶ Run Code'}
+              </button>
+              <button
                 className="duel-submit-btn"
                 onClick={handleSubmit}
-                disabled={isSubmitting || !code.trim()}
+                disabled={isSubmitting || isRunning || !code.trim()}
               >
-                {isSubmitting ? '⏳ Running...' : '🚀 Submit'}
+                {isSubmitting ? '⏳ Submitting...' : '🚀 Submit'}
               </button>
               <button className="duel-forfeit-btn" onClick={handleForfeit}>
                 🏳️ Forfeit

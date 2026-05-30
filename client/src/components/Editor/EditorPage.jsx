@@ -206,7 +206,7 @@ export default function EditorPage() {
 
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)', overflow: 'hidden' }}>
-      <CollaborativeCursors />
+      <CollaborativeCursors awareness={awareness} />
 
       {/* Navbar */}
       <Navbar

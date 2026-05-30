@@ -1,15 +1,18 @@
 /**
  * @module services/problemService
- * @description Generates coding challenges using the AI service and validates
+ * @description Provides trusted coding challenges from the static database and validates
  * solutions by running code against test cases.
  */
 
-import aiService from './aiService.js';
 import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { v4 as uuidv4 } from 'uuid';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** Supported duel languages and their runners */
 const RUNNERS = {
@@ -24,92 +27,86 @@ const RUNNERS = {
 /** Maximum execution time per test case (ms) */
 const TEST_TIMEOUT = 10000;
 
-/**
- * Difficulty-to-prompt mapping for AI problem generation.
- */
-const DIFFICULTY_PROMPTS = {
-  easy: 'a simple beginner-level algorithmic problem (arrays, strings, basic math). It should be solvable in under 5 minutes by an intermediate developer.',
-  medium: 'a medium-difficulty algorithmic problem (sorting, searching, hash maps, two pointers). It should require some thought but be solvable in 10 minutes.',
-  hard: 'a challenging algorithmic problem (dynamic programming, graphs, trees, or complex data structures). It should push experienced developers.',
-};
+let trustedProblems = null;
+
+function loadTrustedProblems() {
+  if (trustedProblems) return trustedProblems;
+  try {
+    const dataPath = path.join(__dirname, '..', 'data', 'trusted_problems.json');
+    const data = fs.readFileSync(dataPath, 'utf8');
+    trustedProblems = JSON.parse(data);
+  } catch (error) {
+    console.error('Failed to load trusted problems:', error.message);
+    trustedProblems = []; // Fallback to empty array to prevent crashes
+  }
+  return trustedProblems;
+}
+
+function getGenericStarterCode(language) {
+  if (language === 'javascript' || language === 'typescript') {
+    return `const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let inputLines = [];
+
+rl.on('line', (line) => {
+  inputLines.push(line);
+});
+
+rl.on('close', () => {
+  const input = inputLines.join('\\n').trim();
+  // Your solution here
+  // Use console.log() to print your final answer
+  
+});`;
+  }
+  if (language === 'python') {
+    return `import sys\ninput_data = sys.stdin.read().strip()\n\n# Your solution here\n# Use print() to output your final answer`;
+  }
+  if (language === 'cpp') {
+    return `#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    // Your solution here\n    // Read using cin, print using cout\n    return 0;\n}`;
+  }
+  if (language === 'c') {
+    return `#include <stdio.h>\n\nint main() {\n    // Your solution here\n    // Read using scanf, print using printf\n    return 0;\n}`;
+  }
+  if (language === 'go') {
+    return `package main\n\nimport (\n\t"fmt"\n\t"io/ioutil"\n\t"os"\n)\n\nfunc main() {\n\tbytes, _ := ioutil.ReadAll(os.Stdin)\n\tinput := string(bytes)\n\n\t// Your solution here\n\t// Use fmt.Println() to print your final answer\n}`;
+  }
+  return '// Write your solution here';
+}
 
 /**
- * Generates a coding challenge using the AI service.
+ * Returns a random coding challenge from the trusted database.
  * @param {string} language - Programming language for the challenge.
  * @param {string} [difficulty='medium'] - Difficulty level (easy/medium/hard).
  * @returns {Promise<{title: string, description: string, starterCode: string, testCases: Array<{input: string, expectedOutput: string}>}>}
  */
 export async function generateProblem(language, difficulty = 'medium') {
-  const difficultyDesc = DIFFICULTY_PROMPTS[difficulty] || DIFFICULTY_PROMPTS.medium;
+  const problems = loadTrustedProblems();
+  
+  // Filter by requested difficulty
+  const available = problems.filter(p => p.difficulty === difficulty);
+  
+  // Fallback to any difficulty if none exist
+  const pool = available.length > 0 ? available : problems;
 
-  const systemPrompt = `You are a competitive programming problem generator. Generate ${difficultyDesc}
-
-CRITICAL RULES:
-1. The problem must be solvable in ${language}.
-2. Return ONLY valid JSON — no markdown fences, no extra text.
-3. The starterCode must include a complete runnable solution template that reads from stdin and prints to stdout.
-4. Generate exactly 5 test cases. The first 2 are "visible" (shown to users), the last 3 are "hidden" (used for judging).
-5. Each test case input/output must be a string (what gets piped to stdin / what stdout should produce).
-6. The problem should have a clear, unambiguous specification.
-
-Return JSON in this exact format:
-{
-  "title": "Problem Title",
-  "description": "Full problem description in markdown. Include examples.",
-  "starterCode": "// Complete template code with stdin reading and stdout printing",
-  "testCases": [
-    {"input": "example input 1", "expectedOutput": "expected output 1"},
-    {"input": "example input 2", "expectedOutput": "expected output 2"},
-    {"input": "hidden input 3", "expectedOutput": "expected output 3"},
-    {"input": "hidden input 4", "expectedOutput": "expected output 4"},
-    {"input": "hidden input 5", "expectedOutput": "expected output 5"}
-  ]
-}`;
-
-  const userPrompt = `Generate a coding duel problem in ${language} at ${difficulty} difficulty. Return only valid JSON.`;
-
-  try {
-    const response = await aiService.complete(
-      [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
-      ],
-      3000
-    );
-
-    // Parse the JSON response — strip any markdown fences if present
-    let cleaned = response.trim();
-    if (cleaned.startsWith('```')) {
-      cleaned = cleaned.replace(/^```(?:json)?\s*\n?/, '').replace(/\n?```\s*$/, '');
-    }
-
-    const problem = JSON.parse(cleaned);
-
-    // Validate structure
-    if (
-      !problem.title ||
-      !problem.description ||
-      !problem.starterCode ||
-      !Array.isArray(problem.testCases) ||
-      problem.testCases.length < 3
-    ) {
-      throw new Error('Invalid problem structure from AI');
-    }
-
-    return {
-      title: problem.title,
-      description: problem.description,
-      starterCode: problem.starterCode,
-      testCases: problem.testCases.map((tc) => ({
-        input: String(tc.input || ''),
-        expectedOutput: String(tc.expectedOutput || tc.expected_output || '').trim(),
-      })),
-    };
-  } catch (error) {
-    console.error('Problem generation failed:', error.message);
-    // Return a fallback problem
-    return getFallbackProblem(language, difficulty);
+  if (pool.length === 0) {
+    throw new Error("No trusted problems found in database.");
   }
+
+  // Pick random problem
+  const problem = pool[Math.floor(Math.random() * pool.length)];
+
+  return {
+    title: problem.title,
+    description: problem.description,
+    starterCode: getGenericStarterCode(language),
+    testCases: problem.testCases,
+  };
 }
 
 /**
@@ -148,35 +145,31 @@ export async function validateSolution(code, language, testCases) {
 }
 
 /**
- * Runs code against a single test case.
+ * Runs a single test case.
  * @private
  */
 async function runSingleTest(code, language, runner, input, expectedOutput) {
-  const tmpDir = path.join(os.tmpdir(), `duel-${uuidv4()}`);
-  fs.mkdirSync(tmpDir, { recursive: true });
-
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
   const srcFile = path.join(tmpDir, `solution${runner.ext}`);
-  const outFile = path.join(tmpDir, os.platform() === 'win32' ? 'solution.exe' : 'solution');
+  const outFile = path.join(tmpDir, process.platform === 'win32' ? 'solution.exe' : 'solution');
 
   try {
-    fs.writeFileSync(srcFile, code, 'utf-8');
+    fs.writeFileSync(srcFile, code);
 
-    // Compile if needed
     if (runner.compile) {
-      const [compileCmd, compileArgs] = runner.compile(srcFile, outFile);
-      const compileResult = await executeWithTimeout(compileCmd, compileArgs, tmpDir, null, TEST_TIMEOUT);
+      const [cmpCmd, cmpArgs] = runner.compile(srcFile, outFile);
+      const compileResult = await executeWithTimeout(cmpCmd, cmpArgs, tmpDir, null, TEST_TIMEOUT);
       if (compileResult.exitCode !== 0) {
         return {
           passed: false,
           input,
           expected: expectedOutput,
           actual: '',
-          error: `Compilation Error: ${compileResult.stderr}`,
+          error: compileResult.stderr || 'Compilation failed',
         };
       }
     }
 
-    // Run
     const [runCmd, runArgs] = runner.cmd(srcFile, outFile);
     const result = await executeWithTimeout(runCmd, runArgs, tmpDir, input, TEST_TIMEOUT);
 
@@ -229,9 +222,7 @@ function executeWithTimeout(cmd, args, cwd, stdinData, timeout) {
 
     proc.stdout.on('data', (data) => {
       stdout += data.toString();
-      if (stdout.length > 50000) {
-        proc.kill();
-      }
+      if (stdout.length > 50000) proc.kill();
     });
 
     proc.stderr.on('data', (data) => {
@@ -256,103 +247,6 @@ function executeWithTimeout(cmd, args, cwd, stdinData, timeout) {
       });
     });
   });
-}
-
-/**
- * Returns a fallback problem when AI generation fails.
- * @private
- */
-function getFallbackProblem(language, difficulty) {
-  const problems = {
-    easy: {
-      title: 'Two Sum',
-      description: `## Two Sum\n\nGiven an array of integers and a target sum, find two numbers that add up to the target.\n\n### Input\n- First line: space-separated integers (the array)\n- Second line: the target sum\n\n### Output\n- Print the two numbers separated by a space (smaller first)\n\n### Example\nInput:\n\`\`\`\n2 7 11 15\n9\n\`\`\`\nOutput:\n\`\`\`\n2 7\n\`\`\``,
-      starterCode: getStarterCode(language, 'twosum'),
-      testCases: [
-        { input: '2 7 11 15\n9', expectedOutput: '2 7' },
-        { input: '3 2 4\n6', expectedOutput: '2 4' },
-        { input: '1 5 3 7 2\n8', expectedOutput: '1 7' },
-        { input: '10 20 30 40 50\n60', expectedOutput: '10 50' },
-        { input: '-1 0 1 2\n1', expectedOutput: '-1 2' },
-      ],
-    },
-    medium: {
-      title: 'Longest Substring Without Repeating',
-      description: `## Longest Substring Without Repeating Characters\n\nGiven a string, find the length of the longest substring without repeating characters.\n\n### Input\n- A single string\n\n### Output\n- Print the length of the longest substring\n\n### Example\nInput:\n\`\`\`\nabcabcbb\n\`\`\`\nOutput:\n\`\`\`\n3\n\`\`\``,
-      starterCode: getStarterCode(language, 'longest_substring'),
-      testCases: [
-        { input: 'abcabcbb', expectedOutput: '3' },
-        { input: 'bbbbb', expectedOutput: '1' },
-        { input: 'pwwkew', expectedOutput: '3' },
-        { input: 'abcdefg', expectedOutput: '7' },
-        { input: 'aab', expectedOutput: '2' },
-      ],
-    },
-    hard: {
-      title: 'Maximum Subarray Sum',
-      description: `## Maximum Subarray Sum\n\nGiven an array of integers, find the contiguous subarray with the largest sum (Kadane's algorithm).\n\n### Input\n- Space-separated integers\n\n### Output\n- Print the maximum subarray sum\n\n### Example\nInput:\n\`\`\`\n-2 1 -3 4 -1 2 1 -5 4\n\`\`\`\nOutput:\n\`\`\`\n6\n\`\`\``,
-      starterCode: getStarterCode(language, 'max_subarray'),
-      testCases: [
-        { input: '-2 1 -3 4 -1 2 1 -5 4', expectedOutput: '6' },
-        { input: '1', expectedOutput: '1' },
-        { input: '5 4 -1 7 8', expectedOutput: '23' },
-        { input: '-1 -2 -3 -4', expectedOutput: '-1' },
-        { input: '1 2 3 -2 5', expectedOutput: '9' },
-      ],
-    },
-  };
-
-  return problems[difficulty] || problems.medium;
-}
-
-/**
- * Returns starter code templates for fallback problems.
- * @private
- */
-function getStarterCode(language, problem) {
-  const templates = {
-    javascript: {
-      twosum: `const readline = require('readline');
-const rl = readline.createInterface({ input: process.stdin });
-const lines = [];
-rl.on('line', (line) => lines.push(line.trim()));
-rl.on('close', () => {
-  const nums = lines[0].split(' ').map(Number);
-  const target = parseInt(lines[1]);
-  // Your solution here
-  
-});`,
-      longest_substring: `const readline = require('readline');
-const rl = readline.createInterface({ input: process.stdin });
-rl.on('line', (line) => {
-  const s = line.trim();
-  // Your solution here
-  
-});`,
-      max_subarray: `const readline = require('readline');
-const rl = readline.createInterface({ input: process.stdin });
-rl.on('line', (line) => {
-  const nums = line.trim().split(' ').map(Number);
-  // Your solution here
-  
-});`,
-    },
-    python: {
-      twosum: `nums = list(map(int, input().split()))
-target = int(input())
-# Your solution here
-`,
-      longest_substring: `s = input().strip()
-# Your solution here
-`,
-      max_subarray: `nums = list(map(int, input().split()))
-# Your solution here
-`,
-    },
-  };
-
-  const langTemplates = templates[language] || templates.javascript;
-  return langTemplates[problem] || '// Write your solution here\n';
 }
 
 export default { generateProblem, validateSolution };

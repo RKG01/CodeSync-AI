@@ -40,6 +40,7 @@ export function useDuel(duelId) {
   const [duration, setDuration] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
+  const [runResult, setRunResult] = useState(null);
   const [opponentProgress, setOpponentProgress] = useState(null);
   const [duelResult, setDuelResult] = useState(null);
   const [opponentDisconnected, setOpponentDisconnected] = useState(false);
@@ -85,6 +86,10 @@ export function useDuel(duelId) {
 
           case 'duel:submission_result':
             setSubmissionResult(payload.data);
+            break;
+
+          case 'duel:run_result':
+            setRunResult(payload.data);
             break;
 
           case 'duel:opponent_progress':
@@ -142,6 +147,16 @@ export function useDuel(duelId) {
     }
   }, []);
 
+  const runCode = useCallback((code) => {
+    if (wsRef.current?.readyState === WebSocket.OPEN) {
+      setRunResult(null); // Clear previous result
+      wsRef.current.send(JSON.stringify({
+        type: 'duel:run',
+        data: { code },
+      }));
+    }
+  }, []);
+
   const forfeit = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify({ type: 'duel:forfeit' }));
@@ -159,10 +174,12 @@ export function useDuel(duelId) {
     duration,
     remainingTime,
     submissionResult,
+    runResult,
     opponentProgress,
     duelResult,
     opponentDisconnected,
     submitCode,
+    runCode,
     forfeit,
     error,
   };

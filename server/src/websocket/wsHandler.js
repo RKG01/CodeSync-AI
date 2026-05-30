@@ -20,6 +20,7 @@ import {
 import {
   createDuel,
   handleSubmission,
+  handleRun,
   handleDisconnect,
   getActiveDuel,
   attachPlayerWs,
@@ -335,6 +336,19 @@ export function setupWebSocket() {
                   return;
                 }
                 await handleSubmission(duelId, user.id, code);
+                break;
+              }
+
+              case 'duel:run': {
+                const { code } = payload.data || {};
+                if (!code) {
+                  ws.send(JSON.stringify({
+                    type: 'duel:error',
+                    data: { message: 'Code is required.' },
+                  }));
+                  return;
+                }
+                await handleRun(duelId, user.id, code);
                 break;
               }
 

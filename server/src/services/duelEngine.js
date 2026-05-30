@@ -305,6 +305,37 @@ export async function handleSubmission(duelId, userId, code) {
 }
 
 /**
+ * Handles a code run (test) from a player without submitting.
+ * @param {string} duelId - The duel ID.
+ * @param {string} userId - The running user's ID.
+ * @param {string} code - The code to run.
+ * @returns {Promise<void>}
+ */
+export async function handleRun(duelId, userId, code) {
+  const duel = activeDuels.get(duelId);
+  if (!duel || duel.status !== 'active') return;
+
+  const isPlayer1 = duel.player1.userId === userId;
+  const player = isPlayer1 ? duel.player1 : duel.player2;
+
+  console.log(`⚔️ Duel ${duelId}: ${player.username} is running code`);
+
+  // Validate the solution against ONLY the visible test cases
+  const visibleTestCases = duel.problem.testCases.slice(0, 2);
+  const result = await validateSolution(code, duel.language, visibleTestCases);
+
+  // Send result back ONLY to the player who ran it
+  safeSend(player.ws, {
+    type: 'duel:run_result',
+    data: {
+      testsPassed: result.passed,
+      totalTests: result.total,
+      results: result.results,
+    },
+  });
+}
+
+/**
  * Handles duel timeout — determines winner by most tests passed.
  * @param {string} duelId
  */

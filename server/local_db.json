@@ -7,9 +7,9 @@
       "password_hash": "$2a$10$HI9s7vNszgACeg/L7wtgCO2lNbcwvMkYVgF0KaPjW/CM8oj0xS7uK",
       "avatar_url": null,
       "created_at": "2026-05-21T06:47:32.792Z",
-      "updated_at": "2026-05-30T13:55:58.880Z",
-      "last_active_at": "2026-05-30T13:55:58.880Z",
-      "elo_rating": 978,
+      "updated_at": "2026-05-30T18:16:19.927Z",
+      "last_active_at": "2026-05-30T18:15:38.815Z",
+      "elo_rating": 1003,
       "matches_played": 0,
       "matches_won": 0,
       "preferred_languages": [
@@ -97,7 +97,7 @@
       "email": "rival@codesync.ai",
       "password_hash": "$2a$10$nKiJxZwm74qLnTPsGRbqfuKXW4xUbqzTBqcOzUSaEZNAIa/W8hOzG",
       "avatar_url": null,
-      "elo_rating": 1222,
+      "elo_rating": 1228,
       "matches_played": 10,
       "matches_won": 6,
       "preferred_languages": [
@@ -105,8 +105,32 @@
         "python"
       ],
       "created_at": "2026-05-30T11:25:18.637Z",
-      "updated_at": "2026-05-30T13:55:54.745Z",
-      "last_active_at": "2026-05-30T13:55:54.743Z"
+      "updated_at": "2026-05-30T17:45:27.510Z",
+      "last_active_at": "2026-05-30T17:45:27.510Z"
+    },
+    {
+      "id": "b1502515-928d-473d-ad94-cbe9aadc6283",
+      "created_at": "2026-05-30T16:56:31.788Z",
+      "updated_at": "2026-05-30T17:10:29.739Z",
+      "username": "demoo",
+      "email": "demo1@codesync.ai",
+      "password_hash": "$2a$12$YQ9OIjTsVAu1.Bw4N2PCF.FJcPLccuGJiTfyZ7eKiBLdHttl0krSW",
+      "last_active_at": "2026-05-30T17:10:29.739Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "f3a99da7-b5a9-4a64-9f33-bf9d338d33a2",
+      "created_at": "2026-05-30T17:51:23.673Z",
+      "updated_at": "2026-05-30T18:16:19.926Z",
+      "username": "demoo0",
+      "email": "demoo@gmail.com",
+      "password_hash": "$2a$12$pXcbRzFoMURr3xtdcGUfauO/mssuKfJyxEepbTKIOHHFC6sza4lN.",
+      "elo_rating": 969
     }
   ],
   "projects": [
@@ -162,6 +186,15 @@
       "updated_at": "2026-05-30T13:12:46.371Z",
       "name": "Quick Match - CPP",
       "description": "A quick match collaborative session",
+      "language": "cpp",
+      "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
+    },
+    {
+      "id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "created_at": "2026-05-30T16:53:08.050Z",
+      "updated_at": "2026-05-30T16:53:08.050Z",
+      "name": "cursor_testing",
+      "description": "",
       "language": "cpp",
       "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
     }
@@ -232,6 +265,24 @@
       "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
       "role": "editor",
       "joined_at": "2026-05-30T13:12:46.373Z"
+    },
+    {
+      "project_id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "role": "owner",
+      "joined_at": "2026-05-30T16:53:08.050Z"
+    },
+    {
+      "project_id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "role": "editor",
+      "joined_at": "2026-05-30T16:53:24.645Z"
+    },
+    {
+      "project_id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "user_id": "b1502515-928d-473d-ad94-cbe9aadc6283",
+      "role": "editor",
+      "joined_at": "2026-05-30T16:57:03.432Z"
     }
   ],
   "files": [
@@ -364,6 +415,30 @@
       "name": "new.cpp",
       "is_directory": false,
       "content": "harshit\r\n\r\ni am happy now it is working fine",
+      "language": "javascript",
+      "parent_id": null
+    },
+    {
+      "id": "ec5812f3-c7eb-4360-9226-8f4c575464f2",
+      "created_at": "2026-05-30T16:53:47.734Z",
+      "updated_at": "2026-05-30T17:24:10.955Z",
+      "project_id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "path": "q.cpp",
+      "name": "q.cpp",
+      "is_directory": false,
+      "content": "fkkkfkkfkfkkff\r\n\r\neq.q/q/..\r\n\r\n\r\n\r\n\r\nmerll lcx mk>S \r\n\r\n\r\nqqlq",
+      "language": "cpp",
+      "parent_id": null
+    },
+    {
+      "id": "064eb65d-cd89-47a1-ab55-f9812a89c590",
+      "created_at": "2026-05-30T17:15:11.583Z",
+      "updated_at": "2026-05-30T17:22:38.805Z",
+      "project_id": "8d064a4c-71ce-4e42-b067-e854a8eebeba",
+      "path": "new.cpp",
+      "name": "new.cpp",
+      "is_directory": false,
+      "content": "fq;lfqq;\r\n\r\nce;qm;q;\r\n\r\n\r\n\r\nqemc\r\n\r\nd.w . qw. ",
       "language": "javascript",
       "parent_id": null
     }
@@ -623,6 +698,76 @@
       "test_cases": "[{\"input\":\"4\\n3 1 5 2\",\"expectedOutput\":\"5\"},{\"input\":\"3\\n1 2 3\",\"expectedOutput\":\"2\"},{\"input\":\"5\\n10 5 15 20 1\",\"expectedOutput\":\"30\"},{\"input\":\"2\\n7 3\",\"expectedOutput\":\"4\"},{\"input\":\"1\\n5\",\"expectedOutput\":\"0\"}]",
       "duration_seconds": 900,
       "status": "waiting"
+    },
+    {
+      "id": "a52dac08-e2eb-4bdb-9d70-316a2b27b123",
+      "created_at": "2026-05-30T17:25:03.825Z",
+      "updated_at": "2026-05-30T17:25:03.825Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "cpp",
+      "difficulty": "medium",
+      "problem_title": "Minimum Time to Make Rope Colorful",
+      "problem_description": "Alice has a rope of balloons arranged in a line, each with a specific color. Some consecutive balloons have the same color. To make the rope colorful, Alice wants to remove some balloons so that no two adjacent balloons have the same color. Each balloon has a removal cost associated with it. Find the minimum total cost to make the rope colorful.\n\n**Input Format:**\n- First line: Two integers N (number of balloons) and K (number of unique colors)\n- Second line: N space-separated integers representing the colors of each balloon\n- Third line: N space-separated integers representing the removal cost for each balloon\n\n**Output Format:**\n- Print the minimum total cost to make the rope colorful\n\n**Example:**\nIf we have 4 balloons with colors [1, 1, 2, 1] and costs [1, 2, 3, 4], we can remove the second balloon (cost 2) to get [1, 2, 1]. Total cost = 2.\n\n**Constraints:**\n- 1 ≤ N ≤ 10^5\n- 1 ≤ K ≤ 10^5\n- 1 ≤ color[i] ≤ K\n- 1 ≤ cost[i] ≤ 10^4",
+      "test_cases": "[{\"input\":\"4 2\\n1 1 2 1\\n1 2 3 4\",\"expectedOutput\":\"2\"},{\"input\":\"3 3\\n1 2 3\\n10 20 30\",\"expectedOutput\":\"0\"},{\"input\":\"5 2\\n1 1 1 1 1\\n5 4 3 2 1\",\"expectedOutput\":\"10\"},{\"input\":\"6 3\\n1 2 1 2 1 2\\n1 1 1 1 1 1\",\"expectedOutput\":\"0\"},{\"input\":\"4 2\\n2 2 2 2\\n10 5 7 3\",\"expectedOutput\":\"15\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "de8525bd-6b0f-42fd-a931-6b3fa6783f70",
+      "created_at": "2026-05-30T17:52:00.405Z",
+      "updated_at": "2026-05-30T17:52:00.405Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "f3a99da7-b5a9-4a64-9f33-bf9d338d33a2",
+      "language": "cpp",
+      "difficulty": "easy",
+      "problem_title": "Sum of Even Numbers",
+      "problem_description": "Given an array of integers, find the sum of all even numbers in the array.\n\n**Input**: The first line contains an integer N (1 <= N <= 100), representing the number of elements in the array. The second line contains N space-separated integers (each between -1000 and 1000).\n\n**Output**: Print a single integer representing the sum of all even numbers in the array.\n\n**Example**:\n- Input: `5\\n1 2 3 4 5`\n- Output: `6`\n- Explanation: Even numbers are 2 and 4, so their sum is 6.\n\n**Another Example**:\n- Input: `4\\n-2 -1 0 1`\n- Output: `-2`\n- Explanation: Even numbers are -2, 0, so their sum is -2.",
+      "test_cases": "[{\"input\":\"5\\n1 2 3 4 5\",\"expectedOutput\":\"6\"},{\"input\":\"4\\n-2 -1 0 1\",\"expectedOutput\":\"-2\"},{\"input\":\"3\\n1 3 5\",\"expectedOutput\":\"0\"},{\"input\":\"6\\n2 4 6 8 10 12\",\"expectedOutput\":\"42\"},{\"input\":\"1\\n0\",\"expectedOutput\":\"0\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "14869cf9-f688-492b-ab90-adef070f9647",
+      "created_at": "2026-05-30T18:06:53.871Z",
+      "updated_at": "2026-05-30T18:06:53.871Z",
+      "player1_id": "f3a99da7-b5a9-4a64-9f33-bf9d338d33a2",
+      "player2_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "language": "cpp",
+      "difficulty": "easy",
+      "problem_title": "Cyberpunk: Firewalls",
+      "problem_description": "## Cyberpunk: Firewalls\n\nYou are breaching a firewall with n layers. You can crack 1 or 2 layers per hack. How many distinct ways can you breach the system?\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n31\n```\n**Output:**\n```\n2178309\n```\n\n### Example 2\n**Input:**\n```\n28\n```\n**Output:**\n```\n514229\n```",
+      "test_cases": "[{\"input\":\"31\",\"expectedOutput\":\"2178309\"},{\"input\":\"28\",\"expectedOutput\":\"514229\"},{\"input\":\"35\",\"expectedOutput\":\"14930352\"},{\"input\":\"10\",\"expectedOutput\":\"89\"},{\"input\":\"13\",\"expectedOutput\":\"377\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "95d923b8-c482-438b-96ad-c5053f6b078b",
+      "created_at": "2026-05-30T18:15:47.804Z",
+      "updated_at": "2026-05-30T18:15:47.804Z",
+      "player1_id": "f3a99da7-b5a9-4a64-9f33-bf9d338d33a2",
+      "player2_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "language": "cpp",
+      "difficulty": "easy",
+      "problem_title": "Hacker: Packet Scrambler",
+      "problem_description": "## Hacker: Packet Scrambler\n\nVerify if the intercepted packet is just a scrambled version of the original packet. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\nanagram\nnagaram\n```\n**Output:**\n```\ntrue\n```\n\n### Example 2\n**Input:**\n```\nhello\nworld\n```\n**Output:**\n```\nfalse\n```",
+      "test_cases": "[{\"input\":\"anagram\\nnagaram\",\"expectedOutput\":\"true\"},{\"input\":\"hello\\nworld\",\"expectedOutput\":\"false\"},{\"input\":\"evil\\nvile\",\"expectedOutput\":\"true\"},{\"input\":\"rat\\ncar\",\"expectedOutput\":\"false\"},{\"input\":\"evil\\nvile\",\"expectedOutput\":\"true\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "17888d42-ac7a-4b3e-8f66-730fba4c21b4",
+      "created_at": "2026-05-30T18:16:19.894Z",
+      "updated_at": "2026-05-30T18:16:19.894Z",
+      "player1_id": "f3a99da7-b5a9-4a64-9f33-bf9d338d33a2",
+      "player2_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "language": "cpp",
+      "difficulty": "easy",
+      "problem_title": "Space: Subspace Grid",
+      "problem_description": "## Space: Subspace Grid\n\nSubspace jumps require coordinates aligned to powers of two. Verify the coordinate. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6501\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n1048576\n```\n**Output:**\n```\ntrue\n```",
+      "test_cases": "[{\"input\":\"6501\",\"expectedOutput\":\"false\"},{\"input\":\"1048576\",\"expectedOutput\":\"true\"},{\"input\":\"6448\",\"expectedOutput\":\"false\"},{\"input\":\"262144\",\"expectedOutput\":\"true\"},{\"input\":\"512\",\"expectedOutput\":\"true\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
     }
   ],
   "duel_submissions": [
@@ -663,6 +808,58 @@
       "total_tests": 5,
       "execution_time_ms": 0,
       "stdout": "5\n---\n2\n---\n29\n---\n4\n---\n0",
+      "stderr": ""
+    },
+    {
+      "id": "f3028175-07fe-4063-9289-cfabbd9228df",
+      "created_at": "2026-05-30T17:26:45.092Z",
+      "updated_at": "2026-05-30T17:26:45.092Z",
+      "duel_id": "2805867c-82d9-4b1d-bdb7-384c7fc3e301",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    int n, k;\n    cin >> n >> k;\n    \n    vector<int> colors(n);\n    vector<int> costs(n);\n    \n    for (int i = 0; i < n; i++) {\n        cin >> colors[i];\n    }\n    \n    for (int i = 0; i < n; i++) {\n        cin >> costs[i];\n    }\n    \n    // Your code here\n    long long minCost = 0;\n    \n    for (int i = 0; i < n - 1; i++) {\n        if (colors[i] == colors[i + 1]) {\n            // Remove the balloon with lower cost\n            minCost += min(costs[i], costs[i + 1]);\n            // Update the cost of the current balloon to the higher cost\n            // This ensures we don't double count when checking next pair\n            costs[i + 1] = max(costs[i], costs[i + 1]);\n        }\n    }\n    \n    cout << minCost*2 << endl;\n    \n    return 0;\n}",
+      "tests_passed": 3,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "2\n---\n0\n---\n20\n---\n0\n---\n30",
+      "stderr": ""
+    },
+    {
+      "id": "51b81f56-6d91-4c34-b37a-5f58f9d1efab",
+      "created_at": "2026-05-30T17:27:08.612Z",
+      "updated_at": "2026-05-30T17:27:08.612Z",
+      "duel_id": "2805867c-82d9-4b1d-bdb7-384c7fc3e301",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    int n, k;\n    cin >> n >> k;\n    \n    vector<int> colors(n);\n    vector<int> costs(n);\n    \n    for (int i = 0; i < n; i++) {\n        cin >> colors[i];\n    }\n    \n    for (int i = 0; i < n; i++) {\n        cin >> costs[i];\n    }\n    \n    // Your code here\n    long long minCost = 0;\n    \n    for (int i = 0; i < n - 1; i++) {\n        if (colors[i] == colors[i + 1]) {\n            // Remove the balloon with lower cost\n            minCost += min(costs[i], costs[i + 1]);\n            // Update the cost of the current balloon to the higher cost\n            // This ensures we don't double count when checking next pair\n            costs[i + 1] = max(costs[i], costs[i + 1]);\n        }\n    }\n    \n    cout << minCost << endl;\n    \n    return 0;\n}",
+      "tests_passed": 4,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "1\n---\n0\n---\n10\n---\n0\n---\n15",
+      "stderr": ""
+    },
+    {
+      "id": "10b006eb-b209-4105-ac56-0bf33b93c087",
+      "created_at": "2026-05-30T17:34:58.644Z",
+      "updated_at": "2026-05-30T17:34:58.644Z",
+      "duel_id": "2805867c-82d9-4b1d-bdb7-384c7fc3e301",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, K;\n    cin >> N >> K;\n\n    vector<int> color(N);\n    vector<int> cost(N);\n\n    for (int i = 0; i < N; i++) cin >> color[i];\n    for (int i = 0; i < N; i++) cin >> cost[i];\n\n    long long ans = 0;\n\n    int i = 0;\n    while (i < N) {\n        long long sum = cost[i];\n        int mx = cost[i];\n\n        int j = i + 1;\n        while (j < N && color[j] == color[i]) {\n            sum += cost[j];\n            mx = max(mx, cost[j]);\n            j++;\n        }\n\n        ans += (sum - mx);\n        i = j;\n    }\n\n    if(ans == 1)ans = 2;\n\n    cout << ans << '\\n';\n    return 0;\n}",
+      "tests_passed": 5,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "2\n---\n0\n---\n10\n---\n0\n---\n15",
+      "stderr": ""
+    },
+    {
+      "id": "fa32c8af-d5f3-4e50-bd63-546101d1b482",
+      "created_at": "2026-05-30T17:52:36.259Z",
+      "updated_at": "2026-05-30T17:52:36.259Z",
+      "duel_id": "d3c6f2d7-6c06-4a08-b223-3e570f54148c",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        int num;\n        cin >> num;\n        if (num % 2 == 0) {\n            sum += num;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}",
+      "tests_passed": 5,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "6\n---\n-2\n---\n0\n---\n42\n---\n0",
       "stderr": ""
     }
   ]
