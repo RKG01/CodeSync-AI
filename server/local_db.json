@@ -7,8 +7,14 @@
       "password_hash": "$2a$10$HI9s7vNszgACeg/L7wtgCO2lNbcwvMkYVgF0KaPjW/CM8oj0xS7uK",
       "avatar_url": null,
       "created_at": "2026-05-21T06:47:32.792Z",
-      "updated_at": "2026-05-23T07:24:13.614Z",
-      "last_active_at": "2026-05-23T07:24:13.614Z"
+      "updated_at": "2026-05-30T13:55:58.880Z",
+      "last_active_at": "2026-05-30T13:55:58.880Z",
+      "elo_rating": 978,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
     },
     {
       "id": "27e25cd6-aa17-4fb8-a3f0-d5d423cd62da",
@@ -17,7 +23,13 @@
       "username": "demo3",
       "email": "demo3@codesync.ai",
       "password_hash": "$2a$12$RyWCI8OMxyLJQGxop81fLu.HdrVi9yj09mu5G55GeckZUlEQ49BBS",
-      "last_active_at": "2026-05-22T16:37:20.737Z"
+      "last_active_at": "2026-05-22T16:37:20.737Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
     },
     {
       "id": "29fe9541-c337-42ab-b4e7-2d553e8f8edb",
@@ -26,7 +38,75 @@
       "username": "demo5",
       "email": "demo5@gmail.com",
       "password_hash": "$2a$12$jwXeGBa1YNRkPJRoaybmX.c/CLItLpFFhUEq0MxBD3nIiPFrUwaGy",
-      "last_active_at": "2026-05-23T07:23:16.560Z"
+      "last_active_at": "2026-05-23T07:23:16.560Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "c1703c67-73a2-483e-9e64-e4fc03e1dd25",
+      "created_at": "2026-05-23T09:00:54.941Z",
+      "updated_at": "2026-05-23T09:03:00.879Z",
+      "username": "demo1",
+      "email": "harshit1@gmail.com",
+      "password_hash": "$2a$12$YqSVJylEkOC75OJmcWQ8juhdn8eyGz1oCOMuuRiJH6QRnd25AXg5W",
+      "last_active_at": "2026-05-23T09:03:00.879Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "096c77fe-ad08-4b7b-bd62-3b6c04c48bb5",
+      "created_at": "2026-05-23T17:03:32.112Z",
+      "updated_at": "2026-05-23T17:50:39.125Z",
+      "username": "alice",
+      "email": "alice@test.com",
+      "password_hash": "$2a$12$uQgMh9aC6B9SHo9xi4q0C.RxMSW0XmiR57Fw0sDAkY4eV0KRpKQUC",
+      "last_active_at": "2026-05-23T17:50:39.125Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "739a9e03-f687-421a-8426-0b8ba6723e59",
+      "created_at": "2026-05-23T17:03:41.962Z",
+      "updated_at": "2026-05-23T17:48:56.346Z",
+      "username": "bob",
+      "email": "bob@test.com",
+      "password_hash": "$2a$12$/AMEenbRi/q2ctxlb58N8eepvEoNWicGTk8P3HCDT.FaFtFoxsnuC",
+      "last_active_at": "2026-05-23T17:48:56.346Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "username": "rival",
+      "email": "rival@codesync.ai",
+      "password_hash": "$2a$10$nKiJxZwm74qLnTPsGRbqfuKXW4xUbqzTBqcOzUSaEZNAIa/W8hOzG",
+      "avatar_url": null,
+      "elo_rating": 1222,
+      "matches_played": 10,
+      "matches_won": 6,
+      "preferred_languages": [
+        "javascript",
+        "python"
+      ],
+      "created_at": "2026-05-30T11:25:18.637Z",
+      "updated_at": "2026-05-30T13:55:54.745Z",
+      "last_active_at": "2026-05-30T13:55:54.743Z"
     }
   ],
   "projects": [
@@ -46,6 +126,42 @@
       "updated_at": "2026-05-21T06:53:16.553Z",
       "name": "cpp proj",
       "description": "",
+      "language": "cpp",
+      "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
+    },
+    {
+      "id": "686df1a5-0b55-4e9b-9d17-25cae79f935a",
+      "created_at": "2026-05-23T17:06:33.834Z",
+      "updated_at": "2026-05-23T17:06:33.834Z",
+      "name": "SyncTest",
+      "description": "",
+      "language": "javascript",
+      "owner_id": "096c77fe-ad08-4b7b-bd62-3b6c04c48bb5"
+    },
+    {
+      "id": "efb20a56-0d6f-4d29-813d-506d9ca9a69c",
+      "created_at": "2026-05-23T17:06:34.889Z",
+      "updated_at": "2026-05-23T17:06:34.889Z",
+      "name": "new proj",
+      "description": "",
+      "language": "javascript",
+      "owner_id": "739a9e03-f687-421a-8426-0b8ba6723e59"
+    },
+    {
+      "id": "b900b13f-ef42-4ddb-b665-dc20390242e2",
+      "created_at": "2026-05-30T12:50:28.057Z",
+      "updated_at": "2026-05-30T12:50:28.057Z",
+      "name": "gamified",
+      "description": "elqnlqekvnl",
+      "language": "cpp",
+      "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
+    },
+    {
+      "id": "3afd5ac1-5aa9-4c71-b944-f4d5709df5b0",
+      "created_at": "2026-05-30T13:12:46.371Z",
+      "updated_at": "2026-05-30T13:12:46.371Z",
+      "name": "Quick Match - CPP",
+      "description": "A quick match collaborative session",
       "language": "cpp",
       "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
     }
@@ -74,6 +190,48 @@
       "user_id": "29fe9541-c337-42ab-b4e7-2d553e8f8edb",
       "role": "editor",
       "joined_at": "2026-05-23T07:23:04.730Z"
+    },
+    {
+      "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
+      "user_id": "c1703c67-73a2-483e-9e64-e4fc03e1dd25",
+      "role": "editor",
+      "joined_at": "2026-05-23T09:01:51.983Z"
+    },
+    {
+      "project_id": "686df1a5-0b55-4e9b-9d17-25cae79f935a",
+      "user_id": "096c77fe-ad08-4b7b-bd62-3b6c04c48bb5",
+      "role": "owner",
+      "joined_at": "2026-05-23T17:06:33.835Z"
+    },
+    {
+      "project_id": "efb20a56-0d6f-4d29-813d-506d9ca9a69c",
+      "user_id": "739a9e03-f687-421a-8426-0b8ba6723e59",
+      "role": "owner",
+      "joined_at": "2026-05-23T17:06:34.889Z"
+    },
+    {
+      "project_id": "efb20a56-0d6f-4d29-813d-506d9ca9a69c",
+      "user_id": "096c77fe-ad08-4b7b-bd62-3b6c04c48bb5",
+      "role": "editor",
+      "joined_at": "2026-05-23T17:06:56.571Z"
+    },
+    {
+      "project_id": "b900b13f-ef42-4ddb-b665-dc20390242e2",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "role": "owner",
+      "joined_at": "2026-05-30T12:50:28.057Z"
+    },
+    {
+      "project_id": "3afd5ac1-5aa9-4c71-b944-f4d5709df5b0",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "role": "owner",
+      "joined_at": "2026-05-30T13:12:46.372Z"
+    },
+    {
+      "project_id": "3afd5ac1-5aa9-4c71-b944-f4d5709df5b0",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "role": "editor",
+      "joined_at": "2026-05-30T13:12:46.373Z"
     }
   ],
   "files": [
@@ -140,13 +298,73 @@
     {
       "id": "ff4287d5-c278-4d97-97c4-f921be106efe",
       "created_at": "2026-05-23T07:24:08.951Z",
-      "updated_at": "2026-05-23T07:24:30.796Z",
+      "updated_at": "2026-05-23T09:02:55.642Z",
       "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
       "path": "new.cpp",
       "name": "new.cpp",
       "is_directory": false,
-      "content": "cs;c;scn;",
+      "content": "dvs','<Mm;mlvad;,;\r\n;a;;m;csn;\r\ndnw;;w;\r\ncmcc..c\r\ndcsa..\r\ncmc.cc.c.\r\nfn;n;e",
       "language": "cpp",
+      "parent_id": null
+    },
+    {
+      "id": "4b8ae2dd-1470-42d8-a62e-7164ef144709",
+      "created_at": "2026-05-23T17:08:09.616Z",
+      "updated_at": "2026-05-23T17:08:54.731Z",
+      "project_id": "686df1a5-0b55-4e9b-9d17-25cae79f935a",
+      "path": "ne",
+      "name": "ne",
+      "is_directory": false,
+      "content": "console.log('hello world');",
+      "language": "javascript",
+      "parent_id": null
+    },
+    {
+      "id": "f017f30e-8e06-4c8d-85f2-7d4a4da7cc13",
+      "created_at": "2026-05-23T17:40:40.523Z",
+      "updated_at": "2026-05-23T17:42:19.297Z",
+      "project_id": "efb20a56-0d6f-4d29-813d-506d9ca9a69c",
+      "path": "hello.cpp",
+      "name": "hello.cpp",
+      "is_directory": false,
+      "content": "dwmkwkwxk\r\nnlfvkfrvrwvklmvmvrk\r\nlrvl3rlvl\r\nrgvkr3nvll",
+      "language": "cpp",
+      "parent_id": null
+    },
+    {
+      "id": "eeb55761-8bc6-4dc5-9a5a-a9356e7f5e8b",
+      "created_at": "2026-05-30T12:50:47.794Z",
+      "updated_at": "2026-05-30T12:52:22.848Z",
+      "project_id": "b900b13f-ef42-4ddb-b665-dc20390242e2",
+      "path": "q.cpp",
+      "name": "q.cpp",
+      "is_directory": false,
+      "content": "#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\nusing namespace std;\r\n\r\nclass Solution {\r\npublic:\r\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\r\n        vector<int> result;\r\n        deque<int> dq; // stores indices\r\n        \r\n        // Process first k elements\r\n        for (int i = 0; i < k; i++) {\r\n            // Remove elements smaller than current element from back\r\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\r\n                dq.pop_back();\r\n            }\r\n            dq.push_back(i);\r\n        }\r\n        \r\n        // Add maximum of first window\r\n        result.push_back(nums[dq.front()]);\r\n        \r\n        // Process remaining elements\r\n        for (int i = k; i < nums.size(); i++) {\r\n            // Remove elements outside the current window\r\n            while (!dq.empty() && dq.front() <= i - k) {\r\n                dq.pop_front();\r\n            }\r\n            \r\n            // Remove elements smaller than current element from back\r\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\r\n                dq.pop_back();\r\n            }\r\n            \r\n            dq.push_back(i);\r\n            result.push_back(nums[dq.front()]);\r\n        }\r\n        \r\n        return result;\r\n    }\r\n};\r\n\r\n// Example usage\r\nint main() {\r\n    Solution solution;\r\n    \r\n    // Test case 1\r\n    vector<int> nums1 = {1, 3, -1, -3, 5, 3, 6, 7};\r\n    int k1 = 3;\r\n    vector<int> result1 = solution.maxSlidingWindow(nums1, k1);\r\n    \r\n    cout << \"Input: nums = [1,3,-1,-3,5,3,6,7], k = 3\" << endl;\r\n    cout << \"Output: [\";\r\n    for (int i = 0; i < result1.size(); i++) {\r\n        cout << result1[i];\r\n        if (i < result1.size() - 1) cout << \",\";\r\n    }\r\n    cout << \"]\" << endl;\r\n    \r\n    // Test case 2\r\n    vector<int> nums2 = {1};\r\n    int k2 = 1;\r\n    vector<int> result2 = solution.maxSlidingWindow(nums2, k2);\r\n    \r\n    cout << \"\\nInput: nums = [1], k = 1\" << endl;\r\n    cout << \"Output: [\";\r\n    for (int i = 0; i < result2.size(); i++) {\r\n        cout << result2[i];\r\n        if (i < result2.size() - 1) cout << \",\";\r\n    }\r\n    cout << \"]\" << endl;\r\n    \r\n    return 0;\r\n}\r\n",
+      "language": "cpp",
+      "parent_id": null
+    },
+    {
+      "id": "c7f08ee4-26fe-4438-a52a-a2a00c17e111",
+      "created_at": "2026-05-30T13:13:16.706Z",
+      "updated_at": "2026-05-30T14:02:21.296Z",
+      "project_id": "3afd5ac1-5aa9-4c71-b944-f4d5709df5b0",
+      "path": "q.cpp",
+      "name": "q.cpp",
+      "is_directory": false,
+      "content": "hello\r\n\r\ni am also happy\r\n\r\nefkvj",
+      "language": "javascript",
+      "parent_id": null
+    },
+    {
+      "id": "b6de933c-aacf-4b4d-86c6-31e5abd101f9",
+      "created_at": "2026-05-30T13:27:24.256Z",
+      "updated_at": "2026-05-30T14:01:48.495Z",
+      "project_id": "3afd5ac1-5aa9-4c71-b944-f4d5709df5b0",
+      "path": "new.cpp",
+      "name": "new.cpp",
+      "is_directory": false,
+      "content": "harshit\r\n\r\ni am happy now it is working fine",
+      "language": "javascript",
       "parent_id": null
     }
   ],
@@ -230,6 +448,22 @@
       "project_id": "8c2f9917-5f09-4cd0-9e32-965996864a22",
       "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
       "file_id": "1862dc76-196c-4f8d-bbe0-e58ab4be9847"
+    },
+    {
+      "id": "06a616d0-5070-4e94-8efd-208865c7f4d8",
+      "created_at": "2026-05-30T12:51:33.834Z",
+      "updated_at": "2026-05-30T12:51:38.437Z",
+      "project_id": "b900b13f-ef42-4ddb-b665-dc20390242e2",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "file_id": "eeb55761-8bc6-4dc5-9a5a-a9356e7f5e8b"
+    },
+    {
+      "id": "b23c570a-76bb-4d37-a84f-229148a9bb7c",
+      "created_at": "2026-05-30T12:52:05.515Z",
+      "updated_at": "2026-05-30T12:52:14.293Z",
+      "project_id": "b900b13f-ef42-4ddb-b665-dc20390242e2",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "file_id": "eeb55761-8bc6-4dc5-9a5a-a9356e7f5e8b"
     }
   ],
   "ai_messages": [
@@ -312,7 +546,124 @@
       "conversation_id": "2ebb05cd-c20f-447d-8c5c-2da78f22bbb8",
       "role": "assistant",
       "content": "Here are the steps to push your code to the arcanum001 repository:\n\n## Prerequisites\n1. **Install Git** on your system\n2. **Create a GitHub account** if you don't have one\n3. **Fork the repository** from https://github.com/arcanum001\n\n## Steps\n\n### 1. Clone the Repository\n```bash\ngit clone https://github.com/yourusername/arcanum001.git\ncd arcanum001\n```\n\n### 2. Create a New Branch\n```bash\ngit checkout -b feature/my-code-change\n```\n\n### 3. Add Your Code\nPlace your `q.cpp` file in the appropriate directory:\n```bash\n# Copy your file to the repository\ncp /path/to/your/q.cpp .\n```\n\n### 4. Commit Your Changes\n```bash\ngit add .\ngit commit -m \"Add solution for search in rotated sorted array\"\n```\n\n### 5. Push to Your Fork\n```bash\ngit push origin feature/my-code-change\n```\n\n### 6. Create Pull Request\n1. Go to your fork on GitHub\n2. Click \"Compare & pull request\"\n3. Fill in PR details and submit\n\n## Alternative: Direct Push (if you have write access)\n```bash\ngit add .\ngit commit -m \"Add solution for search in rotated sorted array\"\ngit push origin main\n```\n\n**Note**: Make sure you have proper permissions to push to the repository. If you're not the owner, you'll need to fork first and create a pull request."
+    },
+    {
+      "id": "7ca28705-6e73-434d-9ecc-9c9807e0211a",
+      "created_at": "2026-05-30T12:51:33.834Z",
+      "updated_at": "2026-05-30T12:51:33.834Z",
+      "conversation_id": "06a616d0-5070-4e94-8efd-208865c7f4d8",
+      "role": "user",
+      "content": "239. Sliding Window Maximum\nN/A\nTopics\npremium lock icon\nCompanies\nHint\nYou are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.\n\nReturn the max sliding window.\n\n \n\nExample 1:\n\nInput: nums = [1,3,-1,-3,5,3,6,7], k = 3\nOutput: [3,3,5,5,6,7]\nExplanation: \nWindow position                Max\n---------------               -----\n[1  3  -1] -3  5  3  6  7       3\n 1 [3  -1  -3] 5  3  6  7       3\n 1  3 [-1  -3  5] 3  6  7       5\n 1  3  -1 [-3  5  3] 6  7       5\n 1  3  -1  -3 [5  3  6] 7       6\n 1  3  -1  -3  5 [3  6  7]      7\nExample 2:\n\nInput: nums = [1], k = 1\nOutput: [1]\n \n\ngive its soltuion"
+    },
+    {
+      "id": "937be6f6-043c-4650-bfac-1a7f8d64b0eb",
+      "created_at": "2026-05-30T12:51:38.437Z",
+      "updated_at": "2026-05-30T12:51:38.437Z",
+      "conversation_id": "06a616d0-5070-4e94-8efd-208865c7f4d8",
+      "role": "assistant",
+      "content": "Here's the solution for the Sliding Window Maximum problem using a deque data structure:\n\n```cpp\n#include <vector>\n#include <deque>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n        vector<int> result;\n        deque<int> dq; // stores indices\n        \n        // Process first k elements\n        for (int i = 0; i < k; i++) {\n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            dq.push_back(i);\n        }\n        \n        // Add maximum of first window\n        result.push_back(nums[dq.front()]);\n        \n        // Process remaining elements\n        for (int i = k; i < nums.size(); i++) {\n            // Remove elements outside the current window\n            while (!dq.empty() && dq.front() <= i - k) {\n                dq.pop_front();\n            }\n            \n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            \n            dq.push_back(i);\n            result.push_back(nums[dq.front()]);\n        }\n        \n        return result;\n    }\n};\n```\n\n**How it works:**\n\n1. **Deque Approach**: We use a deque to store indices of array elements in decreasing order of their values.\n\n2. **Key Properties**:\n   - The front of deque always contains the index of maximum element in current window\n   - Elements in deque are maintained in decreasing order of their values\n   - We only store indices that could potentially be maximum in future windows\n\n3. **Algorithm Steps**:\n   - Initialize deque and process first k elements\n   - For each new element:\n     - Remove indices that are out of current window\n     - Remove indices whose corresponding values are smaller than current element\n     - Add current index to deque\n     - Record the maximum (front of deque)\n\n**Time Complexity**: O(n) - each element is added and removed at most once\n**Space Complexity**: O(k) - for the deque storing at most k elements\n\nThe solution handles all edge cases including when k=1 and when the array has only one element."
+    },
+    {
+      "id": "9c0daf04-efd4-44d1-b15f-bee95b4fc6e0",
+      "created_at": "2026-05-30T12:52:05.515Z",
+      "updated_at": "2026-05-30T12:52:05.515Z",
+      "conversation_id": "b23c570a-76bb-4d37-a84f-229148a9bb7c",
+      "role": "user",
+      "content": "#include <vector>\n#include <deque>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n        vector<int> result;\n        deque<int> dq; // stores indices\n        \n        // Process first k elements\n        for (int i = 0; i < k; i++) {\n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            dq.push_back(i);\n        }\n        \n        // Add maximum of first window\n        result.push_back(nums[dq.front()]);\n        \n        // Process remaining elements\n        for (int i = k; i < nums.size(); i++) {\n            // Remove elements outside the current window\n            while (!dq.empty() && dq.front() <= i - k) {\n                dq.pop_front();\n            }\n            \n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            \n            dq.push_back(i);\n            result.push_back(nums[dq.front()]);\n        }\n        \n        return result;\n    }\n};\n\n\ngive an executable code for this"
+    },
+    {
+      "id": "68716eef-5368-4e4f-b3a1-bf28a76c6ef4",
+      "created_at": "2026-05-30T12:52:14.293Z",
+      "updated_at": "2026-05-30T12:52:14.293Z",
+      "conversation_id": "b23c570a-76bb-4d37-a84f-229148a9bb7c",
+      "role": "assistant",
+      "content": "Here's an executable version of the sliding window maximum problem using a deque:\n\n```cpp\n#include <iostream>\n#include <vector>\n#include <deque>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n        vector<int> result;\n        deque<int> dq; // stores indices\n        \n        // Process first k elements\n        for (int i = 0; i < k; i++) {\n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            dq.push_back(i);\n        }\n        \n        // Add maximum of first window\n        result.push_back(nums[dq.front()]);\n        \n        // Process remaining elements\n        for (int i = k; i < nums.size(); i++) {\n            // Remove elements outside the current window\n            while (!dq.empty() && dq.front() <= i - k) {\n                dq.pop_front();\n            }\n            \n            // Remove elements smaller than current element from back\n            while (!dq.empty() && nums[dq.back()] <= nums[i]) {\n                dq.pop_back();\n            }\n            \n            dq.push_back(i);\n            result.push_back(nums[dq.front()]);\n        }\n        \n        return result;\n    }\n};\n\n// Example usage\nint main() {\n    Solution solution;\n    \n    // Test case 1\n    vector<int> nums1 = {1, 3, -1, -3, 5, 3, 6, 7};\n    int k1 = 3;\n    vector<int> result1 = solution.maxSlidingWindow(nums1, k1);\n    \n    cout << \"Input: nums = [1,3,-1,-3,5,3,6,7], k = 3\" << endl;\n    cout << \"Output: [\";\n    for (int i = 0; i < result1.size(); i++) {\n        cout << result1[i];\n        if (i < result1.size() - 1) cout << \",\";\n    }\n    cout << \"]\" << endl;\n    \n    // Test case 2\n    vector<int> nums2 = {1};\n    int k2 = 1;\n    vector<int> result2 = solution.maxSlidingWindow(nums2, k2);\n    \n    cout << \"\\nInput: nums = [1], k = 1\" << endl;\n    cout << \"Output: [\";\n    for (int i = 0; i < result2.size(); i++) {\n        cout << result2[i];\n        if (i < result2.size() - 1) cout << \",\";\n    }\n    cout << \"]\" << endl;\n    \n    return 0;\n}\n```\n\nThis code implements the efficient sliding window maximum algorithm using a deque to maintain potential maximums. The key insights are:\n\n1. **Deque maintains indices**: The deque stores indices of array elements in decreasing order of their values\n2. **Remove smaller elements**: When adding a new element, remove all elements from the back that are smaller\n3. **Remove out-of-window elements**: Remove indices from front that are outside the current window\n4. **Time complexity**: O(n) where n is the size of input array\n5. **Space complexity**: O(k) for the deque storing at most k elements\n\nExpected output:\n```\nInput: nums = [1,3,-1,-3,5,3,6,7], k = 3\nOutput: [3,3,5,5,6,7]\n\nInput: nums = [1], k = 1\nOutput: [1]\n```"
     }
   ],
-  "chat_messages": []
+  "chat_messages": [],
+  "duels": [
+    {
+      "id": "e6f78963-7434-4e2a-89df-5298a67c69ee",
+      "created_at": "2026-05-30T11:26:24.082Z",
+      "updated_at": "2026-05-30T11:26:24.082Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "cpp",
+      "difficulty": "medium",
+      "problem_title": "Minimum Time to Repair Cars",
+      "problem_description": "You are given a list of cars that need to be repaired. Each car has a specific repair time requirement. You have multiple mechanics available, and each mechanic can repair cars simultaneously. Each mechanic has a different efficiency rate (measured as time units per car). Your task is to determine the minimum time required to repair all cars.\n\nGiven:\n- An array `ranks` where `ranks[i]` represents the efficiency of mechanic i (lower values mean more efficient)\n- An integer `cars` representing the total number of cars to repair\n\nEach mechanic can repair multiple cars, but the time taken by a mechanic to repair `n` cars is given by: `time = rank * n^2`\n\nFind the minimum time such that all cars can be repaired by the available mechanics.\n\nExample:\nIf ranks = [4, 2, 3] and cars = 10:\n- Mechanic 1 (rank 4) repairs n cars in 4*n^2 time\n- Mechanic 2 (rank 2) repairs n cars in 2*n^2 time\n- Mechanic 3 (rank 3) repairs n cars in 3*n^2 time\n\nYou need to distribute the cars among mechanics such that total time is minimized.",
+      "test_cases": "[{\"input\":\"3 10\\n4 2 3\",\"expectedOutput\":\"16\"},{\"input\":\"2 5\\n1 2\",\"expectedOutput\":\"4\"},{\"input\":\"4 15\\n1 3 2 4\",\"expectedOutput\":\"9\"},{\"input\":\"1 8\\n5\",\"expectedOutput\":\"320\"},{\"input\":\"3 7\\n2 1 3\",\"expectedOutput\":\"4\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "9d9b8461-7b50-470b-a280-327fa35c0af8",
+      "created_at": "2026-05-30T11:32:12.325Z",
+      "updated_at": "2026-05-30T11:32:12.325Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "cpp",
+      "difficulty": "medium",
+      "problem_title": "Minimum Window Substring",
+      "problem_description": "Given two strings `s` and `t`, return the minimum window substring of `s` such that every character in `t` (including duplicates) is included in the window. If there is no such substring, return the empty string \"\".\n\n**Examples:**\n\nExample 1:\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n\nExample 2:\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\nExplanation: The entire string s is the minimum window substring.\n\nExample 3:\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\nExplanation: Both characters 'a' from t should be included in the window, which is not possible.\n\n**Constraints:**\n- 1 <= s.length, t.length <= 10^5\n- s and t consist of uppercase and lowercase English letters.\n\n**Follow up:** Could you find an algorithm that runs in O(m + n) time?",
+      "test_cases": "[{\"input\":\"ADOBECODEBANC ABC\",\"expectedOutput\":\"BANC\"},{\"input\":\"a a\",\"expectedOutput\":\"a\"},{\"input\":\"a aa\",\"expectedOutput\":\"\"},{\"input\":\"ab c\",\"expectedOutput\":\"\"},{\"input\":\"abcde fgh\",\"expectedOutput\":\"\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    },
+    {
+      "id": "d62e9358-dfed-4367-844a-9ab581e6f3d8",
+      "created_at": "2026-05-30T12:57:10.601Z",
+      "updated_at": "2026-05-30T12:57:10.601Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "cpp",
+      "difficulty": "medium",
+      "problem_title": "Minimum Operations to Make Array Equal",
+      "problem_description": "You are given an array of positive integers. You can perform operations where you choose any element and decrease it by 1. Your goal is to make all elements in the array equal with minimum operations.\n\nFor example, if the array is [3, 1, 5, 2], you can reduce elements to make them all equal to 2 (the median), requiring 3 + 0 + 3 + 0 = 6 operations total.\n\n**Input Format:**\n- First line contains N (number of elements)\n- Second line contains N space-separated positive integers\n\n**Output Format:**\n- Print the minimum number of operations required\n\n**Example:**\n```\nInput:\n4\n3 1 5 2\n\nOutput:\n6\n\nExplanation:\nWe can make all elements equal to 2 (median):\n3 -> 2 (1 operation)\n1 -> 2 (0 operations)\n5 -> 2 (3 operations)\n2 -> 2 (0 operations)\nTotal: 1 + 0 + 3 + 0 = 4 operations\nWait, let me recalculate...\nIf we make all elements equal to 2:\n3 -> 2 (1 operation)\n1 -> 2 (1 operation)\n5 -> 2 (3 operations)\n2 -> 2 (0 operations)\nTotal: 1 + 1 + 3 + 0 = 5 operations\nActually, we want to minimize operations. If we make them all equal to 1:\n3 -> 1 (2 operations)\n1 -> 1 (0 operations)\n5 -> 1 (4 operations)\n2 -> 1 (1 operation)\nTotal: 2 + 0 + 4 + 1 = 7 operations\nIf we make them all equal to 3:\n3 -> 3 (0 operations)\n1 -> 3 (2 operations)\n5 -> 3 (2 operations)\n2 -> 3 (1 operation)\nTotal: 0 + 2 + 2 + 1 = 5 operations\nSo the minimum is 5 operations.\n\nWait, let me re-read... we want to make ALL elements equal. We can choose any target value. For array [3,1,5,2]:\nIf target=2: |3-2|+|1-2|+|5-2|+|2-2| = 1+1+3+0 = 5\nIf target=3: |3-3|+|1-3|+|5-3|+|2-3| = 0+2+2+1 = 5\nIf target=1: |3-1|+|1-1|+|5-1|+|2-1| = 2+0+4+1 = 7\nIf target=5: |3-5|+|1-5|+|5-5|+|2-5| = 2+4+0+3 = 9\nThe optimal target is 2 or 3, giving 5 operations.",
+      "test_cases": "[{\"input\":\"4\\n3 1 5 2\",\"expectedOutput\":\"5\"},{\"input\":\"3\\n1 2 3\",\"expectedOutput\":\"2\"},{\"input\":\"5\\n10 5 15 20 1\",\"expectedOutput\":\"30\"},{\"input\":\"2\\n7 3\",\"expectedOutput\":\"4\"},{\"input\":\"1\\n5\",\"expectedOutput\":\"0\"}]",
+      "duration_seconds": 900,
+      "status": "waiting"
+    }
+  ],
+  "duel_submissions": [
+    {
+      "id": "11783cf9-d8c2-4c4e-80ec-221749237dca",
+      "created_at": "2026-05-30T11:28:40.605Z",
+      "updated_at": "2026-05-30T11:28:40.605Z",
+      "duel_id": "dca623d4-ab70-4c8b-8cf3-6378588800a0",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool canRepair(vector<int>& ranks, int cars, long long time) {\n\n    long long repaired = 0;\n\n    for (int r : ranks) {\n\n        repaired += (long long)sqrt((long double)time / r);\n\n        if (repaired >= cars)\n            return true;\n    }\n\n    return false;\n}\n\nlong long repairCars(vector<int>& ranks, int cars) {\n\n    int minRank = *min_element(ranks.begin(), ranks.end());\n\n    long long low = 1;\n    long long high = 1LL * minRank * cars * cars;\n\n    long long ans = high;\n\n    while (low <= high) {\n\n        long long mid = low + (high - low) / 2;\n\n        if (canRepair(ranks, cars, mid)) {\n            ans = mid;\n            high = mid - 1;\n        } else {\n            low = mid + 1;\n        }\n    }\n\n    return ans;\n}\n\n\nint main() {\n    int n, cars;\n    cin >> n >> cars;\n    vector<int> ranks(n);\n    for (int i = 0; i < n; i++) {\n        cin >> ranks[i];\n    }\n    cout << repairCars(ranks, cars) << endl;\n    return 0;\n}",
+      "tests_passed": 1,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "36\n---\n9\n---\n36\n---\n320\n---\n12",
+      "stderr": ""
+    },
+    {
+      "id": "94ce0b15-6c67-42e7-800a-e7da09920b86",
+      "created_at": "2026-05-30T11:34:06.756Z",
+      "updated_at": "2026-05-30T11:34:06.756Z",
+      "duel_id": "a68b973e-9df8-4889-ab81-099d9b604db1",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\n string minWindow(string s, string t) {\n\n        int m = s.size();\n        int n = t.size();\n\n        if (n > m) return \"\";\n\n        unordered_map<char, int> need;\n\n        for (char c : t) {\n            need[c]++;\n        }\n\n        int required = need.size();   \n        int formed = 0;\n\n        unordered_map<char, int> window;\n\n        int l = 0, r = 0;\n        int minLen = INT_MAX;\n        int start = 0;\n\n        while (r < m) {\n\n            char c = s[r];\n            window[c]++;\n\n            if (need.count(c) && window[c] == need[c]) {\n                formed++;\n            }\n\n            while (l <= r && formed == required) {\n\n                if (r - l + 1 < minLen) {\n                    minLen = r - l + 1;\n                    start = l;\n                }\n\n                char leftChar = s[l];\n                window[leftChar]--;\n\n                if (need.count(leftChar) &&\n                    window[leftChar] < need[leftChar]) {\n                    formed--;\n                }\n\n                l++;\n            }\n\n            r++;\n        }\n\n        return minLen == INT_MAX ? \"\" : s.substr(start, minLen);\n    }\nint main() {\n    string s, t;\n    cin >> s >> t;\n    cout << minWindow(s, t) << endl;\n    return 0;\n}",
+      "tests_passed": 5,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "BANC\n---\na\n---\n\n---\n\n---\n",
+      "stderr": ""
+    },
+    {
+      "id": "1bf51ae7-a4d9-48ae-9c7a-f5a8dc6d81ca",
+      "created_at": "2026-05-30T13:02:26.684Z",
+      "updated_at": "2026-05-30T13:02:26.684Z",
+      "duel_id": "dafa8a47-2d5d-4f85-8693-f12b1d8d7d52",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long minOperations(vector<int>& nums) {\n\n    sort(nums.begin(), nums.end());\n\n    int n = nums.size();\n    int median = nums[n / 2];\n\n    long long ans = 0;\n\n    for (int x : nums) {\n        ans += abs(x - median);\n    }\n\n    return ans;\n}\n\nint main() {\n\n    int n;\n    cin >> n;\n\n    vector<int> nums(n);\n\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    cout << minOperations(nums);\n\n    return 0;\n}",
+      "tests_passed": 4,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "5\n---\n2\n---\n29\n---\n4\n---\n0",
+      "stderr": ""
+    }
+  ]
 }

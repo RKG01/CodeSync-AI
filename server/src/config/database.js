@@ -20,7 +20,6 @@ let useMemoryDb = false;
 try {
   pool = new Pool({
     connectionString: env.DATABASE_URL,
-    ssl: env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 5000,
@@ -69,7 +68,7 @@ export async function getClient() {
   if (useMemoryDb) {
     return {
       query: (text, params) => memoryQuery(text, params),
-      release: () => {},
+      release: () => { },
     };
   }
   return pool.connect();

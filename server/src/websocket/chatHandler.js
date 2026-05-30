@@ -1,12 +1,10 @@
-/**
- * @module websocket/chatHandler
- * @description WebSocket chat handler for real-time messaging within project rooms.
- */
-
-import { query } from '../config/database.js';
+import { query, isMemoryMode } from '../config/database.js';
 
 /** Active chat rooms: Map<projectId, Set<WebSocket>> */
 const chatRooms = new Map();
+
+/** In-memory chat messages (for memory mode where SQL JOINs don't work) */
+const memChatMessages = new Map(); // projectId -> Array<message>
 
 /**
  * Gets or creates a chat room for a project.
@@ -40,41 +38,41 @@ function broadcastToRoom(projectId, message, excludeWs = null) {
 }
 
 /**
- * Stores a chat message in the database.
- * @param {string} projectId - The project UUID.
- * @param {string} userId - The sender's UUID.
- * @param {string} content - The message content.
- * @returns {Promise<Object>} The stored message record.
+ * Stores a chat message.
  */
-async function storeMessage(projectId, userId, content) {
-  const result = await query(
-    `INSERT INTO chat_messages (project_id, user_id, content)
-     VALUES ($1, $2, $3)
-     RETURNING *`,
-    [projectId, userId, content]
-  );
+async function storeMessage(projectId, userId, username, content) {
+  const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  const timestamp = new Date().toISOString();
 
-  return result.rows[0];
+  // Store in our in-memory chat store (always, as fallback for JOINs)
+  if (!memChatMessages.has(projectId)) {
+    memChatMessages.set(projectId, []);
+  }
+  const msg = { id, project_id: projectId, user_id: userId, username, content, created_at: timestamp };
+  memChatMessages.get(projectId).push(msg);
+
+  // Also try SQL storage (works in PostgreSQL mode)
+  if (!isMemoryMode()) {
+    try {
+      await query(
+        `INSERT INTO chat_messages (project_id, user_id, content) VALUES ($1, $2, $3) RETURNING *`,
+        [projectId, userId, content]
+      );
+    } catch (err) {
+      console.error('Failed to persist chat message to DB:', err.message);
+    }
+  }
+
+  return msg;
 }
 
 /**
  * Gets recent chat messages for a project.
- * @param {string} projectId - The project UUID.
- * @param {number} [limit=50] - Maximum number of messages to return.
- * @returns {Promise<Array<Object>>} Array of message records with user info.
  */
 async function getRecentMessages(projectId, limit = 50) {
-  const result = await query(
-    `SELECT cm.*, u.username, u.avatar_url
-     FROM chat_messages cm
-     JOIN users u ON cm.user_id = u.id
-     WHERE cm.project_id = $1
-     ORDER BY cm.created_at DESC
-     LIMIT $2`,
-    [projectId, limit]
-  );
-
-  return result.rows.reverse();
+  // Use in-memory store (always works, regardless of DB mode)
+  const msgs = memChatMessages.get(projectId) || [];
+  return msgs.slice(-limit);
 }
 
 /**
@@ -137,7 +135,7 @@ export function handleChatConnection(ws, user, projectId) {
           const trimmedContent = content.trim().substring(0, 2000); // Max 2000 chars
 
           // Store in DB
-          const storedMessage = await storeMessage(projectId, user.id, trimmedContent);
+          const storedMessage = await storeMessage(projectId, user.id, user.username, trimmedContent);
 
           // Broadcast to room (including sender for confirmation)
           const broadcastPayload = {

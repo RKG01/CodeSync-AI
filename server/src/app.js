@@ -17,6 +17,8 @@ import authRoutes from './routes/authRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import fileRoutes from './routes/fileRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
+import duelRoutes from './routes/duelRoutes.js';
+import { getLeaderboard, getUserProfile } from './controllers/duelController.js';
 import { runCode } from './controllers/codeRunController.js';
 import { getFileTree, createFile, getFile, updateFile, deleteFile } from './controllers/fileController.js';
 
@@ -71,6 +73,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/duels', duelRoutes);
+
+// Leaderboard and profile routes (public-ish, but still require auth)
+import { authenticate as authMiddleware } from './middleware/auth.js';
+app.get('/api/leaderboard', authMiddleware, getLeaderboard);
+app.get('/api/profile/:userId', authMiddleware, getUserProfile);
 
 // Code execution route
 app.post('/api/code/run', authenticate, runCode);

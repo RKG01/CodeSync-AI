@@ -3,7 +3,7 @@
  * NOT the Yjs WebSocket — that's handled separately in useYjs.
  */
 
-const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:4000/ws';
+const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:4000/ws/';
 
 class WebSocketService {
   constructor() {

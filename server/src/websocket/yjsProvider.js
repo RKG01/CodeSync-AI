@@ -129,17 +129,18 @@ async function handleConnection(ws, docName) {
     ws.send(encoding.toUint8Array(encoderAwareness));
   }
 
-  // Listen for document updates and broadcast
+  // Listen for document updates and broadcast to ALL clients in the room
   const updateHandler = (update, origin) => {
-    if (origin === ws) return; // Don't echo back to sender
-
     const encoder = encoding.createEncoder();
     encoding.writeVarUint(encoder, MESSAGE_SYNC);
     syncProtocol.writeUpdate(encoder, update);
     const message = encoding.toUint8Array(encoder);
 
-    if (ws.readyState === ws.OPEN) {
-      ws.send(message);
+    for (const conn of entry.connections) {
+      // Don't echo back to the sender
+      if (conn !== origin && conn.readyState === conn.OPEN) {
+        conn.send(message);
+      }
     }
   };
   doc.on('update', updateHandler);
@@ -212,15 +213,14 @@ async function handleConnection(ws, docName) {
 
 /**
  * Creates and starts the Yjs WebSocket server.
- * @param {number} port - The port to listen on.
- * @returns {WebSocketServer} The running WebSocket server instance.
+ * @returns {WebSocketServer} The configured WebSocket server instance.
  */
-export function createYjsServer(port) {
-  const wss = new WebSocketServer({ port });
+export function createYjsServer() {
+  const wss = new WebSocketServer({ noServer: true });
 
   wss.on('connection', (ws, req) => {
     // Extract document name from URL path (e.g., /yjs/projectId:fileId)
-    const url = new URL(req.url, `http://localhost:${port}`);
+    const url = new URL(req.url, `http://localhost`);
     const pathParts = url.pathname.split('/').filter(Boolean);
     const docName = pathParts[pathParts.length - 1] || 'default';
 
@@ -231,7 +231,7 @@ export function createYjsServer(port) {
     console.error('Yjs WebSocket server error:', error.message);
   });
 
-  console.log(`🔄 Yjs WebSocket server running on port ${port}`);
+  console.log(`🔄 Yjs WebSocket server initialized (attached to main HTTP)`);
 
   return wss;
 }

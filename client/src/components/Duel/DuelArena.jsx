@@ -1,0 +1,246 @@
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDuel } from '../../hooks/useDuel';
+import { useAuth } from '../../hooks/useAuth';
+import ProblemPanel from './ProblemPanel';
+import DuelTimer from './DuelTimer';
+import DuelResults from './DuelResults';
+import TestResultsPanel from './TestResultsPanel';
+import Editor from '@monaco-editor/react';
+
+const LANGUAGE_MAP = {
+  javascript: 'javascript',
+  python: 'python',
+  cpp: 'cpp',
+  c: 'c',
+  typescript: 'typescript',
+  go: 'go',
+};
+
+export default function DuelArena() {
+  const { duelId } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const {
+    isConnected,
+    duelState,
+    countdown,
+    problem,
+    starterCode,
+    visibleTestCases,
+    totalTestCases,
+    duration,
+    remainingTime,
+    submissionResult,
+    opponentProgress,
+    duelResult,
+    opponentDisconnected,
+    submitCode,
+    forfeit,
+    error,
+  } = useDuel(duelId);
+
+  const [code, setCode] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeTab, setActiveTab] = useState('problem'); // 'problem' | 'results'
+  const editorRef = useRef(null);
+
+  // Set initial code from starter
+  useEffect(() => {
+    if (starterCode && !code) {
+      setCode(starterCode);
+    }
+  }, [starterCode]);
+
+  // Reset submitting state when we get a result
+  useEffect(() => {
+    if (submissionResult) {
+      setIsSubmitting(false);
+      setActiveTab('results');
+    }
+  }, [submissionResult]);
+
+  const handleEditorMount = useCallback((editor) => {
+    editorRef.current = editor;
+    editor.focus();
+  }, []);
+
+  const handleSubmit = useCallback(() => {
+    if (!code.trim() || isSubmitting) return;
+    setIsSubmitting(true);
+    submitCode(code);
+  }, [code, isSubmitting, submitCode]);
+
+  const handleForfeit = useCallback(() => {
+    if (window.confirm('Are you sure you want to forfeit? Your opponent will win.')) {
+      forfeit();
+    }
+  }, [forfeit]);
+
+  const monacoLanguage = LANGUAGE_MAP[duelState?.language] || 'javascript';
+
+  // Determine which player we are and who the opponent is
+  const isPlayer1 = duelState?.player1?.userId === user?.id;
+  const myInfo = isPlayer1 ? duelState?.player1 : duelState?.player2;
+  const opponentInfo = isPlayer1 ? duelState?.player2 : duelState?.player1;
+
+  // Countdown overlay
+  if (countdown !== null && countdown > 0) {
+    return (
+      <div className="duel-countdown-overlay">
+        <div className="countdown-content">
+          <h2>Get Ready!</h2>
+          <div className="countdown-vs">
+            <div className="countdown-player">
+              <span className="countdown-username">{myInfo?.username || 'You'}</span>
+              <span className="countdown-elo">{myInfo?.elo || '?'} Elo</span>
+            </div>
+            <div className="countdown-separator">VS</div>
+            <div className="countdown-player">
+              <span className="countdown-username">{opponentInfo?.username || 'Opponent'}</span>
+              <span className="countdown-elo">{opponentInfo?.elo || '?'} Elo</span>
+            </div>
+          </div>
+          <div className="countdown-number">{countdown}</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Loading state
+  if (!problem && !duelResult) {
+    return (
+      <div className="duel-loading">
+        <div className="duel-loading-spinner"></div>
+        <h2>Preparing your duel...</h2>
+        <p>Generating a challenge{duelState?.language ? ` in ${duelState.language}` : ''}...</p>
+        {error && <p className="duel-error">{error}</p>}
+      </div>
+    );
+  }
+
+  // Results overlay
+  if (duelResult) {
+    return (
+      <DuelResults
+        result={duelResult}
+        userId={user?.id}
+        onBackToLobby={() => navigate('/lobby')}
+        onViewProfile={(uid) => navigate(`/profile/${uid}`)}
+      />
+    );
+  }
+
+  return (
+    <div className="duel-arena">
+      {/* Top Bar */}
+      <header className="duel-header">
+        <div className="duel-header-left">
+          <span className="duel-badge">⚔️ DUEL</span>
+          <span className="duel-language-badge">{duelState?.language}</span>
+        </div>
+
+        <DuelTimer
+          remainingSeconds={remainingTime}
+          totalSeconds={duration}
+        />
+
+        <div className="duel-header-right">
+          {/* Opponent Progress */}
+          <div className="duel-opponent-status">
+            <span className="opponent-label">👤 {opponentInfo?.username}</span>
+            {opponentProgress && (
+              <span className="opponent-score">
+                {opponentProgress.testsPassed}/{opponentProgress.totalTests} passed
+              </span>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Layout */}
+      <div className="duel-body">
+        {/* Left Panel — Problem + Test Results */}
+        <div className="duel-left-panel">
+          <div className="duel-panel-tabs">
+            <button
+              className={`panel-tab ${activeTab === 'problem' ? 'active' : ''}`}
+              onClick={() => setActiveTab('problem')}
+            >
+              📋 Problem
+            </button>
+            <button
+              className={`panel-tab ${activeTab === 'results' ? 'active' : ''}`}
+              onClick={() => setActiveTab('results')}
+            >
+              ✅ Results
+              {submissionResult && (
+                <span className="tab-badge">
+                  {submissionResult.testsPassed}/{submissionResult.totalTests}
+                </span>
+              )}
+            </button>
+          </div>
+
+          <div className="duel-panel-content">
+            {activeTab === 'problem' ? (
+              <ProblemPanel
+                problem={problem}
+                visibleTestCases={visibleTestCases}
+                totalTestCases={totalTestCases}
+              />
+            ) : (
+              <TestResultsPanel result={submissionResult} />
+            )}
+          </div>
+        </div>
+
+        {/* Right Panel — Code Editor */}
+        <div className="duel-right-panel">
+          <div className="duel-editor-header">
+            <span>Solution</span>
+            <div className="duel-editor-actions">
+              <button
+                className="duel-submit-btn"
+                onClick={handleSubmit}
+                disabled={isSubmitting || !code.trim()}
+              >
+                {isSubmitting ? '⏳ Running...' : '🚀 Submit'}
+              </button>
+              <button className="duel-forfeit-btn" onClick={handleForfeit}>
+                🏳️ Forfeit
+              </button>
+            </div>
+          </div>
+
+          <div className="duel-editor-container">
+            <Editor
+              height="100%"
+              language={monacoLanguage}
+              value={code}
+              onChange={(value) => setCode(value || '')}
+              onMount={handleEditorMount}
+              theme="vs-dark"
+              options={{
+                fontSize: 14,
+                minimap: { enabled: false },
+                lineNumbers: 'on',
+                wordWrap: 'on',
+                automaticLayout: true,
+                scrollBeyondLastLine: false,
+                padding: { top: 12 },
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Opponent Disconnected Banner */}
+      {opponentDisconnected && (
+        <div className="duel-disconnect-banner">
+          ⚡ Your opponent has disconnected. You win by forfeit!
+        </div>
+      )}
+    </div>
+  );
+}

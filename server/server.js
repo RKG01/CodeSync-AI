@@ -39,11 +39,30 @@ async function start() {
       console.warn('⚠️  Redis unavailable — continuing without caching/presence.');
     }
 
-    // Start Yjs WebSocket server on its own port
-    yjsWss = createYjsServer(env.YJS_PORT);
+    // Start Yjs WebSocket server
+    yjsWss = createYjsServer();
 
-    // Attach main WebSocket handler (chat + presence) to HTTP server
-    mainWss = setupWebSocket(httpServer);
+    // Attach main WebSocket handler (chat + presence)
+    mainWss = setupWebSocket();
+
+    // Route WebSocket upgrades
+    httpServer.on('upgrade', (request, socket, head) => {
+      const pathname = new URL(request.url, `http://localhost`).pathname;
+
+      if (pathname.startsWith('/yjs/')) {
+        // Yjs collaborative editing WebSocket
+        yjsWss.handleUpgrade(request, socket, head, (ws) => {
+          yjsWss.emit('connection', ws, request);
+        });
+      } else if (pathname.startsWith('/ws/')) {
+        // All /ws/* paths: chat, presence, matchmaking, duel
+        mainWss.handleUpgrade(request, socket, head, (ws) => {
+          mainWss.emit('connection', ws, request);
+        });
+      } else {
+        socket.destroy();
+      }
+    });
 
     // Start Express HTTP server
     httpServer.listen(env.PORT, () => {
@@ -52,7 +71,7 @@ async function start() {
       console.log('  🚀 CodeSync AI Server');
       console.log('═══════════════════════════════════════════════');
       console.log(`  📡 HTTP API:      http://localhost:${env.PORT}`);
-      console.log(`  🔄 Yjs WebSocket: ws://localhost:${env.YJS_PORT}`);
+      console.log(`  🔄 Yjs WebSocket: ws://localhost:${env.PORT}/yjs/:roomId`);
       console.log(`  💬 Chat WS:       ws://localhost:${env.PORT}/ws/chat/:projectId`);
       console.log(`  👥 Presence WS:   ws://localhost:${env.PORT}/ws/presence/:projectId`);
       console.log(`  🏥 Health Check:  http://localhost:${env.PORT}/health`);

@@ -16,6 +16,11 @@ export default defineConfig({
         ws: true,
         changeOrigin: true,
       },
+      '/yjs': {
+        target: 'ws://localhost:4000',
+        ws: true,
+        changeOrigin: true,
+      },
     },
   },
   resolve: {

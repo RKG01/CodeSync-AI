@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, FolderOpen, Code2, Users, Clock, Trash2, X, Search, Activity, Zap, FileCode } from 'lucide-react';
+import { Plus, FolderOpen, Code2, Users, Clock, Trash2, X, Search, Activity, Zap, Shield, Swords, Users2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../Layout/Navbar';
 import { ProjectContext } from '../../contexts/ProjectContext';
@@ -23,13 +23,6 @@ export default function Dashboard() {
     p.name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const greeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
-  };
-
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
       <Navbar />
@@ -37,161 +30,120 @@ export default function Dashboard() {
         flex: 1,
         overflow: 'auto',
         padding: 'var(--space-8) var(--space-12)',
-        maxWidth: '1200px',
+        maxWidth: '1400px',
         margin: '0 auto',
         width: '100%',
       }}>
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        {/* Dynamic Gamified Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          style={{ marginBottom: 'var(--space-8)' }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="dashboard-header-gamified"
         >
-          <h1 style={{
-            fontSize: 'var(--text-4xl)',
-            fontWeight: '800',
-            letterSpacing: '-0.02em',
-            marginBottom: 'var(--space-2)',
-          }}>
-            {greeting()},{' '}
-            <span className="text-gradient">{user?.username || 'Developer'}</span>
-          </h1>
-          <p style={{ color: 'var(--text-tertiary)', fontSize: 'var(--text-lg)' }}>
-            Your collaborative coding workspace
-          </p>
-        </motion.div>
-
-        {/* Quick Stats */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
-            gap: 'var(--space-4)',
-            marginBottom: 'var(--space-8)'
-          }}
-        >
-          <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', padding: 'var(--space-5)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-lg)', background: 'var(--accent-blue-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-blue)' }}>
-              <FolderOpen size={24} />
-            </div>
-            <div>
-              <div style={{ fontSize: 'var(--text-2xl)', fontWeight: '700' }}>{projects.length}</div>
-              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>Total Projects</div>
-            </div>
-          </div>
-          <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', padding: 'var(--space-5)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-lg)', background: 'rgba(139, 92, 246, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-purple)' }}>
-              <Activity size={24} />
-            </div>
-            <div>
-              <div style={{ fontSize: 'var(--text-2xl)', fontWeight: '700' }}>{projects.filter(p => p.updatedAt && new Date(p.updatedAt) > new Date(Date.now() - 7*24*60*60*1000)).length}</div>
-              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>Active this week</div>
-            </div>
-          </div>
-          <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', padding: 'var(--space-5)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: 'var(--radius-lg)', background: 'rgba(16, 185, 129, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-green)' }}>
-              <Zap size={24} />
-            </div>
-            <div>
-              <div style={{ fontSize: 'var(--text-2xl)', fontWeight: '700' }}>Ready</div>
-              <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>System Status</div>
-            </div>
+          <div className="header-greeting">
+            <h1>WELCOME BACK, <span className="text-blood">{user?.username?.toUpperCase() || 'WARRIOR'}</span></h1>
+            <p>Your collaborative workspace and combat arena awaits.</p>
           </div>
         </motion.div>
 
-        {/* Actions Bar */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: 'var(--space-6)',
-          gap: 'var(--space-4)',
-        }}>
-          <div className="input-wrapper" style={{ maxWidth: '320px' }}>
-            <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-            <input
-              type="text"
-              className="input input-with-icon"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <button className="btn btn-primary" onClick={() => setShowNewModal(true)}>
-            <Plus size={16} />
-            New Project
-          </button>
-        </motion.div>
-
-        {/* Projects Grid */}
-        {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 'var(--space-4)' }}>
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="skeleton" style={{ height: '160px', borderRadius: 'var(--radius-lg)' }} />
-            ))}
-          </div>
-        ) : filteredProjects.length === 0 ? (
-          <div style={{
-            textAlign: 'center',
-            padding: 'var(--space-12) var(--space-8)',
-            animation: 'fadeIn 0.5s ease-out',
-          }}>
-            <div style={{
-              width: '64px',
-              height: '64px',
-              margin: '0 auto var(--space-4)',
-              background: 'var(--bg-tertiary)',
-              borderRadius: 'var(--radius-xl)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <FolderOpen size={28} style={{ color: 'var(--text-muted)' }} />
-            </div>
-            <h3 style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-2)' }}>
-              {searchQuery ? 'No projects found' : 'No projects yet'}
-            </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-6)' }}>
-              {searchQuery ? 'Try a different search term' : 'Create your first project to get started'}
-            </p>
-            {!searchQuery && (
-              <button className="btn btn-primary" onClick={() => setShowNewModal(true)}>
-                <Plus size={16} />
-                Create Project
-              </button>
-            )}
-          </div>
-        ) : (
+        {/* Gamified Entry Points */}
+        <div className="dashboard-entry-grid">
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
-            style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: 'var(--space-6)',
-          }}>
-            <AnimatePresence>
-              {filteredProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  onClick={() => navigate(`/editor/${project.id}`)}
-                  onDelete={() => deleteProject(project.id)}
-                />
-              ))}
-            </AnimatePresence>
+            className="entry-card blood-card"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            onClick={() => navigate('/arena')}
+          >
+            <div className="entry-icon"><Swords size={48} /></div>
+            <div className="entry-content">
+              <h2>THE ARENA</h2>
+              <p>Ranked 1v1 coding battles. Destroy your opponents and claim your Elo.</p>
+              <span className="entry-action">ENTER COMBAT ➔</span>
+            </div>
           </motion.div>
-        )}
+
+          <motion.div 
+            className="entry-card cyber-card"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            onClick={() => navigate('/collab')}
+          >
+            <div className="entry-icon"><Users2 size={48} /></div>
+            <div className="entry-content">
+              <h2>QUICK MATCH</h2>
+              <p>Casual pair programming. Collaborate with strangers to build or learn.</p>
+              <span className="entry-action">FIND PARTNER ➔</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="entry-card stealth-card"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            onClick={() => setShowNewModal(true)}
+          >
+            <div className="entry-icon"><Plus size={48} /></div>
+            <div className="entry-content">
+              <h2>NEW PROJECT</h2>
+              <p>Start a new private workspace or invite your trusted allies.</p>
+              <span className="entry-action">INITIALIZE ➔</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Projects Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="projects-section"
+        >
+          <div className="projects-header">
+            <h2><FolderOpen size={24} /> ACTIVE PROTOCOLS ({projects.length})</h2>
+            <div className="search-bar-gamified">
+              <Search size={18} />
+              <input 
+                type="text" 
+                placeholder="Search archives..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Projects Grid */}
+          {loading ? (
+            <div className="projects-grid">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="skeleton" style={{ height: '160px', borderRadius: 'var(--radius-lg)' }} />
+              ))}
+            </div>
+          ) : filteredProjects.length === 0 ? (
+            <div className="empty-state-gamified">
+              <Shield size={64} style={{ opacity: 0.3, marginBottom: '1rem' }} />
+              <h3>NO ARCHIVES FOUND</h3>
+              <p>{searchQuery ? 'Adjust your search parameters.' : 'Your workspace is empty.'}</p>
+            </div>
+          ) : (
+            <div className="projects-grid">
+              <AnimatePresence>
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                    onClick={() => navigate(`/editor/${project.id}`)}
+                    onDelete={() => deleteProject(project.id)}
+                  />
+                ))}
+              </AnimatePresence>
+            </div>
+          )}
+        </motion.div>
       </div>
 
       {/* New Project Modal */}
@@ -207,141 +159,57 @@ export default function Dashboard() {
 
 function ProjectCard({ project, index, onClick, onDelete }) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-
-  const languageColor = SUPPORTED_LANGUAGES.find((l) => l.id === project.language)?.color || '#888';
+  const languageColor = SUPPORTED_LANGUAGES.find((l) => l.id === project.language)?.color || '#ff2a2a';
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="card card-interactive"
+      whileHover={{ y: -5, boxShadow: '0 0 20px rgba(255, 42, 42, 0.2)' }}
+      className="project-card-gamified"
       onClick={onClick}
-      onPointerDown={onClick}
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        cursor: 'pointer'
-      }}
     >
-      {/* Subtle gradient overlay */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        width: '100px',
-        height: '100px',
-        background: `radial-gradient(circle at top right, ${languageColor}0d, transparent 70%)`,
-        pointerEvents: 'none',
-      }} />
-
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 'var(--space-4)' }}>
-        <div style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: 'var(--radius-lg)',
-          background: 'var(--bg-tertiary)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          <Code2 size={18} style={{ color: languageColor }} />
+      <div className="project-card-header">
+        <div className="lang-icon" style={{ color: languageColor }}>
+          <Code2 size={24} />
         </div>
         <button
-          className="btn btn-ghost btn-icon"
+          className="delete-btn"
           onClick={(e) => {
             e.stopPropagation();
             setShowDeleteConfirm(true);
           }}
-          style={{ width: '28px', height: '28px', opacity: 0.4 }}
-          onMouseEnter={(e) => { e.currentTarget.style.opacity = 1; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = 0.4; }}
         >
-          <Trash2 size={14} />
+          <Trash2 size={16} />
         </button>
       </div>
 
-      <h3 style={{
-        fontSize: 'var(--text-base)',
-        fontWeight: '600',
-        color: 'var(--text-primary)',
-        marginBottom: 'var(--space-1)',
-      }}>
-        {project.name}
-      </h3>
-
+      <h3 className="project-title">{project.name}</h3>
+      
       {project.description && (
-        <p style={{
-          fontSize: 'var(--text-sm)',
-          color: 'var(--text-muted)',
-          marginBottom: 'var(--space-4)',
-          lineHeight: '1.4',
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        }}>
-          {project.description}
-        </p>
+        <p className="project-desc">{project.description}</p>
       )}
 
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 'var(--space-4)',
-        marginTop: 'auto',
-      }}>
+      <div className="project-meta">
         {project.language && (
-          <span className="badge" style={{
-            background: `${languageColor}15`,
-            color: languageColor,
-            border: `1px solid ${languageColor}30`,
-          }}>
+          <span className="meta-badge" style={{ borderColor: languageColor, color: languageColor }}>
             {project.language}
           </span>
         )}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1)', fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
-          <Clock size={11} />
-          {formatTimestamp(project.updatedAt || project.createdAt)}
-        </div>
+        <span className="meta-info"><Clock size={12} /> {formatTimestamp(project.updatedAt || project.createdAt)}</span>
         {project.collaborators?.length > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1)', fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
-            <Users size={11} />
-            {project.collaborators.length}
-          </div>
+          <span className="meta-info"><Users size={12} /> {project.collaborators.length}</span>
         )}
       </div>
 
-      {/* Delete confirmation */}
+      {/* Delete confirmation overlay */}
       {showDeleteConfirm && (
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'var(--surface-glass-heavy)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 'var(--space-4)',
-            textAlign: 'center',
-            zIndex: 10,
-          }}
-        >
-          <p style={{ marginBottom: 'var(--space-4)', fontWeight: '500' }}>
-            Delete this project?
-          </p>
-          <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-            <button className="btn btn-ghost btn-sm" onClick={() => setShowDeleteConfirm(false)}>
-              Cancel
-            </button>
-            <button className="btn btn-danger btn-sm" onClick={onDelete}>
-              Delete
-            </button>
+        <div className="delete-overlay" onClick={(e) => e.stopPropagation()}>
+          <p>TERMINATE PROTOCOL?</p>
+          <div className="delete-actions">
+            <button className="btn-cancel" onClick={() => setShowDeleteConfirm(false)}>ABORT</button>
+            <button className="btn-confirm" onClick={onDelete}>CONFIRM</button>
           </div>
         </div>
       )}
@@ -364,74 +232,53 @@ function NewProjectModal({ onClose, onCreate }) {
     setLoading(false);
     if (project) {
       onClose();
-      navigate(`/editor/${project.id || project._id}`);
+      navigate(`/editor/${project.id}`);
     }
   };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-backdrop-gamified" onClick={onClose}>
+      <div className="modal-gamified" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="modal-title">New Project</h2>
-          <button className="modal-close" onClick={onClose}>
-            <X size={16} />
-          </button>
+          <h2>INITIALIZE NEW PROTOCOL</h2>
+          <button className="modal-close" onClick={onClose}><X size={20} /></button>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-          <div>
-            <label className="input-label">Project Name</label>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>PROTOCOL IDENTIFIER</label>
             <input
               type="text"
-              className="input"
-              placeholder="my-awesome-project"
+              placeholder="Enter project name..."
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoFocus
             />
           </div>
 
-          <div>
-            <label className="input-label">Description (optional)</label>
+          <div className="form-group">
+            <label>MISSION BRIEFING (OPTIONAL)</label>
             <input
               type="text"
-              className="input"
-              placeholder="A brief description of your project"
+              placeholder="Describe the objective..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
-          <div>
-            <label className="input-label">Language</label>
-            <select
-              className="input"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              style={{ cursor: 'pointer' }}
-            >
+          <div className="form-group">
+            <label>PRIMARY WEAPONRY (LANGUAGE)</label>
+            <select value={language} onChange={(e) => setLanguage(e.target.value)}>
               {SUPPORTED_LANGUAGES.filter((l) => !['plaintext', 'markdown', 'json', 'yaml', 'xml'].includes(l.id)).map((lang) => (
                 <option key={lang.id} value={lang.id}>{lang.name}</option>
               ))}
             </select>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--space-3)', marginTop: 'var(--space-2)' }}>
-            <button type="button" className="btn btn-secondary" onClick={onClose}>
-              Cancel
-            </button>
-            <button type="submit" className="btn btn-primary" disabled={loading || !name.trim()}>
-              {loading ? (
-                <>
-                  <Loader2 size={16} style={{ animation: 'spin 0.7s linear infinite' }} />
-                  Creating...
-                </>
-              ) : (
-                <>
-                  <Plus size={16} />
-                  Create Project
-                </>
-              )}
+          <div className="modal-actions">
+            <button type="button" className="btn-cancel" onClick={onClose}>ABORT</button>
+            <button type="submit" className="btn-submit" disabled={loading || !name.trim()}>
+              {loading ? 'INITIALIZING...' : 'ENGAGE'}
             </button>
           </div>
         </form>

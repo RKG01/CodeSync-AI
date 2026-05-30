@@ -51,7 +51,7 @@ export default function EditorPage() {
   const [showTerminal, setShowTerminal] = useState(false);
 
   // Yjs collaboration
-  const { doc, provider, awareness, connected: yjsConnected } = useYjs(
+  const { doc, provider, awareness, connected: yjsConnected, synced: yjsSynced } = useYjs(
     projectId,
     activeFile?.path || activeFile?.name,
     user
@@ -324,10 +324,12 @@ export default function EditorPage() {
             <div style={{ flex: 1, overflow: 'hidden' }}>
               {activeFile ? (
                 <CodeEditor
+                  key={activeFile.id || activeFile._id || activeFile.path}
                   file={activeFile}
                   doc={doc}
                   provider={provider}
                   awareness={awareness}
+                  synced={yjsSynced}
                   onCursorChange={handleCursorChange}
                   onSave={handleSave}
                   onDebug={handleDebug}
@@ -470,9 +472,8 @@ export default function EditorPage() {
             )}
             {showChatPanel && (
               <ChatPanel
+                projectId={projectId}
                 onClose={() => setActivePanel(null)}
-                sendMessage={sendMessage}
-                subscribe={subscribe}
               />
             )}
           </div>

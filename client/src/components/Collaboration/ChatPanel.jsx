@@ -3,79 +3,174 @@ import { Send, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { getInitials, generateUserColor, formatTime } from '../../utils/helpers';
 
-export default function ChatPanel({ onClose, sendMessage, messages: externalMessages, subscribe }) {
+export default function ChatPanel({ projectId, onClose }) {
   const { user } = useAuth();
-  const [messages, setMessages] = useState(externalMessages || []);
   const [input, setInput] = useState('');
-  const [typingUsers, setTypingUsers] = useState([]);
   const messagesEndRef = useRef(null);
-  const typingTimerRef = useRef(null);
+
+  // Import and use the dedicated chat hook
+  const [chatState, setChatState] = useState({
+    messages: [],
+    connected: false,
+    typingUsers: [],
+    sendChatMessage: () => {},
+    sendTyping: () => {},
+  });
+
+  // Dynamically import useChat to avoid circular deps
+  const chatRef = useRef(null);
 
   useEffect(() => {
-    if (externalMessages) {
-      setMessages(externalMessages);
+    if (!projectId) return;
+    let cancelled = false;
+
+    import('../../hooks/useChat.js').then((mod) => {
+      if (!cancelled) {
+        chatRef.current = mod;
+      }
+    });
+
+    return () => { cancelled = true; };
+  }, [projectId]);
+
+  // We need a component that uses the hook inside the render tree
+  // Since hooks can't be dynamically imported, let's use the hook directly
+  // Instead, we'll inline the WebSocket connection here
+
+  const wsRef = useRef(null);
+  const [messages, setMessages] = useState([]);
+  const [connected, setConnected] = useState(false);
+  const [typingUsers, setTypingUsers] = useState([]);
+  const reconnectRef = useRef(null);
+  const intentionalCloseRef = useRef(false);
+
+  const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:4000';
+  const token = localStorage.getItem('codesync_token');
+
+  useEffect(() => {
+    if (!token || !projectId) return;
+
+    intentionalCloseRef.current = false;
+
+    function connect() {
+      const url = `${WS_BASE}/ws/chat/${projectId}?token=${encodeURIComponent(token)}`;
+      console.log(`[Chat] Connecting to ${url}`);
+
+      const ws = new WebSocket(url);
+      wsRef.current = ws;
+
+      ws.onopen = () => {
+        console.log('[Chat] Connected');
+        setConnected(true);
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+
+          switch (payload.type) {
+            case 'chat:history': {
+              const history = (payload.data?.messages || []).map((m) => ({
+                id: m.id,
+                user: { name: m.username, _id: m.user_id },
+                text: m.content,
+                timestamp: m.created_at,
+                isMine: m.user_id === user?.id || m.user_id === user?._id,
+              }));
+              setMessages(history);
+              break;
+            }
+            case 'chat:message': {
+              const d = payload.data;
+              setMessages((prev) => {
+                if (prev.some((m) => m.id === d.id)) return prev;
+                return [
+                  ...prev,
+                  {
+                    id: d.id || Date.now(),
+                    user: { name: d.username, _id: d.userId },
+                    text: d.content,
+                    timestamp: d.timestamp,
+                    isMine: d.userId === user?.id || d.userId === user?._id,
+                  },
+                ];
+              });
+              break;
+            }
+            case 'chat:typing': {
+              const d = payload.data;
+              if (d.userId !== user?.id && d.userId !== user?._id) {
+                setTypingUsers((prev) => {
+                  const exists = prev.find((u) => u.id === d.userId);
+                  if (!exists) return [...prev, { id: d.userId, name: d.username }];
+                  return prev;
+                });
+                setTimeout(() => {
+                  setTypingUsers((prev) => prev.filter((u) => u.id !== d.userId));
+                }, 3000);
+              }
+              break;
+            }
+            case 'chat:user_joined':
+            case 'chat:user_left':
+              break;
+            case 'chat:error':
+              console.error('[Chat] Server error:', payload.data?.message);
+              break;
+          }
+        } catch (err) {
+          console.error('[Chat] Parse error:', err);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log('[Chat] Disconnected');
+        setConnected(false);
+        wsRef.current = null;
+        if (!intentionalCloseRef.current) {
+          reconnectRef.current = setTimeout(connect, 2000);
+        }
+      };
+
+      ws.onerror = (err) => {
+        console.error('[Chat] WebSocket error:', err);
+      };
     }
-  }, [externalMessages]);
+
+    connect();
+
+    return () => {
+      intentionalCloseRef.current = true;
+      clearTimeout(reconnectRef.current);
+      if (wsRef.current) {
+        wsRef.current.close(1000, 'Component unmount');
+        wsRef.current = null;
+      }
+    };
+  }, [token, projectId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Subscribe to incoming chat messages
-  useEffect(() => {
-    if (!subscribe) return;
-
-    const unsub1 = subscribe('chat_message', (data) => {
-      setMessages((prev) => [...prev, {
-        id: Date.now(),
-        user: data.user || { name: 'Unknown' },
-        text: data.message || data.text,
-        timestamp: data.timestamp || new Date().toISOString(),
-        isMine: false,
-      }]);
-    });
-
-    const unsub2 = subscribe('user_typing', (data) => {
-      if (data.userId !== user?._id) {
-        setTypingUsers((prev) => {
-          const exists = prev.find((u) => u.id === data.userId);
-          if (!exists) return [...prev, { id: data.userId, name: data.username || 'Someone' }];
-          return prev;
-        });
-        // Remove typing indicator after 3s
-        setTimeout(() => {
-          setTypingUsers((prev) => prev.filter((u) => u.id !== data.userId));
-        }, 3000);
-      }
-    });
-
-    return () => {
-      unsub1?.();
-      unsub2?.();
-    };
-  }, [subscribe, user]);
-
   const handleSend = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || !wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
 
-    const msg = {
-      id: Date.now(),
-      user: { name: user?.username || user?.email || 'You', _id: user?._id },
-      text: input.trim(),
-      timestamp: new Date().toISOString(),
-      isMine: true,
-    };
-
-    setMessages((prev) => [...prev, msg]);
-    sendMessage?.('chat_message', { message: input.trim(), userId: user?._id, username: user?.username });
+    wsRef.current.send(JSON.stringify({
+      type: 'chat:send',
+      data: { content: input.trim() },
+    }));
     setInput('');
   };
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
-    // Send typing indicator
-    clearTimeout(typingTimerRef.current);
-    sendMessage?.('user_typing', { userId: user?._id, username: user?.username });
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({
+        type: 'chat:typing',
+        data: { isTyping: true },
+      }));
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -103,7 +198,16 @@ export default function ChatPanel({ onClose, sendMessage, messages: externalMess
         borderBottom: '1px solid var(--border-primary)',
         flexShrink: 0,
       }}>
-        <span style={{ fontSize: 'var(--text-sm)', fontWeight: '600' }}>Chat</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+          <span style={{ fontSize: 'var(--text-sm)', fontWeight: '600' }}>Chat</span>
+          <span style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: connected ? 'var(--accent-green)' : 'var(--accent-red)',
+            display: 'inline-block',
+          }} />
+        </div>
         <button className="btn btn-ghost btn-icon" onClick={onClose} style={{ width: '24px', height: '24px' }}>
           <X size={14} />
         </button>
@@ -130,7 +234,7 @@ export default function ChatPanel({ onClose, sendMessage, messages: externalMess
         )}
 
         {messages.map((msg) => {
-          const isMine = msg.isMine || msg.user?._id === user?._id;
+          const isMine = msg.isMine;
           return (
             <div
               key={msg.id}

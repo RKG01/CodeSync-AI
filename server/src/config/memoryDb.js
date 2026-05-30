@@ -21,6 +21,8 @@ const tables = {
   ai_conversations: [],
   ai_messages: [],
   chat_messages: [],
+  duels: [],
+  duel_submissions: [],
 };
 
 /**
@@ -34,12 +36,31 @@ async function seedDemoData() {
     email: 'demo@codesync.ai',
     password_hash: hash,
     avatar_url: null,
+    elo_rating: 1000,
+    matches_played: 0,
+    matches_won: 0,
+    preferred_languages: ['javascript'],
     created_at: new Date(),
     updated_at: new Date(),
     last_active_at: new Date(),
   };
   tables.users.push(demoUser);
 
+  const rivalUser = {
+    id: uuidv4(),
+    username: 'rival',
+    email: 'rival@codesync.ai',
+    password_hash: hash,
+    avatar_url: null,
+    elo_rating: 1200,
+    matches_played: 10,
+    matches_won: 6,
+    preferred_languages: ['javascript', 'python'],
+    created_at: new Date(),
+    updated_at: new Date(),
+    last_active_at: new Date(),
+  };
+  tables.users.push(rivalUser);
   const demoProject = {
     id: uuidv4(),
     name: 'Welcome Project',
@@ -333,11 +354,47 @@ function loadDb() {
 export async function initMemoryDb() {
   if (loadDb()) {
     console.log('✅ Local database loaded from local_db.json');
+    
+    // Schema Migration for existing DB
+    if (!tables.duels) tables.duels = [];
+    if (!tables.duel_submissions) tables.duel_submissions = [];
+    
+    for (const u of tables.users) {
+      if (u.elo_rating === undefined) {
+        u.elo_rating = 1000;
+        u.matches_played = 0;
+        u.matches_won = 0;
+        u.preferred_languages = ['javascript'];
+      }
+    }
+    
+    // Ensure rival user exists
+    if (!tables.users.find(u => u.username === 'rival')) {
+      const bcrypt = await import('bcryptjs');
+      const { v4: uuidv4 } = await import('uuid');
+      const hash = await bcrypt.default.hash('password123', 10);
+      tables.users.push({
+        id: uuidv4(),
+        username: 'rival',
+        email: 'rival@codesync.ai',
+        password_hash: hash,
+        avatar_url: null,
+        elo_rating: 1200,
+        matches_played: 10,
+        matches_won: 6,
+        preferred_languages: ['javascript', 'python'],
+        created_at: new Date(),
+        updated_at: new Date(),
+        last_active_at: new Date(),
+      });
+      console.log('📝 Injected rival user into existing local DB');
+    }
   } else {
     await seedDemoData();
-    saveDb();
     console.log('✅ Local database initialized with demo data');
   }
+  
+  saveDb();
   
   // Auto-save every 5 seconds to persist changes from direct array mutations
   setInterval(saveDb, 5000);

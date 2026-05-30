@@ -15,6 +15,7 @@ export default function CodeEditor({
   onDebug,
   onChange,
   language: languageOverride,
+  synced,
 }) {
   const editorRef = useRef(null);
   const monacoRef = useRef(null);
@@ -24,6 +25,16 @@ export default function CodeEditor({
 
   const language = languageOverride || getLanguageFromFilename(file?.name || file?.path || '');
 
+  // Store latest callbacks in refs so handleEditorMount doesn't go stale
+  const onCursorChangeRef = useRef(onCursorChange);
+  onCursorChangeRef.current = onCursorChange;
+  const onSaveRef = useRef(onSave);
+  onSaveRef.current = onSave;
+  const onDebugRef = useRef(onDebug);
+  onDebugRef.current = onDebug;
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+
   const handleEditorMount = useCallback((editor, monaco) => {
     editorRef.current = editor;
     monacoRef.current = monaco;
@@ -32,20 +43,15 @@ export default function CodeEditor({
     registerCodeSyncTheme(monaco);
     monaco.editor.setTheme(theme === 'light' ? 'codesync-light' : 'codesync-dark');
 
-    // Set up Yjs binding if doc is available
-    if (doc && provider) {
-      setupBinding(editor, doc, provider, awareness, file);
-    } else {
-      // No Yjs doc, load file content directly
-      if (file && file.content !== undefined && file.content !== null) {
-        editor.setValue(file.content);
-      }
+    // Load file content as fallback (the useEffect below will bind Yjs when ready)
+    if (file && file.content !== undefined && file.content !== null) {
+      editor.setValue(file.content);
     }
 
     // Cursor change tracking
     editor.onDidChangeCursorPosition((e) => {
-      if (onCursorChange) {
-        onCursorChange({
+      if (onCursorChangeRef.current) {
+        onCursorChangeRef.current({
           line: e.position.lineNumber,
           column: e.position.column,
         });
@@ -54,32 +60,32 @@ export default function CodeEditor({
 
     // Keyboard shortcuts
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {
-      if (onSave) {
-        onSave(editor.getValue());
+      if (onSaveRef.current) {
+        onSaveRef.current(editor.getValue());
       }
     });
 
     editor.addCommand(
       monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KeyD,
       () => {
-        if (onDebug) {
+        if (onDebugRef.current) {
           const selection = editor.getSelection();
           const selectedText = editor.getModel().getValueInRange(selection);
-          onDebug(selectedText || editor.getValue());
+          onDebugRef.current(selectedText || editor.getValue());
         }
       }
     );
 
     // Track content changes
     editor.onDidChangeModelContent(() => {
-      if (onChange) {
-        onChange(editor.getValue());
+      if (onChangeRef.current) {
+        onChangeRef.current(editor.getValue());
       }
     });
 
     // Focus editor
     editor.focus();
-  }, [doc, provider, awareness, onCursorChange, onSave, onDebug, theme, file]);
+  }, [theme, file]);
 
   /**
    * Sets up the Yjs MonacoBinding and seeds the Yjs document
@@ -96,12 +102,13 @@ export default function CodeEditor({
 
     // If the Yjs document is empty AND we have saved content from the DB,
     // seed it into the Yjs document BEFORE creating the binding.
-    // This is what prevents the "empty file" bug when switching tabs.
     const fileId = currentFile?.id || currentFile?._id || currentFile?.path;
     if (yText.length === 0 && currentFile?.content && initializedFileRef.current !== fileId) {
       yText.insert(0, currentFile.content);
       initializedFileRef.current = fileId;
     }
+
+    console.log('[CodeEditor] Creating MonacoBinding for', fileId, 'yText length:', yText.length);
 
     bindingRef.current = new MonacoBinding(
       yText,
@@ -121,12 +128,20 @@ export default function CodeEditor({
     };
   }, []);
 
-  // Re-bind when doc changes (e.g. user switches to a different file)
+  // Bind Yjs when doc/provider become available and have finished syncing
   useEffect(() => {
-    if (editorRef.current && doc && provider) {
-      setupBinding(editorRef.current, doc, provider, awareness, file);
+    if (editorRef.current && doc && provider && synced) {
+      // Only set up binding if it hasn't been set up for this specific doc
+      if (!bindingRef.current || bindingRef.current.doc !== doc) {
+        console.log('[CodeEditor] Yjs doc/provider synced, creating binding');
+        setupBinding(editorRef.current, doc, provider, awareness, file);
+        // Store doc reference on the binding to track which doc we are bound to
+        if (bindingRef.current) {
+          bindingRef.current.doc = doc;
+        }
+      }
     }
-  }, [doc, provider, awareness]);
+  }, [doc, provider, awareness, synced]); // Removed 'file' from dependencies to prevent re-binding on auto-saves
 
   // Update theme when it changes
   useEffect(() => {

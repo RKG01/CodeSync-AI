@@ -234,7 +234,7 @@ export default function Navbar({ projectName, onShareClick, onlineUsers = [] }) 
                   {user?.email || ''}
                 </div>
               </div>
-              <button className="dropdown-item" onClick={() => { setShowUserMenu(false); }}>
+              <button className="dropdown-item" onClick={() => { setShowUserMenu(false); navigate(`/profile/${user.id}`); }}>
                 <User size={14} />
                 Profile
               </button>

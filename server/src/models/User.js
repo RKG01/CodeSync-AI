@@ -26,7 +26,7 @@ class User {
     const result = await query(
       `INSERT INTO users (username, email, password_hash)
        VALUES ($1, $2, $3)
-       RETURNING id, username, email, avatar_url, created_at, updated_at`,
+       RETURNING id, username, email, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, updated_at`,
       [username, email, passwordHash]
     );
 
@@ -40,7 +40,7 @@ class User {
    */
   static async findByEmail(email) {
     const result = await query(
-      `SELECT id, username, email, password_hash, avatar_url, created_at, updated_at, last_active_at
+      `SELECT id, username, email, password_hash, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, updated_at, last_active_at
        FROM users WHERE email = $1`,
       [email]
     );
@@ -55,7 +55,7 @@ class User {
    */
   static async findById(id) {
     const result = await query(
-      `SELECT id, username, email, avatar_url, created_at, updated_at, last_active_at
+      `SELECT id, username, email, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, updated_at, last_active_at
        FROM users WHERE id = $1`,
       [id]
     );
@@ -70,7 +70,7 @@ class User {
    */
   static async findByUsername(username) {
     const result = await query(
-      `SELECT id, username, email, avatar_url, created_at, updated_at, last_active_at
+      `SELECT id, username, email, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, updated_at, last_active_at
        FROM users WHERE username = $1`,
       [username]
     );
@@ -98,6 +98,67 @@ class User {
    */
   static async comparePassword(plainPassword, hashedPassword) {
     return bcrypt.compare(plainPassword, hashedPassword);
+  }
+
+  /**
+   * Updates a user's Elo rating and match statistics after a duel.
+   * @param {string} userId - The user UUID.
+   * @param {number} newElo - The new Elo rating.
+   * @param {boolean} won - Whether the user won the match.
+   * @returns {Promise<Object|null>} The updated user record.
+   */
+  static async updateElo(userId, newElo, won) {
+    const result = await query(
+      `UPDATE users SET elo_rating = $1, matches_played = matches_played + 1${won ? ', matches_won = matches_won + 1' : ''}, updated_at = NOW()
+       WHERE id = $2
+       RETURNING id, username, elo_rating, matches_played, matches_won`,
+      [newElo, userId]
+    );
+    return result.rows[0] || null;
+  }
+
+  /**
+   * Gets the top players by Elo rating.
+   * @param {number} [limit=50] - Maximum number of players to return.
+   * @returns {Promise<Array<Object>>} Leaderboard entries.
+   */
+  static async getLeaderboard(limit = 50) {
+    const result = await query(
+      `SELECT id, username, avatar_url, elo_rating, matches_played, matches_won, created_at
+       FROM users
+       WHERE matches_played > 0
+       ORDER BY elo_rating DESC
+       LIMIT $1`,
+      [limit]
+    );
+    return result.rows;
+  }
+
+  /**
+   * Gets a user's full public profile with duel stats.
+   * @param {string} userId - The user UUID.
+   * @returns {Promise<Object|null>} The public profile or null.
+   */
+  static async getProfile(userId) {
+    const result = await query(
+      `SELECT id, username, email, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, last_active_at
+       FROM users WHERE id = $1`,
+      [userId]
+    );
+    return result.rows[0] || null;
+  }
+
+  /**
+   * Updates a user's preferred programming languages.
+   * @param {string} userId - The user UUID.
+   * @param {string[]} languages - Array of language strings.
+   * @returns {Promise<void>}
+   */
+  static async updatePreferredLanguages(userId, languages) {
+    await query(
+      `UPDATE users SET preferred_languages = $1, updated_at = NOW() WHERE id = $2`,
+      [JSON.stringify(languages), userId]
+    );
   }
 }
 
