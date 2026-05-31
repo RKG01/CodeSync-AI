@@ -13,6 +13,7 @@ dns.setDefaultResultOrder('ipv4first');
 
 import env, { validateEnv } from './src/config/env.js';
 import { testConnection, closePool } from './src/config/database.js';
+import { runMigrations } from './src/config/migrate.js';
 import { connectRedis, disconnectRedis } from './src/config/redis.js';
 import app from './src/app.js';
 import { createYjsServer, shutdownYjs } from './src/websocket/yjsProvider.js';
@@ -36,6 +37,9 @@ async function start() {
   try {
     // Connect to PostgreSQL (falls back to in-memory if unavailable)
     await testConnection();
+
+    // Run database migrations (creates missing tables/columns)
+    await runMigrations();
 
     // Connect to Redis (non-fatal if unavailable)
     try {
