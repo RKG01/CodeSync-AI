@@ -10,7 +10,8 @@
  */
 const queues = new Map([
   ['collab', []],
-  ['duel', []],
+  ['duel-1q', []],
+  ['duel-3q', []],
 ]);
 
 /** Elo range starts at ±200 and widens by 50 every 10 seconds */
@@ -99,7 +100,7 @@ export function leaveAllQueues(userId) {
 export function getQueueStats() {
   return {
     collab: queues.get('collab').length,
-    duel: queues.get('duel').length,
+    duel: queues.get('duel-1q').length + queues.get('duel-3q').length,
   };
 }
 
@@ -109,7 +110,8 @@ export function getQueueStats() {
  */
 function findMatches() {
   findCollabMatch();
-  findDuelMatch();
+  findDuelMatch('duel-1q');
+  findDuelMatch('duel-3q');
 }
 
 /**
@@ -151,67 +153,60 @@ function findCollabMatch() {
 }
 
 /**
- * Finds a duel match: pairs users within dynamic Elo range wanting the same language.
- * Elo range widens over time to prevent infinite waits.
+ * Finds a duel match within a specific format queue.
+ * Matches users within dynamic Elo range. Language is agnostic.
+ * @param {'duel-1q'|'duel-3q'} formatMode 
  * @private
  */
-function findDuelMatch() {
-  const queue = queues.get('duel');
+function findDuelMatch(formatMode) {
+  const queue = queues.get(formatMode);
   if (queue.length < 2) return;
 
   const now = Date.now();
   const matched = new Set();
 
-  // Group by language
-  const byLanguage = new Map();
-  for (const entry of queue) {
-    if (!byLanguage.has(entry.language)) {
-      byLanguage.set(entry.language, []);
-    }
-    byLanguage.get(entry.language).push(entry);
-  }
+  // No longer grouping by language for duels!
+  // We can just sort the entire queue by Elo
+  const entries = [...queue];
 
-  for (const [, entries] of byLanguage) {
-    // Sort by Elo for efficient matching
-    entries.sort((a, b) => a.elo - b.elo);
+  entries.sort((a, b) => a.elo - b.elo);
 
-    for (let i = 0; i < entries.length; i++) {
-      if (matched.has(entries[i].userId)) continue;
+  for (let i = 0; i < entries.length; i++) {
+    if (matched.has(entries[i].userId)) continue;
 
-      for (let j = i + 1; j < entries.length; j++) {
-        if (matched.has(entries[j].userId)) continue;
+    for (let j = i + 1; j < entries.length; j++) {
+      if (matched.has(entries[j].userId)) continue;
 
-        const p1 = entries[i];
-        const p2 = entries[j];
+      const p1 = entries[i];
+      const p2 = entries[j];
 
-        // Calculate dynamic Elo range based on wait time
-        const waitTime = Math.max(now - p1.joinedAt, now - p2.joinedAt);
-        const expansions = Math.floor(waitTime / ELO_EXPANSION_INTERVAL);
-        const eloRange = BASE_ELO_RANGE + expansions * ELO_RANGE_EXPANSION;
+      // Calculate dynamic Elo range based on wait time
+      const waitTime = Math.max(now - p1.joinedAt, now - p2.joinedAt);
+      const expansions = Math.floor(waitTime / ELO_EXPANSION_INTERVAL);
+      const eloRange = BASE_ELO_RANGE + expansions * ELO_RANGE_EXPANSION;
 
-        const eloDiff = Math.abs(p1.elo - p2.elo);
+      const eloDiff = Math.abs(p1.elo - p2.elo);
 
-        if (eloDiff <= eloRange) {
-          matched.add(p1.userId);
-          matched.add(p2.userId);
+      if (eloDiff <= eloRange) {
+        matched.add(p1.userId);
+        matched.add(p2.userId);
 
-          console.log(
-            `⚔️ Duel match found: ${p1.username} (${p1.elo}) vs ${p2.username} (${p2.elo}) [diff=${eloDiff}, range=${eloRange}]`
-          );
+        console.log(
+          `⚔️ Duel match found (${formatMode}): ${p1.username} (${p1.elo}) vs ${p2.username} (${p2.elo}) [diff=${eloDiff}, range=${eloRange}]`
+        );
 
-          if (onMatchFoundCallback) {
-            onMatchFoundCallback('duel', p1, p2);
-          }
-          break;
+        // Remove from main queue
+        const idx1 = queue.indexOf(p1);
+        if (idx1 !== -1) queue.splice(idx1, 1);
+        const idx2 = queue.indexOf(p2);
+        if (idx2 !== -1) queue.splice(idx2, 1);
+
+        if (onMatchFoundCallback) {
+          onMatchFoundCallback(formatMode, p1, p2);
         }
+        break; // Stop looking for matches for p1
       }
     }
-  }
-
-  // Remove matched users from queue
-  for (const userId of matched) {
-    const idx = queue.findIndex((e) => e.userId === userId);
-    if (idx !== -1) queue.splice(idx, 1);
   }
 }
 

@@ -7,9 +7,9 @@
       "password_hash": "$2a$10$HI9s7vNszgACeg/L7wtgCO2lNbcwvMkYVgF0KaPjW/CM8oj0xS7uK",
       "avatar_url": null,
       "created_at": "2026-05-21T06:47:32.792Z",
-      "updated_at": "2026-05-31T08:02:02.852Z",
-      "last_active_at": "2026-05-31T08:02:02.852Z",
-      "elo_rating": 1003,
+      "updated_at": "2026-05-31T10:29:50.511Z",
+      "last_active_at": "2026-05-31T09:48:12.797Z",
+      "elo_rating": 1012,
       "matches_played": 0,
       "matches_won": 0,
       "preferred_languages": [
@@ -97,7 +97,7 @@
       "email": "rival@codesync.ai",
       "password_hash": "$2a$10$nKiJxZwm74qLnTPsGRbqfuKXW4xUbqzTBqcOzUSaEZNAIa/W8hOzG",
       "avatar_url": null,
-      "elo_rating": 1228,
+      "elo_rating": 1219,
       "matches_played": 10,
       "matches_won": 6,
       "preferred_languages": [
@@ -105,8 +105,8 @@
         "python"
       ],
       "created_at": "2026-05-30T11:25:18.637Z",
-      "updated_at": "2026-05-30T17:45:27.510Z",
-      "last_active_at": "2026-05-30T17:45:27.510Z"
+      "updated_at": "2026-05-31T10:29:50.511Z",
+      "last_active_at": "2026-05-31T10:07:00.022Z"
     },
     {
       "id": "b1502515-928d-473d-ad94-cbe9aadc6283",
@@ -153,7 +153,13 @@
       "updated_at": "2026-05-31T08:39:32.902Z",
       "username": "23bcs101",
       "email": "23bcs101@iiitdmj.ac.in",
-      "password_hash": "$2a$12$Yvc.PUPrDegz.7KTgF7xBeghGDtLKU37xmWwNDzPuI73IDiSQI2BO"
+      "password_hash": "$2a$12$Yvc.PUPrDegz.7KTgF7xBeghGDtLKU37xmWwNDzPuI73IDiSQI2BO",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
     }
   ],
   "projects": [
@@ -824,6 +830,76 @@
       "test_cases": "[{\"input\":\"6501\",\"expectedOutput\":\"false\"},{\"input\":\"1048576\",\"expectedOutput\":\"true\"},{\"input\":\"6448\",\"expectedOutput\":\"false\"},{\"input\":\"262144\",\"expectedOutput\":\"true\"},{\"input\":\"512\",\"expectedOutput\":\"true\"}]",
       "duration_seconds": 900,
       "status": "waiting"
+    },
+    {
+      "id": "6caaab92-4288-4003-93c0-dd801f44a0d2",
+      "created_at": "2026-05-31T09:48:28.577Z",
+      "updated_at": "2026-05-31T09:48:28.577Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "agnostic",
+      "difficulty": "medium",
+      "problem_title": "Fantasy: Alchemy Mix",
+      "problem_description": "## Fantasy: Alchemy Mix\n\nFind two potion ingredients (line 1) whose combined power equals the target elixir strength (line 2). Print the two powers sorted.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n100 95 50 4 91 68 82 11 99 100 92 47 70 25 82 59\n177\n```\n**Output:**\n```\n82 95\n```\n\n### Example 2\n**Input:**\n```\n34 12 51 21 31 62 81 69 91 43 14\n105\n```\n**Output:**\n```\n43 62\n```",
+      "test_cases": "[{\"title\":\"Fantasy: Alchemy Mix\",\"description\":\"## Fantasy: Alchemy Mix\\n\\nFind two potion ingredients (line 1) whose combined power equals the target elixir strength (line 2). Print the two powers sorted.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n100 95 50 4 91 68 82 11 99 100 92 47 70 25 82 59\\n177\\n```\\n**Output:**\\n```\\n82 95\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n34 12 51 21 31 62 81 69 91 43 14\\n105\\n```\\n**Output:**\\n```\\n43 62\\n```\",\"testCases\":[{\"input\":\"100 95 50 4 91 68 82 11 99 100 92 47 70 25 82 59\\n177\",\"expectedOutput\":\"82 95\"},{\"input\":\"34 12 51 21 31 62 81 69 91 43 14\\n105\",\"expectedOutput\":\"43 62\"},{\"input\":\"49 27 42 36 71 35 82 42 36 67 70\\n103\",\"expectedOutput\":\"36 67\"},{\"input\":\"13 100 24 66 63 78 98 52 98 88 17 13\\n140\",\"expectedOutput\":\"52 88\"},{\"input\":\"56 50 58 53 46 61 91 81 24 38 30 64 15 33 32 3 44 29 34\\n88\",\"expectedOutput\":\"38 50\"}]}]",
+      "duration_seconds": 600,
+      "status": "waiting"
+    },
+    {
+      "id": "f0b948ee-464d-4421-ab70-e4b3e1c8deb1",
+      "created_at": "2026-05-31T09:48:48.583Z",
+      "updated_at": "2026-05-31T09:48:48.583Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "agnostic",
+      "difficulty": "medium",
+      "problem_title": "3-Question Duel",
+      "problem_description": "Complete 3 questions to win.",
+      "test_cases": "[{\"title\":\"Fantasy: Rune Pairing\",\"description\":\"## Fantasy: Rune Pairing\\n\\nMagical runes must be paired correctly to avoid an explosion. Check if the sequence of runes is valid. Print 'true' or 'false'.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n{[[}[\\n```\\n**Output:**\\n```\\nfalse\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n{[(((})]))\\n```\\n**Output:**\\n```\\nfalse\\n```\",\"testCases\":[{\"input\":\"{[[}[\",\"expectedOutput\":\"false\"},{\"input\":\"{[(((})]))\",\"expectedOutput\":\"false\"},{\"input\":\"]])[\",\"expectedOutput\":\"false\"},{\"input\":\"[}(]]}[){\",\"expectedOutput\":\"false\"},{\"input\":\"({){)\",\"expectedOutput\":\"false\"}]},{\"title\":\"Cyberpunk: Maximum Encryption Chain\",\"description\":\"## Cyberpunk: Maximum Encryption Chain\\n\\nFind the length of the longest chain of unique encryption characters in the firewall log.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\nbbbbb\\n```\\n**Output:**\\n```\\n1\\n```\\n\\n### Example 2\\n**Input:**\\n```\\naab\\n```\\n**Output:**\\n```\\n2\\n```\",\"testCases\":[{\"input\":\"bbbbb\",\"expectedOutput\":\"1\"},{\"input\":\"aab\",\"expectedOutput\":\"2\"},{\"input\":\"abcdefg\",\"expectedOutput\":\"7\"},{\"input\":\"bbbbb\",\"expectedOutput\":\"1\"},{\"input\":\"bbbbb\",\"expectedOutput\":\"1\"}]},{\"title\":\"Hacker: Non-Repeating Payload\",\"description\":\"## Hacker: Non-Repeating Payload\\n\\nDetermine the maximum contiguous block of unique bytes in the intercepted exploit payload.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\naab\\n```\\n**Output:**\\n```\\n2\\n```\\n\\n### Example 2\\n**Input:**\\n```\\nabcdefg\\n```\\n**Output:**\\n```\\n7\\n```\",\"testCases\":[{\"input\":\"aab\",\"expectedOutput\":\"2\"},{\"input\":\"abcdefg\",\"expectedOutput\":\"7\"},{\"input\":\"abcdefg\",\"expectedOutput\":\"7\"},{\"input\":\"abcdefg\",\"expectedOutput\":\"7\"},{\"input\":\"pwwkew\",\"expectedOutput\":\"3\"}]}]",
+      "duration_seconds": 1800,
+      "status": "waiting"
+    },
+    {
+      "id": "4d8331f8-09c5-4627-9c6c-e7af7efbff46",
+      "created_at": "2026-05-31T09:52:05.326Z",
+      "updated_at": "2026-05-31T09:52:05.326Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "agnostic",
+      "difficulty": "medium",
+      "problem_title": "Fantasy: Aura Interference",
+      "problem_description": "## Fantasy: Aura Interference\n\nCalculate the magical interference on each rune, which is the product of the power of all other runes in the circle.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n6 9 8 8\n```\n**Output:**\n```\n576 384 432 432\n```\n\n### Example 2\n**Input:**\n```\n4 3 5 9 3 3 5 1 9 9\n```\n**Output:**\n```\n492075 656100 393660 218700 656100 656100 393660 1968300 218700 218700\n```",
+      "test_cases": "[{\"title\":\"Fantasy: Aura Interference\",\"description\":\"## Fantasy: Aura Interference\\n\\nCalculate the magical interference on each rune, which is the product of the power of all other runes in the circle.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n6 9 8 8\\n```\\n**Output:**\\n```\\n576 384 432 432\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n4 3 5 9 3 3 5 1 9 9\\n```\\n**Output:**\\n```\\n492075 656100 393660 218700 656100 656100 393660 1968300 218700 218700\\n```\",\"testCases\":[{\"input\":\"6 9 8 8\",\"expectedOutput\":\"576 384 432 432\"},{\"input\":\"4 3 5 9 3 3 5 1 9 9\",\"expectedOutput\":\"492075 656100 393660 218700 656100 656100 393660 1968300 218700 218700\"},{\"input\":\"1 9 5 3 1 5 1 5 5\",\"expectedOutput\":\"16875 1875 3375 5625 16875 3375 16875 3375 3375\"},{\"input\":\"5 4 2 2\",\"expectedOutput\":\"16 20 40 40\"},{\"input\":\"8 3 8 6 5 5 3\",\"expectedOutput\":\"10800 28800 10800 14400 17280 17280 28800\"}]}]",
+      "duration_seconds": 600,
+      "status": "waiting"
+    },
+    {
+      "id": "16b1f677-1ea2-41f3-9e99-7a2d405cc732",
+      "created_at": "2026-05-31T09:57:58.655Z",
+      "updated_at": "2026-05-31T09:57:58.655Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "agnostic",
+      "difficulty": "medium",
+      "problem_title": "3-Question Duel",
+      "problem_description": "Complete 3 questions to win.",
+      "test_cases": "[{\"title\":\"Classic: Valid Brackets\",\"description\":\"## Classic: Valid Brackets\\n\\nGiven a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. Print 'true' or 'false'.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n([{[[(]))])]\\n```\\n**Output:**\\n```\\nfalse\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n{[{([})}]]\\n```\\n**Output:**\\n```\\nfalse\\n```\",\"testCases\":[{\"input\":\"([{[[(]))])]\",\"expectedOutput\":\"false\"},{\"input\":\"{[{([})}]]\",\"expectedOutput\":\"false\"},{\"input\":\"}[[()})]\",\"expectedOutput\":\"false\"},{\"input\":\"{({(({[((})}}}))]}\",\"expectedOutput\":\"false\"},{\"input\":\"{[([)]])\",\"expectedOutput\":\"false\"}]},{\"title\":\"Hacker: Hash Collision\",\"description\":\"## Hacker: Hash Collision\\n\\nFind two fragmented hashes (line 1) that combine to form the target verification hash (line 2). Print them sorted.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n35 96 35 41 52 60 47 38 66 56 17 12 20 100 93 1\\n149\\n```\\n**Output:**\\n```\\n56 93\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n56 2 57 34 85 94 18 26 23 24 83 33 84 48 61 62 20 45 40\\n103\\n```\\n**Output:**\\n```\\n18 85\\n```\",\"testCases\":[{\"input\":\"35 96 35 41 52 60 47 38 66 56 17 12 20 100 93 1\\n149\",\"expectedOutput\":\"56 93\"},{\"input\":\"56 2 57 34 85 94 18 26 23 24 83 33 84 48 61 62 20 45 40\\n103\",\"expectedOutput\":\"18 85\"},{\"input\":\"48 12 41 46 41 73 62 9 82 3 25 17 87 46 88 65 21\\n134\",\"expectedOutput\":\"46 88\"},{\"input\":\"92 81 79 37 99 30 5 41 46 54 37 57 31 20 61 80\\n92\",\"expectedOutput\":\"31 61\"},{\"input\":\"90 72 53 17 39 33 65 47 3 90 16 50 10 44 83 45 74 41 25\\n108\",\"expectedOutput\":\"25 83\"}]},{\"title\":\"Hacker: Packet Encapsulation\",\"description\":\"## Hacker: Packet Encapsulation\\n\\nDetermine if a captured data packet has properly matching opening and closing structural bytes. Print 'true' or 'false'.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n([{()}]}\\n```\\n**Output:**\\n```\\nfalse\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n])){[\\n```\\n**Output:**\\n```\\nfalse\\n```\",\"testCases\":[{\"input\":\"([{()}]}\",\"expectedOutput\":\"false\"},{\"input\":\"])){[\",\"expectedOutput\":\"false\"},{\"input\":\")[{[)]]\",\"expectedOutput\":\"false\"},{\"input\":\"[]{}}\",\"expectedOutput\":\"false\"},{\"input\":\"[{}({([{{)}\",\"expectedOutput\":\"false\"}]}]",
+      "duration_seconds": 1800,
+      "status": "waiting"
+    },
+    {
+      "id": "afc813ee-716d-4c13-885b-dc8aa44c9d8a",
+      "created_at": "2026-05-31T10:07:32.698Z",
+      "updated_at": "2026-05-31T10:07:32.698Z",
+      "player1_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "player2_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "language": "agnostic",
+      "difficulty": "medium",
+      "problem_title": "Space: Airlock Sequences",
+      "problem_description": "## Space: Airlock Sequences\n\nCheck if the inner and outer airlock door sequence log is properly nested to maintain pressure. Print 'true' or 'false'.\n\n### Input Data\nRead from standard input (stdin). See examples below.\n\n### Output Data\nPrint strictly to standard output (stdout).\n\n### Example 1\n**Input:**\n```\n{[[{{]))}]\n```\n**Output:**\n```\nfalse\n```\n\n### Example 2\n**Input:**\n```\n{{{{[}}]}]\n```\n**Output:**\n```\nfalse\n```",
+      "test_cases": "[{\"title\":\"Space: Airlock Sequences\",\"description\":\"## Space: Airlock Sequences\\n\\nCheck if the inner and outer airlock door sequence log is properly nested to maintain pressure. Print 'true' or 'false'.\\n\\n### Input Data\\nRead from standard input (stdin). See examples below.\\n\\n### Output Data\\nPrint strictly to standard output (stdout).\\n\\n### Example 1\\n**Input:**\\n```\\n{[[{{]))}]\\n```\\n**Output:**\\n```\\nfalse\\n```\\n\\n### Example 2\\n**Input:**\\n```\\n{{{{[}}]}]\\n```\\n**Output:**\\n```\\nfalse\\n```\",\"testCases\":[{\"input\":\"{[[{{]))}]\",\"expectedOutput\":\"false\"},{\"input\":\"{{{{[}}]}]\",\"expectedOutput\":\"false\"},{\"input\":\"([[)])\",\"expectedOutput\":\"false\"},{\"input\":\"])[{(}\",\"expectedOutput\":\"false\"},{\"input\":\"{[[())}]\",\"expectedOutput\":\"false\"}]}]",
+      "duration_seconds": 600,
+      "status": "waiting"
     }
   ],
   "duel_submissions": [
@@ -916,6 +992,19 @@
       "total_tests": 5,
       "execution_time_ms": 0,
       "stdout": "6\n---\n-2\n---\n0\n---\n42\n---\n0",
+      "stderr": ""
+    },
+    {
+      "id": "517a77d2-d3d5-4f67-b783-f762f2824122",
+      "created_at": "2026-05-31T10:09:32.617Z",
+      "updated_at": "2026-05-31T10:09:32.617Z",
+      "duel_id": "8b951c67-0f68-434a-9d11-81ed732d3836",
+      "user_id": "1e58a9f2-423e-4afb-b1d9-17748e17ad44",
+      "code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n\n    cout << \"false\" << endl;\n    // Your solution here\n    // Read using cin, print using cout\n    return 0;\n}",
+      "tests_passed": 5,
+      "total_tests": 5,
+      "execution_time_ms": 0,
+      "stdout": "false\n---\nfalse\n---\nfalse\n---\nfalse\n---\nfalse",
       "stderr": ""
     }
   ]

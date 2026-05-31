@@ -42,7 +42,7 @@ function loadTrustedProblems() {
   return trustedProblems;
 }
 
-function getGenericStarterCode(language) {
+export function getGenericStarterCode(language) {
   if (language === 'javascript' || language === 'typescript') {
     return `const readline = require('readline');
 
@@ -80,12 +80,12 @@ rl.on('close', () => {
 }
 
 /**
- * Returns a random coding challenge from the trusted database.
- * @param {string} language - Programming language for the challenge.
+ * Returns random coding challenges from the trusted database.
+ * @param {number} count - Number of problems to fetch.
  * @param {string} [difficulty='medium'] - Difficulty level (easy/medium/hard).
- * @returns {Promise<{title: string, description: string, starterCode: string, testCases: Array<{input: string, expectedOutput: string}>}>}
+ * @returns {Promise<Array<{title: string, description: string, testCases: Array<{input: string, expectedOutput: string}>}>>}
  */
-export async function generateProblem(language, difficulty = 'medium') {
+export async function generateProblem(count = 1, difficulty = 'medium') {
   const problems = loadTrustedProblems();
   
   // Filter by requested difficulty
@@ -98,15 +98,22 @@ export async function generateProblem(language, difficulty = 'medium') {
     throw new Error("No trusted problems found in database.");
   }
 
-  // Pick random problem
-  const problem = pool[Math.floor(Math.random() * pool.length)];
+  // Pick multiple unique problems if possible
+  const selected = [];
+  const poolCopy = [...pool];
+  
+  for (let i = 0; i < count; i++) {
+    if (poolCopy.length === 0) break;
+    const randIdx = Math.floor(Math.random() * poolCopy.length);
+    const problem = poolCopy.splice(randIdx, 1)[0];
+    selected.push({
+      title: problem.title,
+      description: problem.description,
+      testCases: problem.testCases,
+    });
+  }
 
-  return {
-    title: problem.title,
-    description: problem.description,
-    starterCode: getGenericStarterCode(language),
-    testCases: problem.testCases,
-  };
+  return selected;
 }
 
 /**

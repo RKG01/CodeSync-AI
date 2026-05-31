@@ -21,7 +21,7 @@ import {
   createDuel,
   handleSubmission,
   handleRun,
-  handleDisconnect,
+  handleForfeit,
   getActiveDuel,
   attachPlayerWs,
 } from '../services/duelEngine.js';
@@ -45,7 +45,7 @@ export function setupWebSocket() {
 
   // ─── Matchmaking Match-Found Handler ────────────────────────────────────────
   onMatchFound(async (mode, p1Entry, p2Entry) => {
-    if (mode === 'duel') {
+    if (mode.startsWith('duel-')) {
       // Determine difficulty based on average Elo
       const avgElo = (p1Entry.elo + p2Entry.elo) / 2;
       let difficulty = 'medium';
@@ -55,7 +55,7 @@ export function setupWebSocket() {
       await createDuel(
         { userId: p1Entry.userId, username: p1Entry.username, elo: p1Entry.elo, ws: p1Entry.ws },
         { userId: p2Entry.userId, username: p2Entry.username, elo: p2Entry.elo, ws: p2Entry.ws },
-        p1Entry.language,
+        mode,
         difficulty
       );
     } else if (mode === 'collab') {
@@ -326,16 +326,28 @@ export function setupWebSocket() {
         console.log(`⚔️ Duel WS: ${user.username} connected to duel ${duelId}`);
 
         // Send current duel state
+        const stateData = {
+          duelId,
+          status: duel.status,
+          formatMode: duel.formatMode,
+          difficulty: duel.difficulty,
+          player1: { userId: duel.player1.userId, username: duel.player1.username, elo: duel.player1.elo },
+          player2: { userId: duel.player2.userId, username: duel.player2.username, elo: duel.player2.elo },
+        };
+
+        if (duel.status === 'active') {
+          stateData.problems = duel.problems.map(p => ({
+            title: p.title,
+            description: p.description,
+            visibleTestCases: p.testCases.slice(0, 2),
+            totalTestCases: p.testCases.length
+          }));
+          stateData.duration = duel.duration;
+        }
+
         ws.send(JSON.stringify({
           type: 'duel:state',
-          data: {
-            duelId,
-            status: duel.status,
-            language: duel.language,
-            difficulty: duel.difficulty,
-            player1: { userId: duel.player1.userId, username: duel.player1.username, elo: duel.player1.elo },
-            player2: { userId: duel.player2.userId, username: duel.player2.username, elo: duel.player2.elo },
-          },
+          data: stateData,
         }));
 
         ws.on('message', async (rawData) => {
@@ -344,37 +356,34 @@ export function setupWebSocket() {
 
             switch (payload.type) {
               case 'duel:submit': {
-                const { code } = payload.data || {};
-                if (!code) {
+                const { code, language, problemIndex = 0 } = payload.data || {};
+                if (!code || !language) {
                   ws.send(JSON.stringify({
                     type: 'duel:error',
-                    data: { message: 'Code is required.' },
+                    data: { message: 'Code and language are required.' },
                   }));
                   return;
                 }
-                await handleSubmission(duelId, user.id, code);
+                await handleSubmission(duelId, user.id, code, language, problemIndex);
                 break;
               }
 
               case 'duel:run': {
-                const { code } = payload.data || {};
-                if (!code) {
+                const { code, language, problemIndex = 0 } = payload.data || {};
+                if (!code || !language) {
                   ws.send(JSON.stringify({
                     type: 'duel:error',
-                    data: { message: 'Code is required.' },
+                    data: { message: 'Code and language are required.' },
                   }));
                   return;
                 }
-                await handleRun(duelId, user.id, code);
+                await handleRun(duelId, user.id, code, language, problemIndex);
                 break;
               }
 
               case 'duel:forfeit': {
                 console.log(`⚔️ Duel ${duelId}: ${user.username} forfeited`);
-                const isP1 = duel.player1.userId === user.id;
-                const winnerId = isP1 ? duel.player2.userId : duel.player1.userId;
-                // Handle as disconnect/forfeit — the other player wins
-                await handleDisconnect(duelId, user.id);
+                await handleForfeit(duelId, user.id);
                 break;
               }
 
@@ -411,7 +420,7 @@ export function setupWebSocket() {
 
         ws.on('close', async () => {
           console.log(`⚔️ Duel WS: ${user.username} disconnected from duel ${duelId}`);
-          await handleDisconnect(duelId, user.id);
+          // Do not forfeit here! Allow reconnection until the timer runs out.
         });
 
       } else {

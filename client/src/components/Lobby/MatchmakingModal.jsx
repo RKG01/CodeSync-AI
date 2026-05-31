@@ -34,18 +34,18 @@ export default function MatchmakingModal({ mode, language, queueStats, onCancel 
           <div className="search-ring ring-2"></div>
           <div className="search-ring ring-3"></div>
           <div className="search-center">
-            <span className="search-icon">{mode === 'duel' ? '⚔️' : '🤝'}</span>
+            <span className="search-icon">{mode.startsWith('duel') ? '⚔️' : '🤝'}</span>
           </div>
         </div>
 
         <h2 className="matchmaking-title">
-          {mode === 'duel' ? 'Finding Opponent' : 'Finding Partner'}{dots}
+          {mode.startsWith('duel') ? 'Finding Opponent' : 'Finding Partner'}{dots}
         </h2>
 
         <div className="matchmaking-info">
           <div className="matchmaking-detail">
             <span className="detail-label">Mode</span>
-            <span className="detail-value">{mode === 'duel' ? '⚔️ Duel' : '🤝 Collab'}</span>
+            <span className="detail-value">{mode.startsWith('duel') ? '⚔️ Duel' : '🤝 Collab'}</span>
           </div>
           <div className="matchmaking-detail">
             <span className="detail-label">Language</span>
@@ -53,7 +53,7 @@ export default function MatchmakingModal({ mode, language, queueStats, onCancel 
           </div>
           <div className="matchmaking-detail">
             <span className="detail-label">In Queue</span>
-            <span className="detail-value">{mode === 'duel' ? queueStats.duel : queueStats.collab}</span>
+            <span className="detail-value">{mode.startsWith('duel') ? queueStats.duel : queueStats.collab}</span>
           </div>
           <div className="matchmaking-detail">
             <span className="detail-label">Time</span>

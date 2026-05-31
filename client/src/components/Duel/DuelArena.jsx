@@ -8,6 +8,16 @@ import DuelTimer from './DuelTimer';
 import DuelResults from './DuelResults';
 import TestResultsPanel from './TestResultsPanel';
 import Editor from '@monaco-editor/react';
+import { getGenericStarterCode } from '../../utils/starterCode';
+
+const LANGUAGES = [
+  { value: 'javascript', label: 'JavaScript' },
+  { value: 'python', label: 'Python' },
+  { value: 'cpp', label: 'C++' },
+  { value: 'typescript', label: 'TypeScript' },
+  { value: 'go', label: 'Go' },
+  { value: 'c', label: 'C' },
+];
 
 const LANGUAGE_MAP = {
   javascript: 'javascript',
@@ -26,10 +36,7 @@ export default function DuelArena() {
     isConnected,
     duelState,
     countdown,
-    problem,
-    starterCode,
-    visibleTestCases,
-    totalTestCases,
+    problems,
     duration,
     remainingTime,
     submissionResult,
@@ -47,18 +54,78 @@ export default function DuelArena() {
   // Voice chat
   const voiceChat = useVoiceChat(wsRef?.current, user?.id);
 
-  const [code, setCode] = useState('');
+  const [language, setLanguage] = useState('javascript');
+  const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
+  const [codes, setCodes] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [activeTab, setActiveTab] = useState('problem'); // 'problem' | 'results'
   const editorRef = useRef(null);
 
-  // Set initial code from starter
+  // Load from local storage on mount
   useEffect(() => {
-    if (starterCode && !code) {
-      setCode(starterCode);
+    if (!duelId) return;
+    const saved = localStorage.getItem(`codesync-duel-${duelId}`);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.codes) {
+          // Check for backwards compatibility
+          const isOldFormat = Object.values(parsed.codes).some(val => typeof val === 'string');
+          if (isOldFormat) {
+            const migrated = {};
+            for (const key in parsed.codes) {
+              migrated[key] = { [parsed.language || 'javascript']: parsed.codes[key] };
+            }
+            setCodes(migrated);
+          } else {
+            setCodes(parsed.codes);
+          }
+        }
+        if (parsed.language) setLanguage(parsed.language);
+      } catch (e) {
+        console.error('Failed to parse saved code:', e);
+      }
     }
-  }, [starterCode]);
+  }, [duelId]);
+
+  // Save to local storage on change
+  useEffect(() => {
+    if (!duelId) return;
+    localStorage.setItem(`codesync-duel-${duelId}`, JSON.stringify({ codes, language }));
+  }, [codes, language, duelId]);
+
+  // Populate starter code if empty when problems arrive or language changes
+  useEffect(() => {
+    if (problems && problems.length > 0) {
+      setCodes(prev => {
+        const next = { ...prev };
+        let changed = false;
+        
+        // List of all possible default templates to check if the user hasn't edited them
+        const allTemplates = LANGUAGES.map(l => getGenericStarterCode(l.value));
+
+        for (let i = 0; i < problems.length; i++) {
+          if (!next[i]) next[i] = {};
+          if (next[i][language] === undefined || allTemplates.includes(next[i][language])) {
+            next[i][language] = getGenericStarterCode(language);
+            changed = true;
+          }
+        }
+        return changed ? next : prev;
+      });
+    }
+  }, [problems, language]);
+
+  const handleCodeChange = (value) => {
+    setCodes(prev => ({
+      ...prev,
+      [currentProblemIndex]: {
+        ...(prev[currentProblemIndex] || {}),
+        [language]: value || ''
+      }
+    }));
+  };
 
   // Reset submitting/running state when we get a result
   useEffect(() => {
@@ -81,16 +148,18 @@ export default function DuelArena() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    if (!code.trim() || isSubmitting || isRunning) return;
+    const currentCode = codes[currentProblemIndex]?.[language] || '';
+    if (!currentCode.trim() || isSubmitting || isRunning) return;
     setIsSubmitting(true);
-    submitCode(code);
-  }, [code, isSubmitting, isRunning, submitCode]);
+    submitCode(currentCode, language, currentProblemIndex);
+  }, [codes, currentProblemIndex, language, isSubmitting, isRunning, submitCode]);
 
   const handleRun = useCallback(() => {
-    if (!code.trim() || isSubmitting || isRunning) return;
+    const currentCode = codes[currentProblemIndex]?.[language] || '';
+    if (!currentCode.trim() || isSubmitting || isRunning) return;
     setIsRunning(true);
-    runCode(code);
-  }, [code, isSubmitting, isRunning, runCode]);
+    runCode(currentCode, language, currentProblemIndex);
+  }, [codes, currentProblemIndex, language, isSubmitting, isRunning, runCode]);
 
   const handleForfeit = useCallback(() => {
     if (window.confirm('Are you sure you want to forfeit? Your opponent will win.')) {
@@ -98,7 +167,7 @@ export default function DuelArena() {
     }
   }, [forfeit]);
 
-  const monacoLanguage = LANGUAGE_MAP[duelState?.language] || 'javascript';
+  const monacoLanguage = LANGUAGE_MAP[language] || 'javascript';
 
   // Determine which player we are and who the opponent is
   const isPlayer1 = duelState?.player1?.userId === user?.id;
@@ -137,12 +206,12 @@ export default function DuelArena() {
   }
 
   // Loading state
-  if (!problem && !duelResult) {
+  if ((!problems || problems.length === 0) && !duelResult) {
     return (
       <div className="duel-loading">
         <div className="duel-loading-spinner"></div>
         <h2>Preparing your duel...</h2>
-        <p>Generating a challenge{duelState?.language ? ` in ${duelState.language}` : ''}...</p>
+        <p>Waiting for the arena to open...</p>
         {error && <p className="duel-error">{error}</p>}
       </div>
     );
@@ -165,8 +234,22 @@ export default function DuelArena() {
       {/* Top Bar */}
       <header className="duel-header">
         <div className="duel-header-left">
-          <span className="duel-badge">⚔️ DUEL</span>
-          <span className="duel-language-badge">{duelState?.language}</span>
+          <span className="duel-badge">⚔️ {duelState?.formatMode === 'duel-3q' ? '3-Q MATCH' : '1-Q MATCH'}</span>
+          <select
+            className="duel-language-select"
+            value={language}
+            onChange={(e) => {
+              // Warn if changing language might reset things
+              if (window.confirm("Changing language will only reset unedited default templates. Proceed?")) {
+                setLanguage(e.target.value);
+              }
+            }}
+            style={{ marginLeft: '12px', padding: '4px 8px', borderRadius: '4px', background: 'var(--bg-secondary)', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }}
+          >
+            {LANGUAGES.map(lang => (
+              <option key={lang.value} value={lang.value}>{lang.label}</option>
+            ))}
+          </select>
         </div>
 
         <DuelTimer
@@ -242,11 +325,35 @@ export default function DuelArena() {
 
           <div className="duel-panel-content">
             {activeTab === 'problem' ? (
-              <ProblemPanel
-                problem={problem}
-                visibleTestCases={visibleTestCases}
-                totalTestCases={totalTestCases}
-              />
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                {problems && problems.length > 1 && (
+                  <div className="problem-tabs" style={{ display: 'flex', borderBottom: '1px solid var(--border-color)', marginBottom: '10px' }}>
+                    {problems.map((p, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentProblemIndex(idx)}
+                        style={{
+                          padding: '8px 16px',
+                          background: currentProblemIndex === idx ? 'var(--accent-primary)' : 'transparent',
+                          color: currentProblemIndex === idx ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        Q{idx + 1}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {problems && problems[currentProblemIndex] && (
+                  <ProblemPanel
+                    problem={problems[currentProblemIndex]}
+                    visibleTestCases={problems[currentProblemIndex].visibleTestCases || []}
+                    totalTestCases={problems[currentProblemIndex].totalTestCases || 0}
+                  />
+                )}
+              </div>
             ) : (
               <TestResultsPanel result={submissionResult || runResult} />
             )}
@@ -261,14 +368,14 @@ export default function DuelArena() {
               <button
                 className="duel-run-btn"
                 onClick={handleRun}
-                disabled={isSubmitting || isRunning || !code.trim()}
+                disabled={isSubmitting || isRunning || !(codes[currentProblemIndex]?.[language] || '').trim()}
                 style={{
                   padding: '6px 12px',
                   background: 'var(--bg-secondary)',
                   color: 'var(--text-secondary)',
                   border: '1px solid var(--border-color)',
                   borderRadius: '4px',
-                  cursor: (isSubmitting || isRunning || !code.trim()) ? 'not-allowed' : 'pointer',
+                  cursor: (isSubmitting || isRunning || !(codes[currentProblemIndex]?.[language] || '').trim()) ? 'not-allowed' : 'pointer',
                   marginRight: '8px'
                 }}
               >
@@ -277,7 +384,7 @@ export default function DuelArena() {
               <button
                 className="duel-submit-btn"
                 onClick={handleSubmit}
-                disabled={isSubmitting || isRunning || !code.trim()}
+                disabled={isSubmitting || isRunning || !(codes[currentProblemIndex]?.[language] || '').trim()}
               >
                 {isSubmitting ? '⏳ Submitting...' : '🚀 Submit'}
               </button>
@@ -291,8 +398,8 @@ export default function DuelArena() {
             <Editor
               height="100%"
               language={monacoLanguage}
-              value={code}
-              onChange={(value) => setCode(value || '')}
+              value={codes[currentProblemIndex]?.[language] || ''}
+              onChange={handleCodeChange}
               onMount={handleEditorMount}
               theme="vs-dark"
               options={{

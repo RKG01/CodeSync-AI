@@ -22,12 +22,15 @@ async function getTransporter() {
     // Production SMTP
     transporter = nodemailer.createTransport({
       host: env.SMTP_HOST,
-      port: env.SMTP_PORT,
-      secure: env.SMTP_PORT === 465,
+      port: Number(env.SMTP_PORT),
+      secure: Number(env.SMTP_PORT) === 465,
       auth: {
         user: env.SMTP_USER,
         pass: env.SMTP_PASS,
       },
+      connectionTimeout: 10000, // Fail fast if blocked
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
     console.log('📧 Email service: Using configured SMTP server');
   } else {

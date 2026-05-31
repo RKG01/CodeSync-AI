@@ -42,7 +42,7 @@ export default function SignupPage() {
       setError('Password does not meet all requirements');
       return;
     }
-    if (password !== confirmPassword) {
+    if (password.trim() !== confirmPassword.trim()) {
       setError('Passwords do not match');
       return;
     }

@@ -365,25 +365,191 @@
 .test-result-value { background: var(--bg-secondary); padding: 8px; font-family: var(--font-mono); border: 1px solid var(--border-primary); }
 .test-result-value.mismatch { border-color: var(--accent-red); color: var(--accent-red); background: rgba(255,0,0,0.05); }
 
-/* Duel Results Overlay */
-.duel-results-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000; display: flex; align-items: center; justify-content: center; }
-.results-banner-text { font-size: 4.5rem; font-weight: 900; letter-spacing: 10px; text-shadow: 0 0 50px currentColor; text-transform: uppercase; margin-bottom: 1rem; }
-.victory { color: #00ff66; }
-.defeat { color: var(--accent-red); }
-.draw { color: var(--text-secondary); }
-.results-players.stacked { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1rem; }
-.results-vs-vertical { font-size: 2rem; font-weight: 900; color: var(--text-muted); letter-spacing: 2px; }
-.results-player-card { background: var(--bg-secondary); border: 4px solid var(--border-primary); padding: 1.5rem 3rem; width: 450px; text-align: center; }
-.results-player-card.winner { border-color: #00ff66; box-shadow: 0 0 50px rgba(0,255,102,0.2); transform: scale(1.05); z-index: 2; }
-.results-player-card.loser { border-color: var(--accent-red); opacity: 0.8; filter: grayscale(0.2); box-shadow: 0 0 30px rgba(255,0,0,0.2); transform: scale(0.95); z-index: 1; }
-.player-card-name { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin: 10px 0; }
-.player-card-elo { background: var(--bg-primary); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
-.elo-change-row { font-size: 1.5rem; font-weight: 900; }
-.elo-delta.positive { color: #00ff66; }
-.elo-delta.negative { color: var(--accent-red); }
-.results-actions { margin-top: 2rem; }
-.results-action-btn.primary { background: var(--accent-red); border: none; font-weight: 900; letter-spacing: 2px; padding: 15px 40px; text-transform: uppercase; box-shadow: 0 0 20px rgba(255,0,0,0.4); }
-.results-action-btn.primary:hover { background: #ff4d4d; box-shadow: 0 0 40px rgba(255,0,0,0.6); }
+/* Duel Results Overlay - Professional UI */
+.duel-results-overlay { 
+  position: fixed; 
+  inset: 0; 
+  background: rgba(10, 10, 15, 0.85); 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 4000; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.duel-results-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 800px;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.results-banner-text { 
+  font-size: 3.5rem; 
+  font-weight: 800; 
+  letter-spacing: 6px; 
+  text-transform: uppercase; 
+  margin: 0;
+  text-align: center;
+}
+.victory { color: #10b981; text-shadow: 0 0 40px rgba(16, 185, 129, 0.4); }
+.defeat { color: #ef4444; text-shadow: 0 0 40px rgba(239, 68, 68, 0.4); }
+.draw { color: #94a3b8; text-shadow: 0 0 40px rgba(148, 163, 184, 0.4); }
+
+.results-players.stacked { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 1.5rem; 
+  width: 100%;
+}
+
+.results-vs-vertical { 
+  font-size: 1.25rem; 
+  font-weight: 700; 
+  color: rgba(255, 255, 255, 0.3); 
+  letter-spacing: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.results-player-card { 
+  background: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  border-radius: 16px;
+  padding: 1.5rem 2.5rem; 
+  width: 100%;
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.results-player-card.winner { 
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.3); 
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
+  transform: scale(1.02);
+}
+
+.results-player-card.loser { 
+  opacity: 0.7; 
+}
+
+.player-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.player-card-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.player-card-name { 
+  font-size: 1.75rem; 
+  font-weight: 700; 
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-card-score {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.player-card-elo { 
+  background: rgba(0, 0, 0, 0.2); 
+  border-radius: 12px;
+  padding: 1rem 1.25rem; 
+  display: flex; 
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.elo-change-row { 
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.elo-arrow { color: var(--text-muted); }
+
+.elo-delta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.elo-delta.positive { color: #10b981; background: rgba(16, 185, 129, 0.1); }
+.elo-delta.negative { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+
+.results-actions { 
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem; 
+}
+
+.results-action-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.results-action-btn.primary { 
+  background: var(--accent-blue); 
+  color: white;
+  border: none; 
+}
+
+.results-action-btn.primary:hover { 
+  background: #2563eb; 
+  transform: translateY(-2px);
+}
+
+.results-action-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+}
+
+.results-action-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
 
 /* Profile Page */
 .profile-page { background: var(--bg-primary); }

@@ -60,22 +60,25 @@ function broadcastToDuel(duel, payload) {
  * Creates and initializes a new duel between two matched players.
  * @param {Object} p1 - { userId, username, elo, ws }
  * @param {Object} p2 - { userId, username, elo, ws }
- * @param {string} language - Programming language for the duel.
+ * @param {string} formatMode - 'duel-1q' or 'duel-3q'.
  * @param {string} [difficulty='medium'] - Problem difficulty.
  * @returns {Promise<string>} The duel ID.
  */
-export async function createDuel(p1, p2, language, difficulty = 'medium') {
+export async function createDuel(p1, p2, formatMode, difficulty = 'medium') {
   const duelId = uuidv4();
+
+  const is3q = formatMode === 'duel-3q';
+  const duration = is3q ? 1800 : 600; // 30 mins or 10 mins
 
   const duelState = {
     duelId,
     player1: { ...p1 },
     player2: { ...p2 },
-    problem: null,
-    language,
+    problems: [], // Array of problems
+    formatMode,
     difficulty,
     startTime: null,
-    duration: DEFAULT_DURATION,
+    duration: duration,
     timer: null,
     tickInterval: null,
     bestSubmission: new Map(),
@@ -89,8 +92,7 @@ export async function createDuel(p1, p2, language, difficulty = 'medium') {
     type: 'match:found',
     data: {
       duelId,
-      mode: 'duel',
-      language,
+      mode: formatMode,
       difficulty,
     },
   };
@@ -111,23 +113,24 @@ export async function createDuel(p1, p2, language, difficulty = 'medium') {
     },
   });
 
-  // Generate problem asynchronously
-  console.log(`⚔️ Duel ${duelId}: Generating ${difficulty} problem in ${language}...`);
+  // Generate problems asynchronously
+  console.log(`⚔️ Duel ${duelId}: Generating ${is3q ? 3 : 1} ${difficulty} problem(s)...`);
 
   try {
-    const problem = await generateProblem(language, difficulty);
-    duelState.problem = problem;
+    const count = is3q ? 3 : 1;
+    const problems = await generateProblem(count, difficulty);
+    duelState.problems = problems;
 
-    // Create DB record
+    // Create DB record (serialize problems array into test_cases to avoid schema changes)
     await Duel.create({
       player1Id: p1.userId,
       player2Id: p2.userId,
-      language,
+      language: 'agnostic',
       difficulty,
-      problemTitle: problem.title,
-      problemDescription: problem.description,
-      testCases: problem.testCases,
-      durationSeconds: DEFAULT_DURATION,
+      problemTitle: is3q ? '3-Question Duel' : problems[0].title,
+      problemDescription: is3q ? 'Complete 3 questions to win.' : problems[0].description,
+      testCases: problems, // Hack: Storing full array here for DB compatibility
+      durationSeconds: duration,
     });
 
     // Start countdown
@@ -183,20 +186,19 @@ function startDuel(duel) {
 
   console.log(`⚔️ Duel ${duel.duelId}: STARTED! (${duel.duration}s)`);
 
-  // Send problem to both players — only show first 2 test cases (visible)
-  const visibleTestCases = duel.problem.testCases.slice(0, 2);
+  // Send problems to both players — only show first 2 test cases (visible)
+  const safeProblems = duel.problems.map(p => ({
+    title: p.title,
+    description: p.description,
+    visibleTestCases: p.testCases.slice(0, 2),
+    totalTestCases: p.testCases.length
+  }));
 
   broadcastToDuel(duel, {
     type: 'duel:start',
     data: {
       duelId: duel.duelId,
-      problem: {
-        title: duel.problem.title,
-        description: duel.problem.description,
-      },
-      starterCode: duel.problem.starterCode,
-      visibleTestCases,
-      totalTestCases: duel.problem.testCases.length,
+      problems: safeProblems,
       duration: duel.duration,
     },
   });
@@ -228,9 +230,11 @@ function startDuel(duel) {
  * @param {string} duelId - The duel ID.
  * @param {string} userId - The submitting user's ID.
  * @param {string} code - The submitted code.
+ * @param {string} language - The programming language used.
+ * @param {number} problemIndex - The index of the problem being solved.
  * @returns {Promise<void>}
  */
-export async function handleSubmission(duelId, userId, code) {
+export async function handleSubmission(duelId, userId, code, language, problemIndex = 0) {
   const duel = activeDuels.get(duelId);
   if (!duel || duel.status !== 'active') return;
 
@@ -238,10 +242,13 @@ export async function handleSubmission(duelId, userId, code) {
   const player = isPlayer1 ? duel.player1 : duel.player2;
   const opponent = isPlayer1 ? duel.player2 : duel.player1;
 
-  console.log(`⚔️ Duel ${duelId}: ${player.username} submitted code`);
+  console.log(`⚔️ Duel ${duelId}: ${player.username} submitted code for problem ${problemIndex + 1} in ${language}`);
 
-  // Validate the solution against ALL test cases
-  const result = await validateSolution(code, duel.language, duel.problem.testCases);
+  const problem = duel.problems[problemIndex];
+  if (!problem) return;
+
+  // Validate the solution against ALL test cases for this specific problem
+  const result = await validateSolution(code, language, problem.testCases);
 
   // Record in DB
   try {
@@ -259,14 +266,28 @@ export async function handleSubmission(duelId, userId, code) {
     console.error('Failed to store submission:', err.message);
   }
 
-  // Track best submission
-  const prev = duel.bestSubmission.get(userId);
+  // Track best submission per problem
+  if (!duel.bestSubmission.has(userId)) {
+    duel.bestSubmission.set(userId, { problems: [] });
+  }
+  const userSubmissions = duel.bestSubmission.get(userId);
+  const prev = userSubmissions.problems[problemIndex];
+
   if (!prev || result.passed > prev.passed) {
-    duel.bestSubmission.set(userId, {
+    userSubmissions.problems[problemIndex] = {
       passed: result.passed,
       total: result.total,
       code,
-    });
+    };
+  }
+
+  // Calculate total score across all problems
+  let totalTestsPassed = 0;
+  let overallTotalTests = 0;
+  for (let i = 0; i < duel.problems.length; i++) {
+    const sub = userSubmissions.problems[i];
+    totalTestsPassed += sub ? sub.passed : 0;
+    overallTotalTests += duel.problems[i].testCases.length;
   }
 
   // Send result back to the submitter (with full details)
@@ -291,15 +312,16 @@ export async function handleSubmission(duelId, userId, code) {
   safeSend(opponent.ws, {
     type: 'duel:opponent_progress',
     data: {
-      testsPassed: result.passed,
-      totalTests: result.total,
+      testsPassed: totalTestsPassed,
+      totalTests: overallTotalTests,
       username: player.username,
+      problemIndex,
     },
   });
 
-  // Check if all tests passed → instant win
-  if (result.passed === result.total) {
-    console.log(`⚔️ Duel ${duelId}: ${player.username} solved all test cases! 🎉`);
+  // Check if ALL tests for ALL problems passed → instant win
+  if (totalTestsPassed === overallTotalTests) {
+    console.log(`⚔️ Duel ${duelId}: ${player.username} solved everything! 🎉`);
     await completeDuel(duelId, userId);
   }
 }
@@ -309,20 +331,25 @@ export async function handleSubmission(duelId, userId, code) {
  * @param {string} duelId - The duel ID.
  * @param {string} userId - The running user's ID.
  * @param {string} code - The code to run.
+ * @param {string} language - The programming language used.
+ * @param {number} problemIndex - The index of the problem being solved.
  * @returns {Promise<void>}
  */
-export async function handleRun(duelId, userId, code) {
+export async function handleRun(duelId, userId, code, language, problemIndex = 0) {
   const duel = activeDuels.get(duelId);
   if (!duel || duel.status !== 'active') return;
 
   const isPlayer1 = duel.player1.userId === userId;
   const player = isPlayer1 ? duel.player1 : duel.player2;
 
-  console.log(`⚔️ Duel ${duelId}: ${player.username} is running code`);
+  console.log(`⚔️ Duel ${duelId}: ${player.username} is running code on prob ${problemIndex + 1} in ${language}`);
+
+  const problem = duel.problems[problemIndex];
+  if (!problem) return;
 
   // Validate the solution against ONLY the visible test cases
-  const visibleTestCases = duel.problem.testCases.slice(0, 2);
-  const result = await validateSolution(code, duel.language, visibleTestCases);
+  const visibleTestCases = problem.testCases.slice(0, 2);
+  const result = await validateSolution(code, language, visibleTestCases);
 
   // Send result back ONLY to the player who ran it
   safeSend(player.ws, {
@@ -345,11 +372,11 @@ async function handleTimeout(duelId) {
 
   console.log(`⚔️ Duel ${duelId}: TIME'S UP!`);
 
-  const p1Best = duel.bestSubmission.get(duel.player1.userId);
-  const p2Best = duel.bestSubmission.get(duel.player2.userId);
+  const p1Subs = duel.bestSubmission.get(duel.player1.userId)?.problems || [];
+  const p2Subs = duel.bestSubmission.get(duel.player2.userId)?.problems || [];
 
-  const p1Score = p1Best?.passed || 0;
-  const p2Score = p2Best?.passed || 0;
+  const p1Score = p1Subs.reduce((sum, p) => sum + (p ? p.passed : 0), 0);
+  const p2Score = p2Subs.reduce((sum, p) => sum + (p ? p.passed : 0), 0);
 
   let winnerId = null;
   if (p1Score > p2Score) {
@@ -427,8 +454,11 @@ async function completeDuel(duelId, winnerId) {
     console.error('Failed to complete duel record:', err.message);
   }
 
-  const p1Best = duel.bestSubmission.get(duel.player1.userId);
-  const p2Best = duel.bestSubmission.get(duel.player2.userId);
+  const p1Subs = duel.bestSubmission.get(duel.player1.userId)?.problems || [];
+  const p2Subs = duel.bestSubmission.get(duel.player2.userId)?.problems || [];
+  const p1Score = p1Subs.reduce((sum, p) => sum + (p ? p.passed : 0), 0);
+  const p2Score = p2Subs.reduce((sum, p) => sum + (p ? p.passed : 0), 0);
+  const totalScore = duel.problems.reduce((sum, p) => sum + p.testCases.length, 0);
 
   const winnerUsername = winnerId
     ? winnerId === duel.player1.userId
@@ -450,8 +480,8 @@ async function completeDuel(duelId, winnerId) {
         newElo: duel.player1.elo + eloChangeP1,
         eloChange: eloChangeP1,
         newRank: getRank(duel.player1.elo + eloChangeP1),
-        testsPassed: p1Best?.passed || 0,
-        totalTests: p1Best?.total || duel.problem.testCases.length,
+        testsPassed: p1Score,
+        totalTests: totalScore,
       },
       player2: {
         userId: duel.player2.userId,
@@ -460,8 +490,8 @@ async function completeDuel(duelId, winnerId) {
         newElo: duel.player2.elo + eloChangeP2,
         eloChange: eloChangeP2,
         newRank: getRank(duel.player2.elo + eloChangeP2),
-        testsPassed: p2Best?.passed || 0,
-        totalTests: p2Best?.total || duel.problem.testCases.length,
+        testsPassed: p2Score,
+        totalTests: totalScore,
       },
     },
   };
@@ -566,9 +596,13 @@ export function attachPlayerWs(duelId, userId, ws) {
   return false;
 }
 
+export const handleForfeit = handleDisconnect;
+
 export default {
   createDuel,
   handleSubmission,
+  handleRun,
+  handleForfeit,
   handleDisconnect,
   getActiveDuel,
   attachPlayerWs,

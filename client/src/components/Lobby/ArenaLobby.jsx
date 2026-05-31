@@ -4,13 +4,9 @@ import { useMatchmaking } from '../../hooks/useMatchmaking';
 import { getLeaderboard, getMyStats } from '../../services/duelService';
 import MatchmakingModal from './MatchmakingModal';
 
-const LANGUAGES = [
-  { value: 'javascript', label: 'JavaScript', icon: '🟨' },
-  { value: 'python', label: 'Python', icon: '🐍' },
-  { value: 'cpp', label: 'C++', icon: '⚙️' },
-  { value: 'typescript', label: 'TypeScript', icon: '🔷' },
-  { value: 'go', label: 'Go', icon: '🐹' },
-  { value: 'c', label: 'C', icon: '🔧' },
+const FORMATS = [
+  { value: '1q', label: '1 Question (10 mins)', icon: '⚡' },
+  { value: '3q', label: '3 Questions (30 mins)', icon: '🔥' },
 ];
 
 export default function ArenaLobby() {
@@ -25,7 +21,7 @@ export default function ArenaLobby() {
     error: wsError,
   } = useMatchmaking();
 
-  const [selectedLanguage, setSelectedLanguage] = useState('javascript');
+  const [selectedFormat, setSelectedFormat] = useState('1q');
   const [stats, setStats] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +34,7 @@ export default function ArenaLobby() {
 
   // Handle match found — redirect to duel
   useEffect(() => {
-    if (matchFound && matchFound.mode === 'duel' && matchFound.duelId) {
+    if (matchFound && matchFound.mode.startsWith('duel') && matchFound.duelId) {
       setShowModal(false);
       navigate(`/duel/${matchFound.duelId}`);
     }
@@ -46,7 +42,7 @@ export default function ArenaLobby() {
 
   const handleFindMatch = () => {
     setShowModal(true);
-    joinQueue('duel', selectedLanguage);
+    joinQueue(`duel-${selectedFormat}`, 'agnostic'); // Language is now agnostic, passed format in mode
   };
 
   const handleCancelSearch = () => {
@@ -96,18 +92,18 @@ export default function ArenaLobby() {
           </div>
         </section>
 
-        {/* Language Selection */}
+        {/* Format Selection */}
         <section className="arena-section">
-          <h2 className="arena-section-title">Weapon of Choice</h2>
+          <h2 className="arena-section-title">Match Format</h2>
           <div className="arena-language-grid">
-            {LANGUAGES.map((lang) => (
+            {FORMATS.map((fmt) => (
               <button
-                key={lang.value}
-                className={`arena-lang-chip ${selectedLanguage === lang.value ? 'selected' : ''}`}
-                onClick={() => setSelectedLanguage(lang.value)}
+                key={fmt.value}
+                className={`arena-lang-chip ${selectedFormat === fmt.value ? 'selected' : ''}`}
+                onClick={() => setSelectedFormat(fmt.value)}
               >
-                <span className="lang-chip-icon">{lang.icon}</span>
-                {lang.label}
+                <span className="lang-chip-icon">{fmt.icon}</span>
+                {fmt.label}
               </button>
             ))}
           </div>
@@ -155,8 +151,8 @@ export default function ArenaLobby() {
       {/* Matchmaking Modal */}
       {showModal && (
         <MatchmakingModal
-          mode="duel"
-          language={selectedLanguage}
+          mode={`duel-${selectedFormat}`}
+          language="Agnostic"
           queueStats={queueStats}
           onCancel={handleCancelSearch}
           isBloodTheme={true}

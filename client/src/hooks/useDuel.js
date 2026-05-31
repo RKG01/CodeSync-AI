@@ -15,8 +15,7 @@ const WS_BASE = import.meta.env.VITE_WS_URL || `ws://localhost:4000`;
  *   isConnected: boolean,
  *   duelState: Object|null,
  *   countdown: number|null,
- *   problem: Object|null,
- *   starterCode: string,
+ *   problems: Array|null,
  *   remainingTime: number|null,
  *   submissionResult: Object|null,
  *   opponentProgress: Object|null,
@@ -33,10 +32,7 @@ export function useDuel(duelId) {
   const [isConnected, setIsConnected] = useState(false);
   const [duelState, setDuelState] = useState(null);
   const [countdown, setCountdown] = useState(null);
-  const [problem, setProblem] = useState(null);
-  const [starterCode, setStarterCode] = useState('');
-  const [visibleTestCases, setVisibleTestCases] = useState([]);
-  const [totalTestCases, setTotalTestCases] = useState(0);
+  const [problems, setProblems] = useState([]);
   const [duration, setDuration] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
@@ -64,6 +60,11 @@ export function useDuel(duelId) {
         switch (payload.type) {
           case 'duel:state':
             setDuelState(payload.data);
+            if (payload.data.problems) {
+              setProblems(payload.data.problems);
+              setDuration(payload.data.duration);
+              setRemainingTime(payload.data.duration); // Server sends actual time in duel:timer
+            }
             break;
 
           case 'duel:countdown':
@@ -72,10 +73,7 @@ export function useDuel(duelId) {
 
           case 'duel:start':
             setCountdown(null);
-            setProblem(payload.data.problem);
-            setStarterCode(payload.data.starterCode);
-            setVisibleTestCases(payload.data.visibleTestCases || []);
-            setTotalTestCases(payload.data.totalTestCases || 0);
+            setProblems(payload.data.problems || []);
             setDuration(payload.data.duration);
             setRemainingTime(payload.data.duration);
             break;
@@ -137,22 +135,22 @@ export function useDuel(duelId) {
     };
   }, [duelId, token]);
 
-  const submitCode = useCallback((code) => {
+  const submitCode = useCallback((code, language, problemIndex = 0) => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       setSubmissionResult(null); // Clear previous result
       wsRef.current.send(JSON.stringify({
         type: 'duel:submit',
-        data: { code },
+        data: { code, language, problemIndex },
       }));
     }
   }, []);
 
-  const runCode = useCallback((code) => {
+  const runCode = useCallback((code, language, problemIndex = 0) => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       setRunResult(null); // Clear previous result
       wsRef.current.send(JSON.stringify({
         type: 'duel:run',
-        data: { code },
+        data: { code, language, problemIndex },
       }));
     }
   }, []);
@@ -167,10 +165,7 @@ export function useDuel(duelId) {
     isConnected,
     duelState,
     countdown,
-    problem,
-    starterCode,
-    visibleTestCases,
-    totalTestCases,
+    problems,
     duration,
     remainingTime,
     submissionResult,
