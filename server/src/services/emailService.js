@@ -48,39 +48,42 @@ function buildOtpHtml(otp, username) {
 }
 
 /**
- * Sends OTP email via Resend HTTP API (works on all cloud providers).
+ * Sends OTP email via Brevo HTTP API (works on all cloud providers, sends to any email).
  * @param {string} to - Recipient email address.
  * @param {string} otp - The 6-digit OTP code.
  * @param {string} username - The user's chosen username.
  * @returns {Promise<{success: boolean}>}
  */
-async function sendViaResend(to, otp, username) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const fromAddress = process.env.RESEND_FROM || 'CodeSync AI <onboarding@resend.dev>';
+async function sendViaBrevo(to, otp, username) {
+  const apiKey = process.env.BREVO_API_KEY;
+  // Brevo requires the sender email to be the one you verified on their platform
+  const fromEmail = process.env.BREVO_SENDER_EMAIL || 'harshitraj1593@gmail.com';
+  const fromName = 'CodeSync AI';
 
-  const response = await fetch('https://api.resend.com/emails', {
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      'api-key': apiKey,
       'Content-Type': 'application/json',
+      'Accept': 'application/json'
     },
     body: JSON.stringify({
-      from: fromAddress,
-      to: [to],
+      sender: { name: fromName, email: fromEmail },
+      to: [{ email: to }],
       subject: `${otp} — Your CodeSync AI Verification Code`,
-      html: buildOtpHtml(otp, username),
-      text: `Your CodeSync AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
+      htmlContent: buildOtpHtml(otp, username),
+      textContent: `Your CodeSync AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
     }),
   });
 
   if (!response.ok) {
     const errBody = await response.json().catch(() => ({}));
-    console.error('📧 Resend API error:', errBody);
+    console.error('📧 Brevo API error:', errBody);
     throw new Error(errBody.message || `Email API returned status ${response.status}`);
   }
 
   const data = await response.json();
-  console.log(`📧 OTP email sent via Resend (id: ${data.id})`);
+  console.log(`📧 OTP email sent via Brevo (messageId: ${data.messageId})`);
   return { success: true };
 }
 
@@ -136,16 +139,16 @@ async function sendViaNodemailer(to, otp, username) {
 
 /**
  * Sends an OTP verification email.
- * Automatically chooses Resend API (production) or nodemailer (local dev).
+ * Automatically chooses Brevo API (production) or nodemailer (local dev).
  * @param {string} to - Recipient email address.
  * @param {string} otp - The 6-digit OTP code.
  * @param {string} username - The user's chosen username (for personalization).
  * @returns {Promise<{success: boolean, previewUrl?: string}>}
  */
 export async function sendOtpEmail(to, otp, username) {
-  // Use Resend HTTP API if the key is configured (recommended for cloud deployments)
-  if (process.env.RESEND_API_KEY) {
-    return sendViaResend(to, otp, username);
+  // Use Brevo HTTP API if the key is configured (recommended for cloud deployments)
+  if (process.env.BREVO_API_KEY) {
+    return sendViaBrevo(to, otp, username);
   }
 
   // Otherwise fall back to nodemailer (local development)
