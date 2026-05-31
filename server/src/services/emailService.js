@@ -19,9 +19,23 @@ async function getTransporter() {
   if (transporter) return transporter;
 
   if (env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS) {
+    // Resolve SMTP host to IPv4 to prevent ENETUNREACH on cloud providers without IPv6
+    let resolvedHost = env.SMTP_HOST;
+    try {
+      const dns = await import('node:dns');
+      const dnsPromises = dns.default.promises || dns.promises;
+      const addresses = await dnsPromises.resolve4(env.SMTP_HOST);
+      if (addresses && addresses.length > 0) {
+        resolvedHost = addresses[0];
+        console.log(`📧 Resolved ${env.SMTP_HOST} to IPv4: ${resolvedHost}`);
+      }
+    } catch (dnsErr) {
+      console.warn(`📧 DNS IPv4 resolution failed, using hostname directly: ${dnsErr.message}`);
+    }
+
     // Production SMTP
     transporter = nodemailer.createTransport({
-      host: env.SMTP_HOST,
+      host: resolvedHost,
       port: Number(env.SMTP_PORT),
       secure: Number(env.SMTP_PORT) === 465,
       auth: {
@@ -31,6 +45,7 @@ async function getTransporter() {
       connectionTimeout: 10000, // Fail fast if blocked
       greetingTimeout: 10000,
       socketTimeout: 10000,
+      tls: { servername: env.SMTP_HOST }, // Use original hostname for TLS certificate validation
     });
     console.log('📧 Email service: Using configured SMTP server');
   } else {
