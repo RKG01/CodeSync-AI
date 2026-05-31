@@ -91,13 +91,20 @@ export async function sendOtpEmail(to, otp, username) {
     </div>
   `;
 
-  const info = await transport.sendMail({
+  // Wrap sendMail in a Promise.race to enforce a strict timeout
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error('Email server connection timed out. Please check your SMTP settings or try again later.')), 15000);
+  });
+
+  const sendPromise = transport.sendMail({
     from: env.SMTP_FROM,
     to,
     subject: `${otp} — Your CodeSync AI Verification Code`,
     text: `Your CodeSync AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
     html: htmlContent,
   });
+
+  const info = await Promise.race([sendPromise, timeoutPromise]);
 
   const previewUrl = nodemailer.getTestMessageUrl(info);
   if (previewUrl) {
