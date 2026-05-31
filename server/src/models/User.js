@@ -24,10 +24,10 @@ class User {
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
 
     const result = await query(
-      `INSERT INTO users (username, email, password_hash)
-       VALUES ($1, $2, $3)
+      `INSERT INTO users (username, email, password_hash, elo_rating, matches_played, matches_won, preferred_languages)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING id, username, email, avatar_url, elo_rating, matches_played, matches_won, preferred_languages, created_at, updated_at`,
-      [username, email, passwordHash]
+      [username, email, passwordHash, 1000, 0, 0, JSON.stringify(['javascript'])]
     );
 
     return result.rows[0];
