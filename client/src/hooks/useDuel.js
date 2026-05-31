@@ -182,6 +182,7 @@ export function useDuel(duelId) {
     runCode,
     forfeit,
     error,
+    wsRef, // Exposed for voice chat integration
   };
 }
 

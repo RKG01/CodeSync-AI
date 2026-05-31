@@ -19,6 +19,8 @@ import { useAuth } from '../../hooks/useAuth';
 import useYjs from '../../hooks/useYjs';
 import usePresence from '../../hooks/usePresence';
 import useWebSocket from '../../hooks/useWebSocket';
+import usePresenceWs from '../../hooks/usePresenceWs';
+import useVoiceChat from '../../hooks/useVoiceChat';
 import { getLanguageFromFilename } from '../../utils/helpers';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
@@ -62,6 +64,12 @@ export default function EditorPage() {
 
   // General WebSocket
   const { connected: wsConnected, sendMessage, subscribe } = useWebSocket(token);
+
+  // Presence WebSocket (for voice chat signaling)
+  const { ws: presenceWs } = usePresenceWs(projectId, token);
+
+  // Voice chat
+  const voiceChat = useVoiceChat(presenceWs, user?.id);
 
   const language = getLanguageFromFilename(activeFile?.name || activeFile?.path || '');
 
@@ -297,6 +305,38 @@ export default function EditorPage() {
               )}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1)' }}>
+              {/* Voice Chat Controls */}
+              <div className="voice-chat-controls" style={{ marginRight: 'var(--space-2)' }}>
+                <button
+                  className={`voice-btn ${voiceChat.isActive ? (voiceChat.isMicMuted ? 'muted' : 'active') : ''} ${voiceChat.connectionState === 'connecting' ? 'connecting' : ''}`}
+                  onClick={voiceChat.isActive ? voiceChat.toggleMic : voiceChat.toggleVoice}
+                  title={voiceChat.isActive ? (voiceChat.isMicMuted ? 'Unmute Mic' : 'Mute Mic') : 'Start Voice Chat'}
+                  style={{ width: '28px', height: '28px', fontSize: '14px' }}
+                >
+                  {voiceChat.isActive ? (voiceChat.isMicMuted ? '🔇' : '🎤') : '🎤'}
+                  {voiceChat.isActive && <span className={`voice-status-dot ${voiceChat.connectionState}`} />}
+                </button>
+                {voiceChat.isActive && (
+                  <button
+                    className={`voice-btn ${voiceChat.isRemoteMuted ? 'muted' : ''}`}
+                    onClick={voiceChat.toggleRemoteMute}
+                    title={voiceChat.isRemoteMuted ? 'Unmute Collaborator' : 'Mute Collaborator'}
+                    style={{ width: '28px', height: '28px', fontSize: '14px' }}
+                  >
+                    {voiceChat.isRemoteMuted ? '🔇' : '🔊'}
+                  </button>
+                )}
+                {voiceChat.isActive && (
+                  <button
+                    className="voice-btn muted"
+                    onClick={voiceChat.toggleVoice}
+                    title="Disconnect Voice"
+                    style={{ width: '28px', height: '28px', fontSize: '12px' }}
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
               <button
                 className="btn btn-ghost btn-sm"
                 title="AI Debug (Ctrl+Shift+D)"

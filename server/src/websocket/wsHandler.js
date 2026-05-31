@@ -186,6 +186,23 @@ export function setupWebSocket() {
                 }
               });
             }
+
+            // ── WebRTC Signaling (Collab Voice Chat) ──────────────────────
+            if (payload.type === 'webrtc:offer' || payload.type === 'webrtc:answer' || payload.type === 'webrtc:ice-candidate') {
+              // Relay to all other clients in this presence room
+              wss.clients.forEach((client) => {
+                if (client !== ws && client.readyState === client.OPEN) {
+                  client.send(JSON.stringify({
+                    type: payload.type,
+                    data: {
+                      from: user.id,
+                      fromUsername: user.username,
+                      ...payload.data,
+                    },
+                  }));
+                }
+              });
+            }
           } catch (error) {
             console.error('Presence message error:', error.message);
           }
@@ -358,6 +375,26 @@ export function setupWebSocket() {
                 const winnerId = isP1 ? duel.player2.userId : duel.player1.userId;
                 // Handle as disconnect/forfeit — the other player wins
                 await handleDisconnect(duelId, user.id);
+                break;
+              }
+
+              // ── WebRTC Signaling (Duel Voice Chat) ────────────────────
+              case 'webrtc:offer':
+              case 'webrtc:answer':
+              case 'webrtc:ice-candidate': {
+                // Relay to the opponent in this duel
+                const isP1Sender = duel.player1.userId === user.id;
+                const targetPlayer = isP1Sender ? duel.player2 : duel.player1;
+                if (targetPlayer.ws?.readyState === targetPlayer.ws?.OPEN) {
+                  targetPlayer.ws.send(JSON.stringify({
+                    type: payload.type,
+                    data: {
+                      from: user.id,
+                      fromUsername: user.username,
+                      ...payload.data,
+                    },
+                  }));
+                }
                 break;
               }
 

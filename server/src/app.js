@@ -48,6 +48,28 @@ app.use(morgan(env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// ─── Input Sanitization (XSS Prevention) ─────────────────────────────────────
+function sanitizeValue(val) {
+  if (typeof val === 'string') {
+    return val.replace(/[<>]/g, (c) => ({ '<': '&lt;', '>': '&gt;' }[c]));
+  }
+  if (typeof val === 'object' && val !== null) {
+    for (const key of Object.keys(val)) {
+      val[key] = sanitizeValue(val[key]);
+    }
+  }
+  return val;
+}
+app.use((req, _res, next) => {
+  // Skip sanitization for code/file/AI routes that legitimately contain <> characters
+  const skipPaths = ['/api/code', '/api/files', '/api/ai', '/api/projects'];
+  const shouldSkip = skipPaths.some(p => req.path.startsWith(p));
+  if (!shouldSkip && req.body && typeof req.body === 'object') {
+    sanitizeValue(req.body);
+  }
+  next();
+});
+
 // ─── General Rate Limiter ────────────────────────────────────────────────────
 app.use(generalLimiter);
 

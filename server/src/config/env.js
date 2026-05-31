@@ -38,6 +38,13 @@ const env = {
   CORS_ORIGIN: process.env.CORS_ORIGIN 
     ? process.env.CORS_ORIGIN.split(',').map(url => url.trim()) 
     : 'http://localhost:3000',
+
+  // SMTP config for OTP emails (defaults to Ethereal test service)
+  SMTP_HOST: process.env.SMTP_HOST || '',
+  SMTP_PORT: parseInt(process.env.SMTP_PORT, 10) || 587,
+  SMTP_USER: process.env.SMTP_USER || '',
+  SMTP_PASS: process.env.SMTP_PASS || '',
+  SMTP_FROM: process.env.SMTP_FROM || 'CodeSync AI <noreply@codesync.dev>',
 };
 
 /**

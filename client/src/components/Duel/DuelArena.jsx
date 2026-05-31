@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDuel } from '../../hooks/useDuel';
 import { useAuth } from '../../hooks/useAuth';
+import useVoiceChat from '../../hooks/useVoiceChat';
 import ProblemPanel from './ProblemPanel';
 import DuelTimer from './DuelTimer';
 import DuelResults from './DuelResults';
@@ -40,7 +41,11 @@ export default function DuelArena() {
     runCode,
     forfeit,
     error,
+    wsRef,
   } = useDuel(duelId);
+
+  // Voice chat
+  const voiceChat = useVoiceChat(wsRef?.current, user?.id);
 
   const [code, setCode] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -177,6 +182,35 @@ export default function DuelArena() {
               <span className="opponent-score">
                 {opponentProgress.testsPassed}/{opponentProgress.totalTests} passed
               </span>
+            )}
+          </div>
+          {/* Voice Chat Controls */}
+          <div className="voice-chat-controls">
+            <button
+              className={`voice-btn ${voiceChat.isActive ? (voiceChat.isMicMuted ? 'muted' : 'active') : ''} ${voiceChat.connectionState === 'connecting' ? 'connecting' : ''}`}
+              onClick={voiceChat.isActive ? voiceChat.toggleMic : voiceChat.toggleVoice}
+              title={voiceChat.isActive ? (voiceChat.isMicMuted ? 'Unmute Mic' : 'Mute Mic') : 'Start Voice Chat'}
+            >
+              {voiceChat.isActive ? (voiceChat.isMicMuted ? '🔇' : '🎤') : '🎤'}
+              {voiceChat.isActive && <span className={`voice-status-dot ${voiceChat.connectionState}`} />}
+            </button>
+            {voiceChat.isActive && (
+              <button
+                className={`voice-btn ${voiceChat.isRemoteMuted ? 'muted' : ''}`}
+                onClick={voiceChat.toggleRemoteMute}
+                title={voiceChat.isRemoteMuted ? 'Unmute Opponent' : 'Mute Opponent'}
+              >
+                {voiceChat.isRemoteMuted ? '🔇' : '🔊'}
+              </button>
+            )}
+            {voiceChat.isActive && (
+              <button
+                className="voice-btn muted"
+                onClick={voiceChat.toggleVoice}
+                title="Disconnect Voice"
+              >
+                ✕
+              </button>
             )}
           </div>
         </div>

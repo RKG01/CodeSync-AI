@@ -1,18 +1,25 @@
 /**
  * @module routes/authRoutes
- * @description Authentication routes for register, login, profile, and token refresh.
+ * @description Authentication routes for OTP, register, login, profile, and token refresh.
  */
 
 import { Router } from 'express';
-import { register, login, getMe, refreshToken } from '../controllers/authController.js';
+import { sendOtp, register, login, getMe, refreshToken } from '../controllers/authController.js';
 import { authenticate } from '../middleware/auth.js';
 import { authLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
 
 /**
+ * POST /api/auth/send-otp
+ * Validates registration data and sends a 6-digit OTP to the user's email.
+ * Rate limited by authLimiter.
+ */
+router.post('/send-otp', authLimiter, sendOtp);
+
+/**
  * POST /api/auth/register
- * Registers a new user account.
+ * Verifies the OTP and creates the user account.
  * Rate limited by authLimiter.
  */
 router.post('/register', authLimiter, register);

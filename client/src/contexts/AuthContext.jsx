@@ -53,9 +53,25 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const register = useCallback(async (username, email, password) => {
+  /**
+   * Step 1: Send OTP to the user's email.
+   * Validates username, email, and password on the server before sending.
+   */
+  const sendOtp = useCallback(async (username, email, password) => {
     try {
-      const res = await api.post('/auth/register', { username, email, password }, { silent: true });
+      const res = await api.post('/auth/send-otp', { username, email, password }, { silent: true });
+      return { success: true, message: res.message || 'OTP sent', previewUrl: res.previewUrl };
+    } catch (err) {
+      return { success: false, error: err.message || 'Failed to send OTP' };
+    }
+  }, []);
+
+  /**
+   * Step 2: Verify OTP and complete registration.
+   */
+  const register = useCallback(async (email, otp) => {
+    try {
+      const res = await api.post('/auth/register', { email, otp }, { silent: true });
       const newToken = res.data?.accessToken || res.accessToken || res.token;
       const userData = res.data?.user || res.user || res;
       localStorage.setItem(TOKEN_KEY, newToken);
@@ -86,10 +102,11 @@ export function AuthProvider({ children }) {
       loading,
       isAuthenticated,
       login,
+      sendOtp,
       register,
       logout,
     }),
-    [user, token, loading, isAuthenticated, login, register, logout]
+    [user, token, loading, isAuthenticated, login, sendOtp, register, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

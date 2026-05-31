@@ -7,8 +7,8 @@
       "password_hash": "$2a$10$HI9s7vNszgACeg/L7wtgCO2lNbcwvMkYVgF0KaPjW/CM8oj0xS7uK",
       "avatar_url": null,
       "created_at": "2026-05-21T06:47:32.792Z",
-      "updated_at": "2026-05-30T18:16:19.927Z",
-      "last_active_at": "2026-05-30T18:15:38.815Z",
+      "updated_at": "2026-05-31T08:02:02.852Z",
+      "last_active_at": "2026-05-31T08:02:02.852Z",
       "elo_rating": 1003,
       "matches_played": 0,
       "matches_won": 0,
@@ -131,6 +131,29 @@
       "email": "demoo@gmail.com",
       "password_hash": "$2a$12$pXcbRzFoMURr3xtdcGUfauO/mssuKfJyxEepbTKIOHHFC6sza4lN.",
       "elo_rating": 969
+    },
+    {
+      "id": "764ab0d2-3e36-4072-975f-3f9ff0a7eb2b",
+      "created_at": "2026-05-31T07:58:21.932Z",
+      "updated_at": "2026-05-31T08:38:04.501Z",
+      "username": "arcanum0",
+      "email": "harshit@codesync.ai",
+      "password_hash": "$2a$12$cOgn6C71O./3XuKQiO/C3eROrtVrWHmxF8mGOp9PuTM.eF7sBvabi",
+      "last_active_at": "2026-05-31T08:38:04.501Z",
+      "elo_rating": 1000,
+      "matches_played": 0,
+      "matches_won": 0,
+      "preferred_languages": [
+        "javascript"
+      ]
+    },
+    {
+      "id": "ff228de5-3f61-404f-aa90-cc664cb11ffb",
+      "created_at": "2026-05-31T08:39:32.902Z",
+      "updated_at": "2026-05-31T08:39:32.902Z",
+      "username": "23bcs101",
+      "email": "23bcs101@iiitdmj.ac.in",
+      "password_hash": "$2a$12$Yvc.PUPrDegz.7KTgF7xBeghGDtLKU37xmWwNDzPuI73IDiSQI2BO"
     }
   ],
   "projects": [
@@ -197,6 +220,15 @@
       "description": "",
       "language": "cpp",
       "owner_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4"
+    },
+    {
+      "id": "528ce8c3-cafc-48e9-a44f-0c3c992dbb82",
+      "created_at": "2026-05-31T08:00:09.482Z",
+      "updated_at": "2026-05-31T08:00:09.482Z",
+      "name": "Audio_tesing",
+      "description": "",
+      "language": "cpp",
+      "owner_id": "764ab0d2-3e36-4072-975f-3f9ff0a7eb2b"
     }
   ],
   "project_collaborators": [
@@ -283,6 +315,18 @@
       "user_id": "b1502515-928d-473d-ad94-cbe9aadc6283",
       "role": "editor",
       "joined_at": "2026-05-30T16:57:03.432Z"
+    },
+    {
+      "project_id": "528ce8c3-cafc-48e9-a44f-0c3c992dbb82",
+      "user_id": "764ab0d2-3e36-4072-975f-3f9ff0a7eb2b",
+      "role": "owner",
+      "joined_at": "2026-05-31T08:00:09.483Z"
+    },
+    {
+      "project_id": "528ce8c3-cafc-48e9-a44f-0c3c992dbb82",
+      "user_id": "c027f5cc-28eb-4eb3-90f4-30c25eb0c6d4",
+      "role": "editor",
+      "joined_at": "2026-05-31T08:00:48.247Z"
     }
   ],
   "files": [
@@ -440,6 +484,18 @@
       "is_directory": false,
       "content": "fq;lfqq;\r\n\r\nce;qm;q;\r\n\r\n\r\n\r\nqemc\r\n\r\nd.w . qw. ",
       "language": "javascript",
+      "parent_id": null
+    },
+    {
+      "id": "7426fbd0-75f4-4005-ad6c-ace088c580d7",
+      "created_at": "2026-05-31T08:01:21.443Z",
+      "updated_at": "2026-05-31T08:09:26.381Z",
+      "project_id": "528ce8c3-cafc-48e9-a44f-0c3c992dbb82",
+      "path": "new.cpp",
+      "name": "new.cpp",
+      "is_directory": false,
+      "content": "wqlklqkqdcnklkqlkqk\r\n\r\nqmmmqmqmdcm\r\n\r\nwflkwkwkl\r\n\r\n\r\ndw l k klwkqkqkqk\r\n\r\nfwmf;f;w;\r\n\r\n\r\nwnvfwlkjwl\r\n\r\nneqllqkqllql\r\n\r\n\r\nint function( )",
+      "language": "cpp",
       "parent_id": null
     }
   ],
