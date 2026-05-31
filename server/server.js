@@ -6,6 +6,11 @@
  */
 
 import { createServer } from 'http';
+import dns from 'node:dns';
+
+// Force Node.js to prefer IPv4 over IPv6 (fixes ENETUNREACH error on Render for SMTP)
+dns.setDefaultResultOrder('ipv4first');
+
 import env, { validateEnv } from './src/config/env.js';
 import { testConnection, closePool } from './src/config/database.js';
 import { connectRedis, disconnectRedis } from './src/config/redis.js';
