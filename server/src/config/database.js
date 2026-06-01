@@ -23,6 +23,7 @@ try {
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 5000,
+    ssl: env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
   });
 
   pool.on('error', (err) => {
@@ -90,6 +91,14 @@ export async function testConnection() {
     return true;
   } catch (error) {
     console.warn('⚠️  PostgreSQL unavailable:', error.message);
+    
+    // In production, we MUST use a real database. Failing over to memory DB
+    // causes ephemeral data loss on every Render deploy.
+    if (env.NODE_ENV === 'production') {
+      console.error('❌ FATAL: Cannot connect to PostgreSQL in production. Exiting.');
+      process.exit(1);
+    }
+    
     console.warn('📝 Switching to in-memory database (demo mode)');
     useMemoryDb = true;
     await initMemoryDb();
