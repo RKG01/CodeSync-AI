@@ -420,7 +420,9 @@ export function setupWebSocket() {
 
         ws.on('close', async () => {
           console.log(`⚔️ Duel WS: ${user.username} disconnected from duel ${duelId}`);
-          // Do not forfeit here! Allow reconnection until the timer runs out.
+          if (duel.status === 'active' || duel.status === 'countdown') {
+            await handleForfeit(duelId, user.id);
+          }
         });
 
       } else {

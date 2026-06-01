@@ -52,7 +52,7 @@ export default function ProblemPanel({ problem, visibleTestCases, totalTestCases
           <div key={i} className="testcase-card">
             <div className="testcase-section">
               <span className="testcase-label">Input</span>
-              <pre className="testcase-content">{tc.input}</pre>
+              <pre className="testcase-content">{tc.inputs || tc.input}</pre>
             </div>
             <div className="testcase-section">
               <span className="testcase-label">Expected Output</span>
