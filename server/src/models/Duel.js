@@ -33,29 +33,24 @@ class Duel {
    * @returns {Promise<Object>} The created duel record.
    */
   static async create({
+    id,
     player1Id,
     player2Id,
-    language,
-    difficulty,
-    problemTitle,
-    problemDescription,
-    testCases,
-    durationSeconds = 900,
+    mode = '1q',
+    status = 'active',
+    problems = []
   }) {
     const result = await query(
-      `INSERT INTO duels (player1_id, player2_id, language, difficulty, problem_title, problem_description, test_cases, duration_seconds, status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      `INSERT INTO duels (id, player1_id, player2_id, mode, status, problems)
+       VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
       [
+        id,
         player1Id,
         player2Id,
-        language,
-        difficulty,
-        problemTitle,
-        problemDescription,
-        JSON.stringify(testCases),
-        durationSeconds,
-        'waiting',
+        mode,
+        status,
+        JSON.stringify(problems)
       ]
     );
 

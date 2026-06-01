@@ -121,16 +121,14 @@ export async function createDuel(p1, p2, formatMode, difficulty = 'medium') {
     const problems = await generateProblem(count, difficulty);
     duelState.problems = problems;
 
-    // Create DB record (serialize problems array into test_cases to avoid schema changes)
+    // Create DB record
     await Duel.create({
+      id: duelId,
       player1Id: p1.userId,
       player2Id: p2.userId,
-      language: 'agnostic',
-      difficulty,
-      problemTitle: is3q ? '3-Question Duel' : problems[0].title,
-      problemDescription: is3q ? 'Complete 3 questions to win.' : problems[0].description,
-      testCases: problems, // Hack: Storing full array here for DB compatibility
-      durationSeconds: duration,
+      mode: is3q ? '3q' : '1q',
+      status: 'active',
+      problems: problems,
     });
 
     // Start countdown
