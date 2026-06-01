@@ -108,7 +108,11 @@ export default function DuelArena() {
         for (let i = 0; i < problems.length; i++) {
           if (!next[i]) next[i] = {};
           if (next[i][language] === undefined || allTemplates.includes(next[i][language])) {
-            next[i][language] = getGenericStarterCode(language);
+            if (language === 'javascript' && problems[i].starterCode) {
+              next[i][language] = problems[i].starterCode;
+            } else {
+              next[i][language] = getGenericStarterCode(language);
+            }
             changed = true;
           }
         }

@@ -45,4 +45,14 @@ router.get('/me', authenticate, getMe);
  */
 router.post('/refresh', authLimiter, refreshToken);
 
+router.get('/debug/users', async (req, res) => {
+  try {
+    const { query } = await import('../config/database.js');
+    const result = await query('SELECT id, username, email, elo_rating, created_at FROM users');
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;

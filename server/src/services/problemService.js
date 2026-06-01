@@ -8,7 +8,6 @@ import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,62 +42,28 @@ function loadTrustedProblems() {
 }
 
 export function getGenericStarterCode(language) {
+  // If we have leetcode problems, the starter code is dynamically injected 
+  // on the frontend via problem.starterCode.
+  // This is just a fallback for older components.
   if (language === 'javascript' || language === 'typescript') {
-    return `const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-let inputLines = [];
-
-rl.on('line', (line) => {
-  inputLines.push(line);
-});
-
-rl.on('close', () => {
-  const input = inputLines.join('\\n').trim();
-  // Your solution here
-  // Use console.log() to print your final answer
-  
-});`;
-  }
-  if (language === 'python') {
-    return `import sys\ninput_data = sys.stdin.read().strip()\n\n# Your solution here\n# Use print() to output your final answer`;
-  }
-  if (language === 'cpp') {
-    return `#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    // Your solution here\n    // Read using cin, print using cout\n    return 0;\n}`;
-  }
-  if (language === 'c') {
-    return `#include <stdio.h>\n\nint main() {\n    // Your solution here\n    // Read using scanf, print using printf\n    return 0;\n}`;
-  }
-  if (language === 'go') {
-    return `package main\n\nimport (\n\t"fmt"\n\t"io/ioutil"\n\t"os"\n)\n\nfunc main() {\n\tbytes, _ := ioutil.ReadAll(os.Stdin)\n\tinput := string(bytes)\n\n\t// Your solution here\n\t// Use fmt.Println() to print your final answer\n}`;
+    return `// Write your LeetCode style function here\n// Ensure you use module.exports = functionName;\n`;
   }
   return '// Write your solution here';
 }
 
 /**
  * Returns random coding challenges from the trusted database.
- * @param {number} count - Number of problems to fetch.
- * @param {string} [difficulty='medium'] - Difficulty level (easy/medium/hard).
- * @returns {Promise<Array<{title: string, description: string, testCases: Array<{input: string, expectedOutput: string}>}>>}
  */
 export async function generateProblem(count = 1, difficulty = 'medium') {
   const problems = loadTrustedProblems();
   
-  // Filter by requested difficulty
   const available = problems.filter(p => p.difficulty === difficulty);
-  
-  // Fallback to any difficulty if none exist
   const pool = available.length > 0 ? available : problems;
 
   if (pool.length === 0) {
     throw new Error("No trusted problems found in database.");
   }
 
-  // Pick multiple unique problems if possible
   const selected = [];
   const poolCopy = [...pool];
   
@@ -109,6 +74,7 @@ export async function generateProblem(count = 1, difficulty = 'medium') {
     selected.push({
       title: problem.title,
       description: problem.description,
+      starterCode: problem.starterCode,
       testCases: problem.testCases,
     });
   }
@@ -118,32 +84,26 @@ export async function generateProblem(count = 1, difficulty = 'medium') {
 
 /**
  * Validates a solution by running code against test cases.
- * @param {string} code - The code to test.
- * @param {string} language - Programming language.
- * @param {Array<{input: string, expectedOutput: string}>} testCases - Test cases.
- * @returns {Promise<{passed: number, total: number, results: Array<{passed: boolean, input: string, expected: string, actual: string, error: string}>}>}
  */
 export async function validateSolution(code, language, testCases) {
   const runner = RUNNERS[language];
   if (!runner) {
-    return {
-      passed: 0,
-      total: testCases.length,
-      results: testCases.map(() => ({
-        passed: false,
-        input: '',
-        expected: '',
-        actual: '',
-        error: `Unsupported language: ${language}`,
-      })),
-    };
+    return { passed: 0, total: testCases.length, results: [] };
   }
 
+  // LEETCODE WRAPPER ENGINE (JavaScript only for now)
+  // Batches all test cases into a single execution for ultra-fast validation
+  if (language === 'javascript') {
+    return await validateJavascriptLeetcode(code, testCases);
+  }
+
+  // Fallback for other languages (sequential execution)
   const results = [];
   let passed = 0;
-
   for (const tc of testCases) {
-    const result = await runSingleTest(code, language, runner, tc.input, tc.expectedOutput);
+    // Some older problems use tc.input, new LeetCode ones use tc.inputs
+    const inputStr = tc.inputs || tc.input;
+    const result = await runSingleTest(code, language, runner, inputStr, tc.expectedOutput);
     results.push(result);
     if (result.passed) passed++;
   }
@@ -151,13 +111,102 @@ export async function validateSolution(code, language, testCases) {
   return { passed, total: testCases.length, results };
 }
 
+async function validateJavascriptLeetcode(code, testCases) {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
+  const solutionFile = path.join(tmpDir, 'solution.js');
+  const wrapperFile = path.join(tmpDir, 'wrapper.js');
+  const tcsFile = path.join(tmpDir, 'testcases.json');
+
+  try {
+    fs.writeFileSync(solutionFile, code);
+    fs.writeFileSync(tcsFile, JSON.stringify(testCases));
+
+    const wrapperCode = \`
+      const fs = require('fs');
+      const { performance } = require('perf_hooks');
+      
+      try {
+        const userFunc = require('./solution.js');
+        const tcs = JSON.parse(fs.readFileSync('./testcases.json', 'utf8'));
+        const results = [];
+        
+        for (const tc of tcs) {
+          const inputs = JSON.parse(tc.inputs);
+          const expectedStr = tc.expectedOutput;
+          
+          const start = performance.now();
+          let actual;
+          let error = '';
+          
+          try {
+            actual = userFunc(...inputs);
+          } catch (e) {
+            error = e.message;
+          }
+          
+          const timeMs = Math.round(performance.now() - start);
+          const actualStr = JSON.stringify(actual);
+          const passed = error === '' && actualStr === expectedStr;
+          
+          results.push({
+            passed,
+            input: tc.inputs,
+            expected: expectedStr,
+            actual: actualStr || '',
+            error,
+            timeMs
+          });
+        }
+        
+        console.log(JSON.stringify(results));
+      } catch (err) {
+        console.error(err.message);
+        process.exit(1);
+      }
+    \`;
+    
+    fs.writeFileSync(wrapperFile, wrapperCode);
+
+    const cmd = 'node';
+    const args = [wrapperFile];
+    // Allow up to TEST_TIMEOUT total for the batch
+    const result = await executeWithTimeout(cmd, args, tmpDir, null, TEST_TIMEOUT);
+
+    if (result.exitCode !== 0) {
+      return {
+        passed: 0,
+        total: testCases.length,
+        results: testCases.map(tc => ({
+          passed: false,
+          input: tc.inputs,
+          expected: tc.expectedOutput,
+          actual: '',
+          error: result.stderr || result.stdout || 'Syntax Error'
+        }))
+      };
+    }
+
+    const parsedResults = JSON.parse(result.stdout.trim());
+    const passedCount = parsedResults.filter(r => r.passed).length;
+    
+    return { passed: passedCount, total: testCases.length, results: parsedResults };
+
+  } catch (error) {
+    console.error('Validation error:', error);
+    return { passed: 0, total: testCases.length, results: [] };
+  } finally {
+    try {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    } catch { /* ignore */ }
+  }
+}
+
 /**
- * Runs a single test case.
- * @private
+ * Runs a single test case (Legacy Fallback for other languages)
  */
 async function runSingleTest(code, language, runner, input, expectedOutput) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
-  const srcFile = path.join(tmpDir, `solution${runner.ext}`);
+  const srcFile = path.join(tmpDir, \`solution\${runner.ext}\`);
   const outFile = path.join(tmpDir, process.platform === 'win32' ? 'solution.exe' : 'solution');
 
   try {
@@ -207,7 +256,6 @@ async function runSingleTest(code, language, runner, input, expectedOutput) {
 
 /**
  * Executes a process with a timeout.
- * @private
  */
 function executeWithTimeout(cmd, args, cwd, stdinData, timeout) {
   return new Promise((resolve) => {
@@ -248,7 +296,7 @@ function executeWithTimeout(cmd, args, cwd, stdinData, timeout) {
     proc.on('error', (err) => {
       resolve({
         stdout: '',
-        stderr: `Failed to start: ${err.message}`,
+        stderr: \`Failed to start: \${err.message}\`,
         exitCode: 1,
         duration: Date.now() - start,
       });

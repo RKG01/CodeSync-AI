@@ -190,6 +190,7 @@ function startDuel(duel) {
   const safeProblems = duel.problems.map(p => ({
     title: p.title,
     description: p.description,
+    starterCode: p.starterCode,
     visibleTestCases: p.testCases.slice(0, 2),
     totalTestCases: p.testCases.length
   }));
@@ -565,19 +566,19 @@ export function attachPlayerWs(duelId, userId, ws) {
     // Resync state if active
     if (duel.status === 'active') {
       const pBest = duel.bestSubmission.get(userId);
-      const code = pBest ? pBest.code : duel.problem.starterCode;
+      const code = pBest ? pBest.code : duel.problems[0].starterCode;
       
       safeSend(ws, {
         type: 'duel:start',
         data: {
           duelId: duel.duelId,
-          problem: {
-            title: duel.problem.title,
-            description: duel.problem.description,
-          },
-          starterCode: code,
-          visibleTestCases: duel.problem.testCases.slice(0, 2),
-          totalTestCases: duel.problem.testCases.length,
+          problems: duel.problems.map(p => ({
+            title: p.title,
+            description: p.description,
+            starterCode: p.starterCode,
+            visibleTestCases: p.testCases.slice(0, 2),
+            totalTestCases: p.testCases.length
+          })),
           duration: duel.duration,
         },
       });
