@@ -206,7 +206,7 @@ async function validateJavascriptLeetcode(code, testCases) {
  */
 async function runSingleTest(code, language, runner, input, expectedOutput) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
-  const srcFile = path.join(tmpDir, \`solution\${runner.ext}\`);
+  const srcFile = path.join(tmpDir, `solution${runner.ext}`);
   const outFile = path.join(tmpDir, process.platform === 'win32' ? 'solution.exe' : 'solution');
 
   try {
@@ -296,7 +296,7 @@ function executeWithTimeout(cmd, args, cwd, stdinData, timeout) {
     proc.on('error', (err) => {
       resolve({
         stdout: '',
-        stderr: \`Failed to start: \${err.message}\`,
+        stderr: `Failed to start: ${err.message}`,
         exitCode: 1,
         duration: Date.now() - start,
       });
