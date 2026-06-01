@@ -121,7 +121,7 @@ async function validateJavascriptLeetcode(code, testCases) {
     fs.writeFileSync(solutionFile, code);
     fs.writeFileSync(tcsFile, JSON.stringify(testCases));
 
-    const wrapperCode = \`
+    const wrapperCode = `
       const fs = require('fs');
       const { performance } = require('perf_hooks');
       
@@ -163,7 +163,7 @@ async function validateJavascriptLeetcode(code, testCases) {
         console.error(err.message);
         process.exit(1);
       }
-    \`;
+    `;
     
     fs.writeFileSync(wrapperFile, wrapperCode);
 
