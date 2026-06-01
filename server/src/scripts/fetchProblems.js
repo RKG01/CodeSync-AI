@@ -49,7 +49,7 @@ const coreProblems = [
     args: ['nums'],
     logic: (nums) => new Set(nums).size !== nums.length,
     genTestCase: (isLarge) => {
-      const len = isLarge ? 50000 : randInt(10, 100);
+      const len = isLarge ? 5000 : randInt(10, 100);
       const nums = randArray(len, 1, len * 2);
       if (Math.random() > 0.5) nums.push(nums[0]); // Force duplicate
       return { inputs: [nums] };
@@ -84,7 +84,7 @@ const coreProblems = [
     args: ['nums'],
     logic: (nums) => nums.reduce((a, b) => a ^ b, 0),
     genTestCase: (isLarge) => {
-      const pairs = isLarge ? 50000 : randInt(10, 50);
+      const pairs = isLarge ? 5000 : randInt(10, 50);
       const single = randInt(1, 1000);
       const nums = [single];
       for(let i = 0; i < pairs; i++) {
@@ -113,7 +113,7 @@ const coreProblems = [
       return max;
     },
     genTestCase: (isLarge) => {
-      const len = isLarge ? 50000 : randInt(10, 50);
+      const len = isLarge ? 5000 : randInt(10, 50);
       return { inputs: [randString(len)] };
     }
   },
@@ -127,7 +127,7 @@ const coreProblems = [
     args: ['nums'],
     logic: (nums) => [...nums].sort((a,b) => a-b),
     genTestCase: (isLarge) => {
-      const len = isLarge ? 50000 : randInt(10, 50);
+      const len = isLarge ? 5000 : randInt(10, 50);
       return { inputs: [randArray(len, 0, 2)] };
     }
   },
@@ -147,7 +147,7 @@ const coreProblems = [
       return res;
     },
     genTestCase: (isLarge) => {
-      const len = isLarge ? 50000 : randInt(5, 20);
+      const len = isLarge ? 5000 : randInt(5, 20);
       return { inputs: [randArray(len, 1, 9)] }; // keep values small so product doesn't exceed safe integer
     }
   },
@@ -165,7 +165,7 @@ const coreProblems = [
       return expected - actual;
     },
     genTestCase: (isLarge) => {
-      const n = isLarge ? 50000 : randInt(10, 50);
+      const n = isLarge ? 5000 : randInt(10, 50);
       const missing = randInt(0, n);
       const nums = [];
       for(let i=0; i<=n; i++) if (i !== missing) nums.push(i);
