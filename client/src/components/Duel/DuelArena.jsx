@@ -11,7 +11,8 @@ import Editor from '@monaco-editor/react';
 import { getGenericStarterCode } from '../../utils/starterCode';
 
 const LANGUAGES = [
-  { value: 'javascript', label: 'JavaScript (LeetCode Engine)' }
+  { value: 'javascript', label: 'JavaScript (LeetCode Engine)' },
+  { value: 'cpp', label: 'C++ (LeetCode Engine)' }
 ];
 
 const LANGUAGE_MAP = {
@@ -105,6 +106,8 @@ export default function DuelArena() {
           if (next[i][language] === undefined || allTemplates.includes(next[i][language])) {
             if (language === 'javascript' && problems[i].starterCode) {
               next[i][language] = problems[i].starterCode;
+            } else if (language === 'cpp' && problems[i].cppStarterCode) {
+              next[i][language] = problems[i].cppStarterCode;
             } else {
               next[i][language] = getGenericStarterCode(language);
             }

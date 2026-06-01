@@ -247,7 +247,7 @@ export async function handleSubmission(duelId, userId, code, language, problemIn
   if (!problem) return;
 
   // Validate the solution against ALL test cases for this specific problem
-  const result = await validateSolution(code, language, problem.testCases);
+  const result = await validateSolution(code, language, problem);
 
   // Record in DB
   try {
@@ -348,7 +348,7 @@ export async function handleRun(duelId, userId, code, language, problemIndex = 0
 
   // Validate the solution against ONLY the visible test cases
   const visibleTestCases = problem.testCases.slice(0, 2);
-  const result = await validateSolution(code, language, visibleTestCases);
+  const result = await validateSolution(code, language, problem, visibleTestCases);
 
   // Send result back ONLY to the player who ran it
   safeSend(player.ws, {

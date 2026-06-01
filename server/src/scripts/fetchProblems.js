@@ -23,6 +23,8 @@ const coreProblems = [
     description: 'Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.',
     functionName: 'twoSum',
     args: ['nums', 'target'],
+    cppArgs: 'vector<int>& nums, int target',
+    cppRet: 'vector<int>',
     logic: (nums, target) => {
       const map = new Map();
       for (let i = 0; i < nums.length; i++) {
@@ -47,6 +49,8 @@ const coreProblems = [
     description: 'Given an integer array `nums`, return `true` if any value appears at least twice in the array, and return `false` if every element is distinct.',
     functionName: 'containsDuplicate',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'bool',
     logic: (nums) => new Set(nums).size !== nums.length,
     genTestCase: (isLarge) => {
       const len = isLarge ? 5000 : randInt(10, 100);
@@ -62,6 +66,8 @@ const coreProblems = [
     description: 'Given an integer array `nums`, find the subarray with the largest sum, and return its sum.\nA subarray is a contiguous non-empty sequence of elements within an array.',
     functionName: 'maxSubArray',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'int',
     logic: (nums) => {
       let maxSoFar = nums[0], currMax = nums[0];
       for (let i = 1; i < nums.length; i++) {
@@ -82,6 +88,8 @@ const coreProblems = [
     description: 'Given a non-empty array of integers `nums`, every element appears twice except for one. Find that single one.\nYou must implement a solution with a linear runtime complexity and use only constant extra space.',
     functionName: 'singleNumber',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'int',
     logic: (nums) => nums.reduce((a, b) => a ^ b, 0),
     genTestCase: (isLarge) => {
       const pairs = isLarge ? 5000 : randInt(10, 50);
@@ -102,6 +110,8 @@ const coreProblems = [
     description: 'Given a string `s`, find the length of the longest substring without repeating characters.',
     functionName: 'lengthOfLongestSubstring',
     args: ['s'],
+    cppArgs: 'string s',
+    cppRet: 'int',
     logic: (s) => {
       let max = 0, start = 0;
       let map = new Map();
@@ -125,6 +135,8 @@ const coreProblems = [
     description: 'Given an array `nums` with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.\nWe will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.',
     functionName: 'sortColors',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'void',
     logic: (nums) => [...nums].sort((a,b) => a-b),
     genTestCase: (isLarge) => {
       const len = isLarge ? 5000 : randInt(10, 50);
@@ -138,6 +150,8 @@ const coreProblems = [
     description: 'Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\nYou must write an algorithm that runs in O(n) time and without using the division operation.',
     functionName: 'productExceptSelf',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'vector<int>',
     logic: (nums) => {
       const n = nums.length;
       const res = Array(n).fill(1);
@@ -158,6 +172,8 @@ const coreProblems = [
     description: 'Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, return the only number in the range that is missing from the array.',
     functionName: 'missingNumber',
     args: ['nums'],
+    cppArgs: 'vector<int>& nums',
+    cppRet: 'int',
     logic: (nums) => {
       const n = nums.length;
       const expected = (n * (n + 1)) / 2;
@@ -207,12 +223,31 @@ function ${core.functionName}(${argNames}) {
 module.exports = ${core.functionName};
 `;
 
+  const cppStarterCode = `#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    ${core.cppRet} ${core.functionName}(${core.cppArgs}) {
+        // Your code here
+        
+    }
+};
+`;
+
   problems.push({
     id: `prob-${idCounter++}`,
     title: `${core.title} - Variant ${Math.floor(i / coreProblems.length) + 1}`,
     difficulty: core.difficulty,
     description: core.description,
+    functionName: core.functionName, // Added for C++ macro builder
+    cppRet: core.cppRet,             // Added for C++ macro builder
     starterCode: starterCode,
+    cppStarterCode: cppStarterCode,
     testCases: testCases
   });
 }
