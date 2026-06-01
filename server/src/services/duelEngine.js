@@ -560,6 +560,13 @@ export function attachPlayerWs(duelId, userId, ws) {
 
   if (player) {
     player.ws = ws;
+    
+    // Clear any pending forfeit timeouts
+    if (duel.disconnectTimeouts && duel.disconnectTimeouts[userId]) {
+      clearTimeout(duel.disconnectTimeouts[userId]);
+      delete duel.disconnectTimeouts[userId];
+      console.log(`⚔️ Duel ${duelId}: ${player.username} reconnected in time.`);
+    }
 
     // Resync state if active
     if (duel.status === 'active') {

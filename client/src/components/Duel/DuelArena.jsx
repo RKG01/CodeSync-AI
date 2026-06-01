@@ -11,12 +11,7 @@ import Editor from '@monaco-editor/react';
 import { getGenericStarterCode } from '../../utils/starterCode';
 
 const LANGUAGES = [
-  { value: 'javascript', label: 'JavaScript' },
-  { value: 'python', label: 'Python' },
-  { value: 'cpp', label: 'C++' },
-  { value: 'typescript', label: 'TypeScript' },
-  { value: 'go', label: 'Go' },
-  { value: 'c', label: 'C' },
+  { value: 'javascript', label: 'JavaScript (LeetCode Engine)' }
 ];
 
 const LANGUAGE_MAP = {

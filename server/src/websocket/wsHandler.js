@@ -421,7 +421,13 @@ export function setupWebSocket() {
         ws.on('close', async () => {
           console.log(`⚔️ Duel WS: ${user.username} disconnected from duel ${duelId}`);
           if (duel.status === 'active' || duel.status === 'countdown') {
-            await handleForfeit(duelId, user.id);
+            // Give 15 seconds to reconnect before forfeiting
+            duel.disconnectTimeouts = duel.disconnectTimeouts || {};
+            duel.disconnectTimeouts[user.id] = setTimeout(async () => {
+              if (activeDuels.has(duelId)) {
+                await handleForfeit(duelId, user.id);
+              }
+            }, 15000);
           }
         });
 
