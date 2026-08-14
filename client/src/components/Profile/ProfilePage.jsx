@@ -33,7 +33,7 @@ export default function ProfilePage() {
         <Navbar />
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-red)', flexDirection: 'column', gap: '20px' }}>
           <div className="queue-pulse" style={{ width: '20px', height: '20px' }}></div>
-          <h2 style={{ letterSpacing: '2px', fontWeight: 900 }}>ACCESSING DATABASE...</h2>
+          <h2 style={{ letterSpacing: '2px', fontWeight: 600 }}>ACCESSING DATABASE...</h2>
         </div>
       </div>
     );
@@ -45,7 +45,7 @@ export default function ProfilePage() {
         <Navbar />
         <div className="profile-error" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '20px' }}>
           <Skull size={64} color="var(--accent-red)" />
-          <h2 style={{ color: 'var(--accent-red)', fontSize: '2rem', fontWeight: 900 }}>PROFILE NOT FOUND</h2>
+          <h2 style={{ color: 'var(--accent-red)', fontSize: '1.25rem', fontWeight: 600 }}>PROFILE NOT FOUND</h2>
           <p style={{ color: 'var(--text-secondary)' }}>{error}</p>
           <button className="results-action-btn primary" onClick={() => navigate('/dashboard')}>RETURN TO HQ</button>
         </div>
@@ -65,7 +65,7 @@ export default function ProfilePage() {
           onClick={() => navigate('/dashboard')} 
           style={{ marginBottom: 'var(--space-6)' }}
         >
-          ← BACK TO HQ
+          â† BACK TO HQ
         </button>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'var(--space-8)' }}>
@@ -86,7 +86,7 @@ export default function ProfilePage() {
               background: 'var(--bg-tertiary)',
               border: '4px solid var(--accent-red)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '4rem', color: 'var(--accent-red)',
+              fontSize: '1.25rem', color: 'var(--accent-red)',
               marginBottom: '1rem',
               boxShadow: '0 0 30px rgba(255,0,0,0.3)'
             }}>
@@ -98,9 +98,8 @@ export default function ProfilePage() {
             </div>
 
             <h1 className="profile-username" style={{ 
-              fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', 
-              textTransform: 'uppercase', marginBottom: '0.5rem',
-              textShadow: '0 0 10px rgba(255,0,0,0.5)'
+              fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-primary)', 
+              marginBottom: '0.5rem'
             }}>
               {profile.username}
             </h1>
@@ -109,7 +108,7 @@ export default function ProfilePage() {
               display: 'flex', alignItems: 'center', gap: '8px', 
               background: 'rgba(255,0,0,0.1)', padding: '8px 16px', 
               border: '1px solid var(--accent-red)', color: 'var(--accent-red)',
-              fontWeight: 900, letterSpacing: '1px', marginBottom: '2rem'
+              fontWeight: 600, letterSpacing: '1px', marginBottom: '2rem'
             }}>
               <span style={{ fontSize: '1.5rem' }}>{profile.tier?.badge}</span>
               {profile.tier?.name.toUpperCase()}
@@ -117,8 +116,8 @@ export default function ProfilePage() {
 
             <div style={{ width: '100%', borderTop: '1px solid rgba(255,0,0,0.2)', paddingTop: '2rem' }}>
               <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 800, letterSpacing: '2px', marginBottom: '8px' }}>COMBAT RATING (ELO)</div>
-                <div style={{ fontSize: '4rem', fontWeight: 900, color: 'var(--text-primary)', textShadow: '0 0 20px rgba(255,0,0,0.4)' }}>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, letterSpacing: '2px', marginBottom: '8px' }}>COMBAT RATING (ELO)</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)',  }}>
                   {profile.elo_rating}
                 </div>
               </div>
@@ -140,7 +139,7 @@ export default function ProfilePage() {
               marginBottom: '1.5rem'
             }}>
               <Shield size={32} color="var(--accent-red)" />
-              <h2 style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '2px' }}>
+              <h2 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '2px' }}>
                 COMBAT LOGS
               </h2>
             </div>
@@ -156,16 +155,16 @@ export default function ProfilePage() {
                   
                   let rowColor = 'var(--text-secondary)';
                   let rowBorder = 'rgba(255,255,255,0.1)';
-                  let icon = '🤝';
+                  let icon = 'ðŸ¤';
                   
                   if (isWinner) {
                     rowColor = '#00ff66';
                     rowBorder = '#00ff66';
-                    icon = '🏆';
+                    icon = 'ðŸ†';
                   } else if (!isDraw) {
                     rowColor = 'var(--accent-red)';
                     rowBorder = 'var(--accent-red)';
-                    icon = '💀';
+                    icon = 'ðŸ’€';
                   }
 
                   return (
@@ -194,14 +193,14 @@ export default function ProfilePage() {
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                        <div style={{ fontSize: '2rem' }}>{icon}</div>
+                        <div style={{ fontSize: '1.25rem' }}>{icon}</div>
                         <div>
-                          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--text-primary)', marginBottom: '4px' }}>
+                          <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '4px' }}>
                             VS {opponentName.toUpperCase()}
                           </div>
                           <div style={{ display: 'flex', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 700 }}>
                             <span style={{ color: 'var(--accent-purple)' }}>{duel.language.toUpperCase()}</span>
-                            <span>•</span>
+                            <span>â€¢</span>
                             <span>{new Date(duel.ended_at || duel.created_at).toLocaleDateString()}</span>
                           </div>
                         </div>
@@ -209,12 +208,12 @@ export default function ProfilePage() {
 
                       <div style={{ textAlign: 'right' }}>
                         <div style={{ 
-                          fontSize: '1.8rem', fontWeight: 900, 
+                          fontSize: '1.15rem', fontWeight: 600, 
                           color: rowColor, textShadow: `0 0 10px ${rowColor}40`
                         }}>
                           {eloChange > 0 ? '+' : ''}{eloChange || 0} ELO
                         </div>
-                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 800 }}>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 500 }}>
                           RATING CHANGE
                         </div>
                       </div>
@@ -228,7 +227,7 @@ export default function ProfilePage() {
                 padding: '4rem', textAlign: 'center'
               }}>
                 <Skull size={48} color="var(--text-muted)" style={{ margin: '0 auto 1rem' }} />
-                <h3 style={{ color: 'var(--text-primary)', fontSize: '1.5rem', fontWeight: 900, marginBottom: '1rem' }}>NO COMBAT DATA FOUND</h3>
+                <h3 style={{ color: 'var(--text-primary)', fontSize: '1.5rem', fontWeight: 600, marginBottom: '1rem' }}>NO COMBAT DATA FOUND</h3>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>This warrior has not entered the arena yet.</p>
                 {isOwnProfile && (
                   <button className="results-action-btn primary" onClick={() => navigate('/arena')}>
@@ -253,8 +252,8 @@ function StatBox({ icon, label, value, color = 'var(--text-primary)' }) {
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px'
     }}>
       <div style={{ color: 'var(--text-secondary)' }}>{icon}</div>
-      <div style={{ fontSize: '1.5rem', fontWeight: 900, color }}>{value}</div>
-      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', letterSpacing: '1px' }}>{label}</div>
+      <div style={{ fontSize: '1.5rem', fontWeight: 600, color }}>{value}</div>
+      <div style={{ fontSize: '0.7rem', fontWeight: 500, color: 'var(--text-muted)', letterSpacing: '1px' }}>{label}</div>
     </div>
   );
 }

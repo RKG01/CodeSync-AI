@@ -127,7 +127,7 @@ export default function SignupPage() {
           <div className="auth-logo-icon">
             <Code2 size={22} />
           </div>
-          <h1>CodeSync AI</h1>
+          <h1>Synapse AI</h1>
         </div>
 
         <p style={{
@@ -160,7 +160,7 @@ export default function SignupPage() {
           </div>
         )}
 
-        {/* ─── Step 1: Registration Form ────────────────────────────────── */}
+        {/* â”€â”€â”€ Step 1: Registration Form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {step === 1 && (
           <form className="auth-form" onSubmit={handleSendOtp}>
             <div className="input-wrapper">
@@ -245,7 +245,7 @@ export default function SignupPage() {
           </form>
         )}
 
-        {/* ─── Step 2: OTP Verification ─────────────────────────────────── */}
+        {/* â”€â”€â”€ Step 2: OTP Verification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {step === 2 && (
           <form className="auth-form" onSubmit={handleVerifyOtp}>
             <div className="otp-info">

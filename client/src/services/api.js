@@ -7,7 +7,7 @@ if (!BASE_URL.endsWith('/api')) {
 }
 
 function getToken() {
-  return localStorage.getItem('codesync_token');
+  return localStorage.getItem('synapse_token');
 }
 
 function buildHeaders(customHeaders = {}) {
@@ -24,8 +24,8 @@ function buildHeaders(customHeaders = {}) {
 
 async function handleResponse(res) {
   if (res.status === 401) {
-    localStorage.removeItem('codesync_token');
-    localStorage.removeItem('codesync_user');
+    localStorage.removeItem('synapse_token');
+    localStorage.removeItem('synapse_user');
     if (window.location.pathname !== '/login') {
       window.location.href = '/login';
     }

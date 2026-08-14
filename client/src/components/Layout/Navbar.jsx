@@ -79,7 +79,7 @@ export default function Navbar({ projectName, onShareClick, onlineUsers = [] }) 
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}>
-          CodeSync AI
+          Synapse AI
         </span>
       </motion.div>
 
@@ -96,9 +96,9 @@ export default function Navbar({ projectName, onShareClick, onlineUsers = [] }) 
           alignItems: 'center',
           gap: 'var(--space-2)',
         }}>
-          <span style={{ opacity: 0.5 }}>⟨</span>
+          <span style={{ opacity: 0.5 }}>âŸ¨</span>
           {projectName}
-          <span style={{ opacity: 0.5 }}>⟩</span>
+          <span style={{ opacity: 0.5 }}>âŸ©</span>
         </div>
       )}
 

@@ -45,7 +45,7 @@ export default function ChatPanel({ projectId, onClose }) {
   const intentionalCloseRef = useRef(false);
 
   const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:4000';
-  const token = localStorage.getItem('codesync_token');
+  const token = localStorage.getItem('synapse_token');
 
   useEffect(() => {
     if (!token || !projectId) return;
@@ -229,7 +229,7 @@ export default function ChatPanel({ projectId, onClose }) {
             color: 'var(--text-muted)',
             fontSize: 'var(--text-sm)',
           }}>
-            No messages yet. Say hello! 👋
+            No messages yet. Say hello! ðŸ‘‹
           </div>
         )}
 

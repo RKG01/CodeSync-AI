@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # ─── React Frontend ──────────────────────────────────
+  # â”€â”€â”€ React Frontend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   client:
     build:
       context: ./client
@@ -16,9 +16,9 @@ services:
     volumes:
       - ./client/src:/app/src
     networks:
-      - codesync
+      - synapse
 
-  # ─── Node.js Backend ──────────────────────────────────
+  # â”€â”€â”€ Node.js Backend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   server:
     build:
       context: ./server
@@ -35,7 +35,7 @@ services:
       - NODE_ENV=development
       - PORT=4000
       - YJS_PORT=1234
-      - DATABASE_URL=postgresql://codesync:codesync_pass@postgres:5432/codesync_db
+      - DATABASE_URL=postgresql://synapse:synapse_pass@postgres:5432/synapse_db
       - REDIS_URL=redis://redis:6379
       - JWT_SECRET=your_super_secret_jwt_key_change_in_production
       - JWT_REFRESH_SECRET=your_refresh_secret_key_change_in_production
@@ -43,29 +43,29 @@ services:
     volumes:
       - ./server/src:/app/src
     networks:
-      - codesync
+      - synapse
 
-  # ─── PostgreSQL Database ──────────────────────────────
+  # â”€â”€â”€ PostgreSQL Database â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   postgres:
     image: postgres:16-alpine
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: codesync_db
-      POSTGRES_USER: codesync
-      POSTGRES_PASSWORD: codesync_pass
+      POSTGRES_DB: synapse_db
+      POSTGRES_USER: synapse
+      POSTGRES_PASSWORD: synapse_pass
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./server/migrations/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U codesync -d codesync_db"]
+      test: ["CMD-SHELL", "pg_isready -U synapse -d synapse_db"]
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
-      - codesync
+      - synapse
 
-  # ─── Redis Cache ──────────────────────────────────────
+  # â”€â”€â”€ Redis Cache â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   redis:
     image: redis:7-alpine
     ports:
@@ -79,9 +79,9 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - codesync
+      - synapse
 
-  # ─── Nginx Reverse Proxy (Production) ────────────────
+  # â”€â”€â”€ Nginx Reverse Proxy (Production) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   nginx:
     image: nginx:alpine
     ports:
@@ -94,7 +94,7 @@ services:
     profiles:
       - production
     networks:
-      - codesync
+      - synapse
 
 volumes:
   pgdata:
@@ -103,5 +103,5 @@ volumes:
     driver: local
 
 networks:
-  codesync:
+  synapse:
     driver: bridge

@@ -131,7 +131,7 @@ function toCppValue(type, jsonVal) {
 }
 
 async function validateCppLeetcode(code, problem, testCases) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'synapse-'));
   const srcFile = path.join(tmpDir, 'solution.cpp');
   const outFile = path.join(tmpDir, process.platform === 'win32' ? 'solution.exe' : 'solution');
 
@@ -289,7 +289,7 @@ int main() {
 }
 
 async function validateJavascriptLeetcode(code, testCases) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'synapse-'));
   const solutionFile = path.join(tmpDir, 'solution.js');
   const wrapperFile = path.join(tmpDir, 'wrapper.js');
   const tcsFile = path.join(tmpDir, 'testcases.json');
@@ -382,7 +382,7 @@ async function validateJavascriptLeetcode(code, testCases) {
  * Runs a single test case (Legacy Fallback for other languages)
  */
 async function runSingleTest(code, language, runner, input, expectedOutput) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'codesync-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'synapse-'));
   const srcFile = path.join(tmpDir, `solution${runner.ext}`);
   const outFile = path.join(tmpDir, process.platform === 'win32' ? 'solution.exe' : 'solution');
 

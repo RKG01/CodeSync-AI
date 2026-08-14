@@ -61,7 +61,7 @@ export default function DuelArena() {
   // Load from local storage on mount
   useEffect(() => {
     if (!duelId) return;
-    const saved = localStorage.getItem(`codesync-duel-${duelId}`);
+    const saved = localStorage.getItem(`synapse-duel-${duelId}`);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -88,7 +88,7 @@ export default function DuelArena() {
   // Save to local storage on change
   useEffect(() => {
     if (!duelId) return;
-    localStorage.setItem(`codesync-duel-${duelId}`, JSON.stringify({ codes, language }));
+    localStorage.setItem(`synapse-duel-${duelId}`, JSON.stringify({ codes, language }));
   }, [codes, language, duelId]);
 
   // Populate starter code if empty when problems arrive or language changes
@@ -294,7 +294,7 @@ export default function DuelArena() {
                 onClick={voiceChat.toggleVoice}
                 title="Disconnect Voice"
               >
-                ✕
+                ✖
               </button>
             )}
           </div>
@@ -421,7 +421,7 @@ export default function DuelArena() {
       {/* Opponent Disconnected Banner */}
       {opponentDisconnected && (
         <div className="duel-disconnect-banner">
-          ⚡ Your opponent has disconnected. You win by forfeit!
+          âš¡ Your opponent has disconnected. You win by forfeit!
         </div>
       )}
     </div>

@@ -47,7 +47,7 @@ async function setCache(key, value, ttl = CACHE_TTL) {
   try {
     await redisClient.set(key, value, { EX: ttl });
   } catch {
-    // Silently fail — caching is non-critical
+    // Silently fail â€” caching is non-critical
   }
 }
 
@@ -208,7 +208,7 @@ Suggest code to insert at the cursor position.`;
   async chat(messages, codeContext) {
     const systemMessage = {
       role: 'system',
-      content: `You are CodeSync AI, an expert programming assistant integrated into a collaborative code editor. You help developers with:
+      content: `You are Synapse AI, an expert programming assistant integrated into a collaborative code editor. You help developers with:
 - Writing and improving code
 - Debugging issues
 - Explaining concepts

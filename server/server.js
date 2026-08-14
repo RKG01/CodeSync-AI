@@ -1,6 +1,6 @@
 /**
  * @module server
- * @description Entry point for the CodeSync AI server.
+ * @description Entry point for the Synapse AI server.
  * Creates HTTP server from Express app, starts Yjs WebSocket server,
  * and attaches the main WebSocket handler. Includes graceful shutdown.
  */
@@ -19,13 +19,13 @@ import app from './src/app.js';
 import { createYjsServer, shutdownYjs } from './src/websocket/yjsProvider.js';
 import { setupWebSocket } from './src/websocket/wsHandler.js';
 
-// ─── Validate Environment ───────────────────────────────────────────────────
+// â”€â”€â”€ Validate Environment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 validateEnv();
 
-// ─── Create HTTP Server ─────────────────────────────────────────────────────
+// â”€â”€â”€ Create HTTP Server â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const httpServer = createServer(app);
 
-// ─── Yjs WebSocket Server Reference ─────────────────────────────────────────
+// â”€â”€â”€ Yjs WebSocket Server Reference â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let yjsWss = null;
 let mainWss = null;
 
@@ -45,7 +45,7 @@ async function start() {
     try {
       await connectRedis();
     } catch (err) {
-      console.warn('⚠️  Redis unavailable — continuing without caching/presence.');
+      console.warn('âš ï¸  Redis unavailable â€” continuing without caching/presence.');
     }
 
     // Start Yjs WebSocket server
@@ -76,52 +76,52 @@ async function start() {
     // Start Express HTTP server
     httpServer.listen(env.PORT, () => {
       console.log('');
-      console.log('═══════════════════════════════════════════════');
-      console.log('  🚀 CodeSync AI Server');
-      console.log('═══════════════════════════════════════════════');
-      console.log(`  📡 HTTP API:      http://localhost:${env.PORT}`);
-      console.log(`  🔄 Yjs WebSocket: ws://localhost:${env.PORT}/yjs/:roomId`);
-      console.log(`  💬 Chat WS:       ws://localhost:${env.PORT}/ws/chat/:projectId`);
-      console.log(`  👥 Presence WS:   ws://localhost:${env.PORT}/ws/presence/:projectId`);
-      console.log(`  🏥 Health Check:  http://localhost:${env.PORT}/health`);
-      console.log(`  🌍 Environment:   ${env.NODE_ENV}`);
-      console.log('═══════════════════════════════════════════════');
+      console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
+      console.log('  ðŸš€ Synapse AI Server');
+      console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
+      console.log(`  ðŸ“¡ HTTP API:      http://localhost:${env.PORT}`);
+      console.log(`  ðŸ”„ Yjs WebSocket: ws://localhost:${env.PORT}/yjs/:roomId`);
+      console.log(`  ðŸ’¬ Chat WS:       ws://localhost:${env.PORT}/ws/chat/:projectId`);
+      console.log(`  ðŸ‘¥ Presence WS:   ws://localhost:${env.PORT}/ws/presence/:projectId`);
+      console.log(`  ðŸ¥ Health Check:  http://localhost:${env.PORT}/health`);
+      console.log(`  ðŸŒ Environment:   ${env.NODE_ENV}`);
+      console.log('â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•');
       console.log('');
     });
 
   } catch (error) {
-    console.error('❌ Failed to start server:', error.message);
+    console.error('âŒ Failed to start server:', error.message);
     process.exit(1);
   }
 }
 
-// ─── Graceful Shutdown ───────────────────────────────────────────────────────
+// â”€â”€â”€ Graceful Shutdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Gracefully shuts down all services and exits.
  * @param {string} signal - The signal that triggered shutdown.
  */
 async function gracefulShutdown(signal) {
-  console.log(`\n⚡ ${signal} received. Starting graceful shutdown...`);
+  console.log(`\nâš¡ ${signal} received. Starting graceful shutdown...`);
 
   try {
     // Stop accepting new connections
     httpServer.close(() => {
-      console.log('✅ HTTP server closed');
+      console.log('âœ… HTTP server closed');
     });
 
     // Close Yjs WebSocket server
     if (yjsWss) {
       await shutdownYjs();
       yjsWss.close(() => {
-        console.log('✅ Yjs WebSocket server closed');
+        console.log('âœ… Yjs WebSocket server closed');
       });
     }
 
     // Close main WebSocket server
     if (mainWss) {
       mainWss.close(() => {
-        console.log('✅ Main WebSocket server closed');
+        console.log('âœ… Main WebSocket server closed');
       });
     }
 
@@ -131,10 +131,10 @@ async function gracefulShutdown(signal) {
     // Close Redis connection
     await disconnectRedis();
 
-    console.log('✅ Graceful shutdown complete');
+    console.log('âœ… Graceful shutdown complete');
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error during shutdown:', error.message);
+    console.error('âŒ Error during shutdown:', error.message);
     process.exit(1);
   }
 }
@@ -147,15 +147,15 @@ process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 process.on('uncaughtException', (error) => {
   const msg = `[${new Date().toISOString()}] UNCAUGHT: ${error.message}\n${error.stack}\n\n`;
   import('fs').then(fs => fs.appendFileSync('./crash.log', msg));
-  console.error('🔥 Uncaught Exception:', error);
+  console.error('ðŸ”¥ Uncaught Exception:', error);
   gracefulShutdown('UNCAUGHT_EXCEPTION');
 });
 
 process.on('unhandledRejection', (reason) => {
   const msg = `[${new Date().toISOString()}] UNHANDLED REJECTION: ${reason?.message || reason}\n${reason?.stack || ''}\n\n`;
   import('fs').then(fs => fs.appendFileSync('./crash.log', msg));
-  console.error('🔥 Unhandled Rejection:', reason);
+  console.error('ðŸ”¥ Unhandled Rejection:', reason);
 });
 
-// ─── Start Server ────────────────────────────────────────────────────────────
+// â”€â”€â”€ Start Server â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 start();

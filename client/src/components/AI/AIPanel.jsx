@@ -6,7 +6,7 @@ import { useAI } from '../../hooks/useAI';
 export default function AIPanel({ projectId, activeFile, editorContent, language, onClose }) {
   const WELCOME_MSG = {
     role: 'assistant',
-    content: "Hey! I'm **CodeSync AI** — your coding copilot. I can debug, explain, suggest improvements, or just chat about code. What can I help with?",
+    content: "Hey! I'm **Synapse AI** â€” your coding copilot. I can debug, explain, suggest improvements, or just chat about code. What can I help with?",
   };
 
   const [messages, setMessages] = useState([WELCOME_MSG]);
@@ -109,7 +109,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
     if (!editorContent || loading) return;
     const userMessage = {
       role: 'user',
-      content: `🐛 Debug this code:\n\`\`\`${language}\n${editorContent.slice(0, 2000)}\n\`\`\``,
+      content: `ðŸ› Debug this code:\n\`\`\`${language}\n${editorContent.slice(0, 2000)}\n\`\`\``,
       timestamp: new Date().toISOString(),
     };
     setMessages(prev => [...prev, userMessage]);
@@ -131,7 +131,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
     if (!editorContent || loading) return;
     const userMessage = {
       role: 'user',
-      content: `📖 Explain this code:\n\`\`\`${language}\n${editorContent.slice(0, 2000)}\n\`\`\``,
+      content: `ðŸ“– Explain this code:\n\`\`\`${language}\n${editorContent.slice(0, 2000)}\n\`\`\``,
       timestamp: new Date().toISOString(),
     };
     setMessages(prev => [...prev, userMessage]);
@@ -192,7 +192,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
 
   return (
     <div className="ai-panel">
-      {/* ── Animated Header ── */}
+      {/* â”€â”€ Animated Header â”€â”€ */}
       <div className="ai-panel-header">
         <div className="ai-panel-header-bg" />
         <div className="ai-panel-header-content">
@@ -206,7 +206,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
             </motion.div>
             <div>
               <div style={{ fontSize: 'var(--text-sm)', fontWeight: '700', color: 'var(--text-primary)' }}>
-                CodeSync AI
+                Synapse AI
               </div>
               <div style={{ fontSize: '10px', color: 'var(--accent-purple)', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span className="ai-status-dot" />
@@ -236,7 +236,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
         </div>
       </div>
 
-      {/* ── Conversation List Drawer ── */}
+      {/* â”€â”€ Conversation List Drawer â”€â”€ */}
       <AnimatePresence>
         {showConvList && (
           <motion.div
@@ -274,7 +274,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
                       <div style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                         <Clock size={9} />
                         {formatTime(conv.updated_at)}
-                        {conv.message_count && <span>· {conv.message_count} msgs</span>}
+                        {conv.message_count && <span>Â· {conv.message_count} msgs</span>}
                       </div>
                     </div>
                   </button>
@@ -285,7 +285,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
         )}
       </AnimatePresence>
 
-      {/* ── Quick Actions ── */}
+      {/* â”€â”€ Quick Actions â”€â”€ */}
       <div className="ai-quick-actions">
         <motion.button
           className="ai-chip"
@@ -324,7 +324,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
         </motion.button>
       </div>
 
-      {/* ── Messages ── */}
+      {/* â”€â”€ Messages â”€â”€ */}
       <div className="ai-messages" ref={messagesContainerRef}>
         <AnimatePresence initial={false}>
           {messages.map((msg, i) => (
@@ -376,7 +376,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
         )}
       </AnimatePresence>
 
-      {/* ── Input Area ── */}
+      {/* â”€â”€ Input Area â”€â”€ */}
       <div className="ai-input-area">
         <div className="ai-input-wrapper">
           <textarea
@@ -399,7 +399,7 @@ export default function AIPanel({ projectId, activeFile, editorContent, language
           </motion.button>
         </div>
         <div className="ai-input-hint">
-          <kbd>Enter</kbd> send · <kbd>Shift+Enter</kbd> newline
+          <kbd>Enter</kbd> send Â· <kbd>Shift+Enter</kbd> newline
         </div>
       </div>
     </div>
@@ -481,7 +481,7 @@ function MessageBubble({ message, formatTime }) {
             position: 'relative',
             margin: '2px 0',
           }}>
-            <span style={{ position: 'absolute', left: `${listMatch[1].length * 8}px`, color: 'var(--accent-purple)' }}>•</span>
+            <span style={{ position: 'absolute', left: `${listMatch[1].length * 8}px`, color: 'var(--accent-purple)' }}>â€¢</span>
             {renderInlineFormatting(listMatch[2])}
           </div>
         );
@@ -551,7 +551,7 @@ function MessageBubble({ message, formatTime }) {
         {!isUser && (
           <div className="ai-message-label">
             <Sparkles size={9} />
-            CodeSync AI
+            Synapse AI
           </div>
         )}
         <div className="ai-message-content">{renderContent(message.content)}</div>

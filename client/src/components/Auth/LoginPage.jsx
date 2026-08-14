@@ -59,7 +59,7 @@ export default function LoginPage() {
           <div className="auth-logo-icon">
             <Code2 size={22} />
           </div>
-          <h1>CodeSync AI</h1>
+          <h1>Synapse AI</h1>
         </div>
 
         <p style={{

@@ -1,7 +1,7 @@
 /**
  * @module config/memoryDb
  * @description In-memory database fallback when PostgreSQL is unavailable.
- * Data is stored in memory and lost on restart — for development/demo only.
+ * Data is stored in memory and lost on restart â€” for development/demo only.
  */
 
 import { v4 as uuidv4 } from 'uuid';
@@ -11,7 +11,7 @@ import path from 'path';
 
 const DB_FILE = path.join(process.cwd(), 'local_db.json');
 
-// ─── In-Memory Tables ────────────────────────────────────────────────────────
+// â”€â”€â”€ In-Memory Tables â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const tables = {
   users: [],
@@ -33,7 +33,7 @@ async function seedDemoData() {
   const demoUser = {
     id: uuidv4(),
     username: 'demo',
-    email: 'demo@codesync.ai',
+    email: 'demo@synapse.ai',
     password_hash: hash,
     avatar_url: null,
     elo_rating: 1000,
@@ -49,7 +49,7 @@ async function seedDemoData() {
   const rivalUser = {
     id: uuidv4(),
     username: 'rival',
-    email: 'rival@codesync.ai',
+    email: 'rival@synapse.ai',
     password_hash: hash,
     avatar_url: null,
     elo_rating: 1200,
@@ -87,7 +87,7 @@ async function seedDemoData() {
     path: '/index.js',
     name: 'index.js',
     is_directory: false,
-    content: '// Welcome to CodeSync AI!\n// Start coding collaboratively...\n\nconsole.log("Hello, CodeSync!");\n',
+    content: '// Welcome to Synapse AI!\n// Start coding collaboratively...\n\nconsole.log("Hello, Synapse!");\n',
     language: 'javascript',
     parent_id: null,
     created_at: new Date(),
@@ -115,7 +115,7 @@ async function seedDemoData() {
     path: '/src/app.js',
     name: 'app.js',
     is_directory: false,
-    content: 'import express from "express";\n\nconst app = express();\n\napp.get("/", (req, res) => {\n  res.json({ message: "Welcome to CodeSync AI!" });\n});\n\nexport default app;\n',
+    content: 'import express from "express";\n\nconst app = express();\n\napp.get("/", (req, res) => {\n  res.json({ message: "Welcome to Synapse AI!" });\n});\n\nexport default app;\n',
     language: 'javascript',
     parent_id: srcDir.id,
     created_at: new Date(),
@@ -123,16 +123,16 @@ async function seedDemoData() {
   };
   tables.files.push(appFile);
 
-  console.log('📝 Demo data seeded: user=demo@codesync.ai password=password123');
+  console.log('ðŸ“ Demo data seeded: user=demo@synapse.ai password=password123');
 }
 
-// ─── Normalize SQL for matching ─────────────────────────────────────────────
+// â”€â”€â”€ Normalize SQL for matching â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function normalize(sql) {
   return sql.replace(/\s+/g, ' ').trim();
 }
 
-// ─── Extract table name ─────────────────────────────────────────────────────
+// â”€â”€â”€ Extract table name â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function getTableName(text) {
   const n = normalize(text);
@@ -148,7 +148,7 @@ function getTableName(text) {
   return null;
 }
 
-// ─── Main Query Executor ────────────────────────────────────────────────────
+// â”€â”€â”€ Main Query Executor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function memoryQuery(text, params = []) {
   const n = normalize(text).toUpperCase();
@@ -161,7 +161,7 @@ export async function memoryQuery(text, params = []) {
   return { rows: [], rowCount: 0 };
 }
 
-// ─── INSERT ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€ INSERT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function handleInsert(text, params) {
   const tableName = getTableName(text);
@@ -184,7 +184,7 @@ function handleInsert(text, params) {
   return { rows: [row], rowCount: 1 };
 }
 
-// ─── SELECT ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€ SELECT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function handleSelect(text, params) {
   const n = normalize(text);
@@ -223,7 +223,7 @@ function handleSelect(text, params) {
   return { rows: results, rowCount: results.length };
 }
 
-// ─── UPDATE ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€ UPDATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function handleUpdate(text, params) {
   const tableName = getTableName(text);
@@ -238,7 +238,7 @@ function handleUpdate(text, params) {
   const whereCol = whereColMatch[1];
   const whereVal = params[parseInt(whereColMatch[2]) - 1];
 
-  // Parse SET clause — handle both `col = $N` and `col = NOW()`
+  // Parse SET clause â€” handle both `col = $N` and `col = NOW()`
   const setSection = n.match(/SET\s+(.+?)\s+WHERE/is);
   if (!setSection) return { rows: [], rowCount: 0 };
 
@@ -272,7 +272,7 @@ function handleUpdate(text, params) {
   return { rows: updated, rowCount: updated.length };
 }
 
-// ─── DELETE ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€ DELETE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function handleDelete(text, params) {
   const tableName = getTableName(text);
@@ -291,7 +291,7 @@ function handleDelete(text, params) {
   return { rows: deleted, rowCount: deleted.length };
 }
 
-// ─── WHERE Helper ───────────────────────────────────────────────────────────
+// â”€â”€â”€ WHERE Helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function applyWhere(normalizedSql, rows, params) {
   const whereMatch = normalizedSql.match(/WHERE\s+(.+?)(?:\s+ORDER|\s+LIMIT|\s+GROUP|\s*$)/is);
@@ -325,7 +325,7 @@ function applyWhere(normalizedSql, rows, params) {
   return filtered;
 }
 
-// ─── Persistence ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Persistence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function saveDb() {
   try {
@@ -349,11 +349,11 @@ function loadDb() {
   return false;
 }
 
-// ─── Initialize ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Initialize â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function initMemoryDb() {
   if (loadDb()) {
-    console.log('✅ Local database loaded from local_db.json');
+    console.log('âœ… Local database loaded from local_db.json');
     
     // Schema Migration for existing DB
     if (!tables.duels) tables.duels = [];
@@ -376,7 +376,7 @@ export async function initMemoryDb() {
       tables.users.push({
         id: uuidv4(),
         username: 'rival',
-        email: 'rival@codesync.ai',
+        email: 'rival@synapse.ai',
         password_hash: hash,
         avatar_url: null,
         elo_rating: 1200,
@@ -387,11 +387,11 @@ export async function initMemoryDb() {
         updated_at: new Date(),
         last_active_at: new Date(),
       });
-      console.log('📝 Injected rival user into existing local DB');
+      console.log('ðŸ“ Injected rival user into existing local DB');
     }
   } else {
     await seedDemoData();
-    console.log('✅ Local database initialized with demo data');
+    console.log('âœ… Local database initialized with demo data');
   }
   
   saveDb();

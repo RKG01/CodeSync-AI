@@ -1,8 +1,8 @@
 /**
- * Custom dark theme for Monaco Editor matching CodeSync AI aesthetic.
+ * Custom dark theme for Monaco Editor matching Synapse AI aesthetic.
  */
 
-export const CODESYNC_DARK_THEME = {
+export const SYNAPSE_DARK_THEME = {
   base: 'vs-dark',
   inherit: true,
   rules: [
@@ -94,7 +94,7 @@ export const CODESYNC_DARK_THEME = {
   },
 };
 
-export const CODESYNC_LIGHT_THEME = {
+export const SYNAPSE_LIGHT_THEME = {
   base: 'vs',
   inherit: true,
   rules: [
@@ -132,10 +132,10 @@ export const CODESYNC_LIGHT_THEME = {
 };
 
 /**
- * Register the CodeSync dark theme with Monaco.
+ * Register the Synapse dark theme with Monaco.
  */
-export function registerCodeSyncTheme(monaco) {
+export function registerSynapseTheme(monaco) {
   if (!monaco) return;
-  monaco.editor.defineTheme('codesync-dark', CODESYNC_DARK_THEME);
-  monaco.editor.defineTheme('codesync-light', CODESYNC_LIGHT_THEME);
+  monaco.editor.defineTheme('synapse-dark', SYNAPSE_DARK_THEME);
+  monaco.editor.defineTheme('synapse-light', SYNAPSE_LIGHT_THEME);
 }

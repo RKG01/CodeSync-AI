@@ -5,7 +5,7 @@
  * Falls back to nodemailer with Ethereal for local development.
  * 
  * Production: Set RESEND_API_KEY in environment variables.
- * Local dev:  Leave RESEND_API_KEY empty — uses Ethereal test emails.
+ * Local dev:  Leave RESEND_API_KEY empty â€” uses Ethereal test emails.
  */
 
 import nodemailer from 'nodemailer';
@@ -21,7 +21,7 @@ function buildOtpHtml(otp, username) {
     <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 480px; margin: 0 auto; background: #0a0a0a; color: #e0e0e0; border: 1px solid #333; border-top: 4px solid #ff0000;">
       <div style="padding: 32px; text-align: center;">
         <h1 style="margin: 0 0 8px; font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #ffffff;">
-          ⚡ CODESYNC AI
+          âš¡ SYNAPSE AI
         </h1>
         <p style="color: #888; font-size: 14px; margin: 0 0 32px;">Email Verification</p>
         
@@ -41,7 +41,7 @@ function buildOtpHtml(otp, username) {
         </p>
       </div>
       <div style="padding: 16px; text-align: center; border-top: 1px solid #222; background: #050505;">
-        <p style="color: #555; font-size: 11px; margin: 0;">CodeSync AI — Real-time Collaborative Coding</p>
+        <p style="color: #555; font-size: 11px; margin: 0;">Synapse AI â€” Real-time Collaborative Coding</p>
       </div>
     </div>
   `;
@@ -58,7 +58,7 @@ async function sendViaBrevo(to, otp, username) {
   const apiKey = process.env.BREVO_API_KEY;
   // Brevo requires the sender email to be the one you verified on their platform
   const fromEmail = process.env.BREVO_SENDER_EMAIL || 'harshitraj1593@gmail.com';
-  const fromName = 'CodeSync AI';
+  const fromName = 'Synapse AI';
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
@@ -70,20 +70,20 @@ async function sendViaBrevo(to, otp, username) {
     body: JSON.stringify({
       sender: { name: fromName, email: fromEmail },
       to: [{ email: to }],
-      subject: `${otp} — Your CodeSync AI Verification Code`,
+      subject: `${otp} â€” Your Synapse AI Verification Code`,
       htmlContent: buildOtpHtml(otp, username),
-      textContent: `Your CodeSync AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
+      textContent: `Your Synapse AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
     }),
   });
 
   if (!response.ok) {
     const errBody = await response.json().catch(() => ({}));
-    console.error('📧 Brevo API error:', errBody);
+    console.error('ðŸ“§ Brevo API error:', errBody);
     throw new Error(errBody.message || `Email API returned status ${response.status}`);
   }
 
   const data = await response.json();
-  console.log(`📧 OTP email sent via Brevo (messageId: ${data.messageId})`);
+  console.log(`ðŸ“§ OTP email sent via Brevo (messageId: ${data.messageId})`);
   return { success: true };
 }
 
@@ -107,7 +107,7 @@ async function sendViaNodemailer(to, otp, username) {
         greetingTimeout: 10000,
         socketTimeout: 10000,
       });
-      console.log('📧 Email service: Using configured SMTP server');
+      console.log('ðŸ“§ Email service: Using configured SMTP server');
     } else {
       // Ethereal test account
       const testAccount = await nodemailer.createTestAccount();
@@ -117,7 +117,7 @@ async function sendViaNodemailer(to, otp, username) {
         secure: false,
         auth: { user: testAccount.user, pass: testAccount.pass },
       });
-      console.log('📧 Email service: Using Ethereal test account');
+      console.log('ðŸ“§ Email service: Using Ethereal test account');
       console.log(`   User: ${testAccount.user}`);
     }
   }
@@ -125,14 +125,14 @@ async function sendViaNodemailer(to, otp, username) {
   const info = await transporter.sendMail({
     from: env.SMTP_FROM,
     to,
-    subject: `${otp} — Your CodeSync AI Verification Code`,
-    text: `Your CodeSync AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
+    subject: `${otp} â€” Your Synapse AI Verification Code`,
+    text: `Your Synapse AI verification code is: ${otp}\n\nThis code expires in 5 minutes.\n\nIf you didn't request this, ignore this email.`,
     html: buildOtpHtml(otp, username),
   });
 
   const previewUrl = nodemailer.getTestMessageUrl(info);
   if (previewUrl) {
-    console.log(`📧 OTP Email Preview URL: ${previewUrl}`);
+    console.log(`ðŸ“§ OTP Email Preview URL: ${previewUrl}`);
   }
   return { success: true, previewUrl: previewUrl || null };
 }

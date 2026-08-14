@@ -4,8 +4,8 @@ import toast from 'react-hot-toast';
 
 export const AuthContext = createContext(null);
 
-const TOKEN_KEY = 'codesync_token';
-const USER_KEY = 'codesync_user';
+const TOKEN_KEY = 'synapse_token';
+const USER_KEY = 'synapse_user';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
         setUser(res.data?.user || res.user || res);
         setToken(storedToken);
       } catch {
-        // Token invalid — clear it
+        // Token invalid â€” clear it
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
         setToken(null);

@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">⚡ CodeSync AI</h1>
+  <h1 align="center">âš¡ Synapse AI</h1>
   <p align="center">
     <strong>Real-Time Collaborative Code Editor with AI-Powered Debugging</strong>
   </p>
@@ -17,39 +17,39 @@
 
 ---
 
-## ✨ Features
+## âœ¨ Features
 
-- 🔄 **Real-Time Collaboration** — Multiple users edit simultaneously with conflict-free sync via CRDTs (Yjs)
-- 🤖 **AI-Powered Debugging** — Integrated AI assistant detects bugs, explains code, and suggests fixes
-- 👥 **Live Presence** — See collaborators' cursors, selections, and activity in real-time
-- 📁 **Virtual File System** — Create, manage, and organize files with a VS Code-like file explorer
-- 💬 **In-Editor Chat** — Communicate with collaborators without leaving the editor
-- 🎨 **Multi-Language Support** — Syntax highlighting for 20+ programming languages
-- 🔐 **Role-Based Access** — Owner, Editor, and Viewer roles for project collaboration
-- 🌙 **Premium Dark Theme** — Stunning glassmorphism UI with smooth animations
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────┐     ┌──────────────────┐     ┌─────────────┐
-│   React +   │────▶│  Node.js/Express │────▶│ PostgreSQL  │
-│   Monaco    │     │     REST API     │     │  Database   │
-│   Editor    │     └──────────────────┘     └─────────────┘
-│             │     ┌──────────────────┐     ┌─────────────┐
-│   Yjs CRDT  │◀──▶│  Yjs WebSocket   │────▶│   Redis     │
-│   Client    │     │    Server        │     │   Cache     │
-└─────────────┘     └──────────────────┘     └─────────────┘
-                    ┌──────────────────┐
-                    │  OpenAI GPT-4    │
-                    │   AI Service     │
-                    └──────────────────┘
-```
+- ðŸ”„ **Real-Time Collaboration** â€” Multiple users edit simultaneously with conflict-free sync via CRDTs (Yjs)
+- ðŸ¤– **AI-Powered Debugging** â€” Integrated AI assistant detects bugs, explains code, and suggests fixes
+- ðŸ‘¥ **Live Presence** â€” See collaborators' cursors, selections, and activity in real-time
+- ðŸ“ **Virtual File System** â€” Create, manage, and organize files with a VS Code-like file explorer
+- ðŸ’¬ **In-Editor Chat** â€” Communicate with collaborators without leaving the editor
+- ðŸŽ¨ **Multi-Language Support** â€” Syntax highlighting for 20+ programming languages
+- ðŸ” **Role-Based Access** â€” Owner, Editor, and Viewer roles for project collaboration
+- ðŸŒ™ **Premium Dark Theme** â€” Stunning glassmorphism UI with smooth animations
 
 ---
 
-## 🚀 Quick Start
+## ðŸ—ï¸ Architecture
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚   React +   â”‚â”€â”€â”€â”€â–¶â”‚  Node.js/Express â”‚â”€â”€â”€â”€â–¶â”‚ PostgreSQL  â”‚
+â”‚   Monaco    â”‚     â”‚     REST API     â”‚     â”‚  Database   â”‚
+â”‚   Editor    â”‚     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+â”‚             â”‚     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚   Yjs CRDT  â”‚â—€â”€â”€â–¶â”‚  Yjs WebSocket   â”‚â”€â”€â”€â”€â–¶â”‚   Redis     â”‚
+â”‚   Client    â”‚     â”‚    Server        â”‚     â”‚   Cache     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚  OpenAI GPT-4    â”‚
+                    â”‚   AI Service     â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+---
+
+## ðŸš€ Quick Start
 
 ### Prerequisites
 
@@ -60,8 +60,8 @@
 ### 1. Clone & Configure
 
 ```bash
-git clone https://github.com/yourusername/codesync-ai.git
-cd codesync-ai
+git clone https://github.com/yourusername/synapse-ai.git
+cd synapse-ai
 
 # Copy environment variables
 cp .env.example .env
@@ -100,45 +100,45 @@ npm run dev
 
 ---
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
 ```
 Code_collab/
-├── client/                  # React Frontend (Vite)
-│   ├── src/
-│   │   ├── components/      # UI Components
-│   │   │   ├── AI/          # AI assistant panel
-│   │   │   ├── Auth/        # Login, Signup, AuthGuard
-│   │   │   ├── Collaboration/ # Chat, Presence, Share
-│   │   │   ├── Dashboard/   # Project dashboard
-│   │   │   ├── Editor/      # Monaco editor, tabs, cursors
-│   │   │   ├── FileExplorer/ # File tree, create modal
-│   │   │   └── Layout/      # Navbar, Sidebar, StatusBar
-│   │   ├── contexts/        # React contexts
-│   │   ├── hooks/           # Custom hooks (Yjs, Auth, AI)
-│   │   ├── services/        # API & WebSocket clients
-│   │   └── utils/           # Helpers, themes, config
-│   └── package.json
-│
-├── server/                  # Node.js Backend (Express)
-│   ├── src/
-│   │   ├── controllers/     # Request handlers
-│   │   ├── middleware/      # Auth, rate limiting, errors
-│   │   ├── models/          # Database models
-│   │   ├── routes/          # API routes
-│   │   ├── services/        # AI, context, presence
-│   │   └── websocket/       # Yjs provider, chat
-│   ├── migrations/          # SQL migrations
-│   └── package.json
-│
-├── docker-compose.yml       # Full stack Docker setup
-├── nginx.conf               # Production reverse proxy
-└── .env.example             # Environment variables template
+â”œâ”€â”€ client/                  # React Frontend (Vite)
+â”‚   â”œâ”€â”€ src/
+â”‚   â”‚   â”œâ”€â”€ components/      # UI Components
+â”‚   â”‚   â”‚   â”œâ”€â”€ AI/          # AI assistant panel
+â”‚   â”‚   â”‚   â”œâ”€â”€ Auth/        # Login, Signup, AuthGuard
+â”‚   â”‚   â”‚   â”œâ”€â”€ Collaboration/ # Chat, Presence, Share
+â”‚   â”‚   â”‚   â”œâ”€â”€ Dashboard/   # Project dashboard
+â”‚   â”‚   â”‚   â”œâ”€â”€ Editor/      # Monaco editor, tabs, cursors
+â”‚   â”‚   â”‚   â”œâ”€â”€ FileExplorer/ # File tree, create modal
+â”‚   â”‚   â”‚   â””â”€â”€ Layout/      # Navbar, Sidebar, StatusBar
+â”‚   â”‚   â”œâ”€â”€ contexts/        # React contexts
+â”‚   â”‚   â”œâ”€â”€ hooks/           # Custom hooks (Yjs, Auth, AI)
+â”‚   â”‚   â”œâ”€â”€ services/        # API & WebSocket clients
+â”‚   â”‚   â””â”€â”€ utils/           # Helpers, themes, config
+â”‚   â””â”€â”€ package.json
+â”‚
+â”œâ”€â”€ server/                  # Node.js Backend (Express)
+â”‚   â”œâ”€â”€ src/
+â”‚   â”‚   â”œâ”€â”€ controllers/     # Request handlers
+â”‚   â”‚   â”œâ”€â”€ middleware/      # Auth, rate limiting, errors
+â”‚   â”‚   â”œâ”€â”€ models/          # Database models
+â”‚   â”‚   â”œâ”€â”€ routes/          # API routes
+â”‚   â”‚   â”œâ”€â”€ services/        # AI, context, presence
+â”‚   â”‚   â””â”€â”€ websocket/       # Yjs provider, chat
+â”‚   â”œâ”€â”€ migrations/          # SQL migrations
+â”‚   â””â”€â”€ package.json
+â”‚
+â”œâ”€â”€ docker-compose.yml       # Full stack Docker setup
+â”œâ”€â”€ nginx.conf               # Production reverse proxy
+â””â”€â”€ .env.example             # Environment variables template
 ```
 
 ---
 
-## 🔌 API Documentation
+## ðŸ”Œ API Documentation
 
 ### Authentication
 | Method | Endpoint | Description |
@@ -176,7 +176,7 @@ Code_collab/
 
 ---
 
-## 🛠️ Tech Stack
+## ðŸ› ï¸ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -191,7 +191,7 @@ Code_collab/
 
 ---
 
-## 🤝 Contributing
+## ðŸ¤ Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -201,12 +201,12 @@ Code_collab/
 
 ---
 
-## 📄 License
+## ðŸ“„ License
 
 This project is licensed under the MIT License.
 
 ---
 
 <p align="center">
-  Built with ❤️ using React, Node.js, Yjs, and OpenAI
+  Built with â¤ï¸ using React, Node.js, Yjs, and OpenAI
 </p>

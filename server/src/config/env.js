@@ -27,7 +27,7 @@ const env = {
   PORT: parseInt(process.env.PORT, 10) || 4000,
   YJS_PORT: parseInt(process.env.YJS_PORT, 10) || 1234,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  DATABASE_URL: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/codesync',
+  DATABASE_URL: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/synapse',
   REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',
   JWT_SECRET: process.env.JWT_SECRET || 'dev-secret-change-me',
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret-change-me',
@@ -44,7 +44,7 @@ const env = {
   SMTP_PORT: parseInt(process.env.SMTP_PORT, 10) || 587,
   SMTP_USER: process.env.SMTP_USER || '',
   SMTP_PASS: process.env.SMTP_PASS || '',
-  SMTP_FROM: process.env.SMTP_FROM || 'CodeSync AI <noreply@codesync.dev>',
+  SMTP_FROM: process.env.SMTP_FROM || 'Synapse AI <noreply@synapse.dev>',
 };
 
 /**
@@ -61,11 +61,11 @@ export function validateEnv() {
   }
 
   if (missing.length > 0) {
-    console.warn(`⚠️  Missing env vars (using defaults): ${missing.join(', ')}`);
+    console.warn(`âš ï¸  Missing env vars (using defaults): ${missing.join(', ')}`);
   }
 
   if (!env.HF_API_KEY) {
-    console.warn('⚠️  HF_API_KEY not set — AI features will use free tier (may be rate-limited).');
+    console.warn('âš ï¸  HF_API_KEY not set â€” AI features will use free tier (may be rate-limited).');
   }
 }
 

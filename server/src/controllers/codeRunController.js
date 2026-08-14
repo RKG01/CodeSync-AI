@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 /** Maximum execution time in ms */
 const TIMEOUT = 15000;
 
-/** Map language → how to run */
+/** Map language â†’ how to run */
 const RUNNERS = {
   javascript: { ext: '.js', cmd: (f) => ['node', [f]] },
   python:     { ext: '.py', cmd: (f) => ['python', [f]] },
@@ -65,7 +65,7 @@ export async function runCode(req, res, next) {
   }
 
   // Create temp directory for execution
-  const tmpDir = path.join(os.tmpdir(), `codesync-${uuidv4()}`);
+  const tmpDir = path.join(os.tmpdir(), `synapse-${uuidv4()}`);
   fs.mkdirSync(tmpDir, { recursive: true });
 
   const srcFile = path.join(tmpDir, `main${runner.ext}`);

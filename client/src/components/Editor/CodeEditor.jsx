@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect, useMemo } from 'react';
 import Editor from '@monaco-editor/react';
 import { MonacoBinding } from 'y-monaco';
-import { registerCodeSyncTheme } from '../../utils/themes';
+import { registerSynapseTheme } from '../../utils/themes';
 import { getLanguageFromFilename } from '../../utils/helpers';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -40,8 +40,8 @@ export default function CodeEditor({
     monacoRef.current = monaco;
 
     // Register custom theme
-    registerCodeSyncTheme(monaco);
-    monaco.editor.setTheme(theme === 'light' ? 'codesync-light' : 'codesync-dark');
+    registerSynapseTheme(monaco);
+    monaco.editor.setTheme(theme === 'light' ? 'synapse-light' : 'synapse-dark');
 
     // Load file content as fallback (the useEffect below will bind Yjs when ready)
     if (file && file.content !== undefined && file.content !== null) {
@@ -146,7 +146,7 @@ export default function CodeEditor({
   // Update theme when it changes
   useEffect(() => {
     if (monacoRef.current) {
-      monacoRef.current.editor.setTheme(theme === 'light' ? 'codesync-light' : 'codesync-dark');
+      monacoRef.current.editor.setTheme(theme === 'light' ? 'synapse-light' : 'synapse-dark');
     }
   }, [theme]);
 
@@ -223,7 +223,7 @@ export default function CodeEditor({
       <Editor
         height="100%"
         language={language}
-        theme="codesync-dark"
+        theme="synapse-dark"
         onMount={handleEditorMount}
         options={editorOptions}
         loading={

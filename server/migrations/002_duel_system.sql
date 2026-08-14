@@ -1,12 +1,12 @@
 -- ============================================================================
--- CodeSync AI — Database Migration 002: Duel System
+-- Synapse AI â€” Database Migration 002: Duel System
 -- ============================================================================
 -- Adds elo_rating, matches_played, matches_won, preferred_languages to users,
 -- and creates duels + duel_submissions tables.
 -- Safe to re-run (uses IF NOT EXISTS / ADD COLUMN IF NOT EXISTS).
 -- ============================================================================
 
--- ─── Add duel columns to users table ────────────────────────────────────────
+-- â”€â”€â”€ Add duel columns to users table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 DO $$
 BEGIN
@@ -28,7 +28,7 @@ BEGIN
 END
 $$;
 
--- ─── DUELS ──────────────────────────────────────────────────────────────────
+-- â”€â”€â”€ DUELS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 CREATE TABLE IF NOT EXISTS duels (
     id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -51,7 +51,7 @@ CREATE INDEX IF NOT EXISTS idx_duels_player1 ON duels (player1_id);
 CREATE INDEX IF NOT EXISTS idx_duels_player2 ON duels (player2_id);
 CREATE INDEX IF NOT EXISTS idx_duels_status ON duels (status);
 
--- ─── DUEL SUBMISSIONS ──────────────────────────────────────────────────────
+-- â”€â”€â”€ DUEL SUBMISSIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 CREATE TABLE IF NOT EXISTS duel_submissions (
     id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
