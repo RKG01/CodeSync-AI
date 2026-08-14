@@ -42,7 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               },
             },
           }}
-        </Toaster>
+        />
       </AuthProvider>
     </BrowserRouter>
     </GoogleOAuthProvider>
