@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
+    "@react-oauth/google": "^0.13.5",
     "framer-motion": "^12.39.0",
     "lib0": "^0.2.88",
     "lucide-react": "^0.294.0",

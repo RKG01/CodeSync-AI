@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Code2, Mail, Lock, User, AlertCircle, Loader2, Shield, CheckCircle2, XCircle, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { GoogleLogin } from '@react-oauth/google';
 
 const PASSWORD_RULES = [
   { label: 'At least 8 characters', test: (p) => p.length >= 8 },
@@ -22,8 +23,20 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null); // Added for Dev mode Ethereal links
-  const { sendOtp: sendOtpApi, register } = useAuth();
+  const { sendOtp: sendOtpApi, register, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    setLoading(true);
+    setError('');
+    const result = await loginWithGoogle(credentialResponse.credential);
+    setLoading(false);
+    if (result.success) {
+      navigate('/dashboard');
+    } else {
+      setError(result.error);
+    }
+  };
 
   const passwordChecks = useMemo(
     () => PASSWORD_RULES.map((rule) => ({ ...rule, passed: rule.test(password) })),
@@ -242,6 +255,22 @@ export default function SignupPage() {
                 </>
               )}
             </button>
+
+            <div style={{ margin: '1.5rem 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+              <span style={{ padding: '0 10px', color: 'var(--text-muted)', fontSize: '13px' }}>or sign up with</span>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => setError('Google Sign-In failed.')}
+                useOneTap
+                shape="rectangular"
+                theme="filled_black"
+              />
+            </div>
           </form>
         )}
 

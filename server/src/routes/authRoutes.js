@@ -4,11 +4,17 @@
  */
 
 import { Router } from 'express';
-import { sendOtp, register, login, getMe, refreshToken } from '../controllers/authController.js';
+import { sendOtp, register, login, getMe, refreshToken, googleLogin } from '../controllers/authController.js';
 import { authenticate } from '../middleware/auth.js';
 import { authLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
+
+/**
+ * POST /api/auth/google
+ * Authenticates a user using a Google ID token.
+ */
+router.post('/google', authLimiter, googleLogin);
 
 /**
  * POST /api/auth/send-otp

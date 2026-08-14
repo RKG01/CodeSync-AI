@@ -164,7 +164,7 @@
     {
       "id": "b179f3e0-c2d5-46bd-b310-d539580ed81c",
       "created_at": "2026-06-03T10:20:04.534Z",
-      "updated_at": "2026-08-14T12:19:15.310Z",
+      "updated_at": "2026-08-14T12:33:58.857Z",
       "username": "Harsha",
       "email": "harshitraj1593@gmail.com",
       "password_hash": "$2a$12$WFlejKUVqNzafh7V5PgF1el7k0lGjdGI88FJgvqxJn1B7pvPmVU9m",
@@ -172,7 +172,7 @@
       "matches_played": 0,
       "matches_won": 0,
       "preferred_languages": "[\"javascript\"]",
-      "last_active_at": "2026-08-14T12:19:15.310Z"
+      "last_active_at": "2026-08-14T12:33:58.857Z"
     }
   ],
   "projects": [

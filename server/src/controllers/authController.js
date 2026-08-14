@@ -8,6 +8,10 @@ import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '.
 import { AppError } from '../middleware/errorHandler.js';
 import { sendOtpEmail } from '../services/emailService.js';
 import crypto from 'crypto';
+import { query } from '../config/database.js';
+import { OAuth2Client } from 'google-auth-library';
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // ─── In-Memory OTP Store ──────────────────────────────────────────────────────
 // In production, use Redis for this. For now, a simple Map with TTL cleanup.
@@ -254,6 +258,70 @@ export async function login(req, res, next) {
     await User.updateLastActive(user.id);
 
     // Generate tokens
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+
+    res.json({
+      success: true,
+      data: {
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          avatar_url: user.avatar_url,
+        },
+        accessToken,
+        refreshToken,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * Authenticates a user with a Google ID token.
+ */
+export async function googleLogin(req, res, next) {
+  try {
+    const { credential } = req.body;
+    if (!credential) {
+      throw new AppError('Google credential is required.', 400, 'VALIDATION_ERROR');
+    }
+
+    let payload;
+    try {
+      const ticket = await googleClient.verifyIdToken({
+        idToken: credential,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      payload = ticket.getPayload();
+    } catch (err) {
+      throw new AppError('Invalid Google credential.', 401, 'INVALID_CREDENTIALS');
+    }
+
+    const { email, name, picture } = payload;
+
+    let user = await User.findByEmail(email);
+
+    if (!user) {
+      // Create a random unique username
+      const baseUsername = name ? name.toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 20) : 'user';
+      const randomSuffix = crypto.randomBytes(4).toString('hex');
+      const username = `${baseUsername}_${randomSuffix}`;
+      
+      const randomPassword = crypto.randomBytes(16).toString('hex');
+      user = await User.create(username, email, randomPassword);
+    }
+
+    // Update avatar if provided
+    if (picture && user.avatar_url !== picture) {
+      await query('UPDATE users SET avatar_url = $1 WHERE id = $2', [picture, user.id]);
+      user.avatar_url = picture;
+    }
+
+    await User.updateLastActive(user.id);
+
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
 

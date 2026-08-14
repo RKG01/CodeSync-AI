@@ -53,6 +53,22 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  const loginWithGoogle = useCallback(async (credential) => {
+    try {
+      const res = await api.post('/auth/google', { credential }, { silent: true });
+      const newToken = res.data?.accessToken || res.accessToken || res.token;
+      const userData = res.data?.user || res.user || res;
+      localStorage.setItem(TOKEN_KEY, newToken);
+      localStorage.setItem(USER_KEY, JSON.stringify(userData));
+      setToken(newToken);
+      setUser(userData);
+      toast.success('Signed in with Google!');
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: err.message || 'Google login failed' };
+    }
+  }, []);
+
   /**
    * Step 1: Send OTP to the user's email.
    * Validates username, email, and password on the server before sending.
@@ -102,11 +118,12 @@ export function AuthProvider({ children }) {
       loading,
       isAuthenticated,
       login,
+      loginWithGoogle,
       sendOtp,
       register,
       logout,
     }),
-    [user, token, loading, isAuthenticated, login, sendOtp, register, logout]
+    [user, token, loading, isAuthenticated, login, loginWithGoogle, sendOtp, register, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
